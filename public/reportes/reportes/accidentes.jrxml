@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="accidentes" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c2314c65-8efd-4000-92ab-9939d6a2e40f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cia_f" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cia_t" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="area_f" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="area_t" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="responsable_f" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="responsable_t" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="accidente_f" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="accidente_t" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="accion_f" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="accion_t" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_f" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_t" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ruta_img" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select c.abreviatura, a.accidente, ar.area, e.nombre as responsable, e2.nombre as persona, b.fecha, ac.accion,
+b.costo_indirecto, b.costo_directo, b.descripcion, b.procedimiento, b.investigacion
+from bitacora_accidentes as b
+inner join entidades as c on c.id = b.cia_id
+inner join areas as ar on ar.id = b.area_id
+inner join empleados as e on e.id = b.responsable_id
+inner join empleados as e2 on e2.id = b.persona_id
+inner join cs_accidentes as a on a.id = b.accidente_id
+inner join cs_acciones as ac on ac.id = b.accion_id
+where b.deleted_at is null
+and b.cia_id>=$P{cia_f} and b.cia_id<=$P{cia_t}
+and b.accidente_id>=$P{accidente_f} and b.accidente_id<=$P{accidente_t}
+and b.responsable_id>=$P{responsable_f} and b.responsable_id<=$P{responsable_t}
+and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}
+and b.area_id>=$P{area_f} and b.area_id<=$P{area_t}
+and b.accion_id>=$P{accion_f} and b.accion_id<=$P{accion_t}]]>
+	</queryString>
+	<field name="abreviatura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accidente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="area" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="responsable" class="java.lang.String"/>
+	<field name="persona" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="costo_indirecto" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="costo_directo" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="procedimiento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="investigacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="costo_indirecto_1" class="java.lang.Float" resetType="Group" resetGroup="area" calculation="Sum">
+		<variableExpression><![CDATA[$F{costo_indirecto}]]></variableExpression>
+	</variable>
+	<variable name="costo_directo_1" class="java.lang.Float" resetType="Group" resetGroup="area" calculation="Sum">
+		<variableExpression><![CDATA[$F{costo_directo}]]></variableExpression>
+	</variable>
+	<variable name="accidente_1" class="java.lang.Integer" resetType="Group" resetGroup="area" calculation="Count">
+		<variableExpression><![CDATA[$F{accidente}]]></variableExpression>
+	</variable>
+	<variable name="accidente_2" class="java.lang.Integer" resetType="Group" resetGroup="entidad" calculation="Count">
+		<variableExpression><![CDATA[$F{accidente}]]></variableExpression>
+	</variable>
+	<variable name="costo_indirecto_2" class="java.lang.Float" resetType="Group" resetGroup="entidad" calculation="Sum">
+		<variableExpression><![CDATA[$F{costo_indirecto}]]></variableExpression>
+	</variable>
+	<variable name="costo_directo_2" class="java.lang.Float" resetType="Group" resetGroup="entidad" calculation="Sum">
+		<variableExpression><![CDATA[$F{costo_directo}]]></variableExpression>
+	</variable>
+	<group name="entidad">
+		<groupExpression><![CDATA[$F{abreviatura}]]></groupExpression>
+		<groupHeader>
+			<band height="14">
+				<textField>
+					<reportElement x="58" y="0" width="425" height="14" uuid="0fc2550a-66f1-4e52-8070-531a0c5486f3"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{abreviatura}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="58" height="14" uuid="8b3bd772-c1fb-4151-9d3e-e99f8969f488"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[ENTIDAD:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="14">
+				<textField>
+					<reportElement x="50" y="0" width="100" height="14" uuid="bc4debf4-f039-4b48-bd90-c6fe6f037b41"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{accidente_2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="250" y="0" width="75" height="14" uuid="3391252f-6140-4750-bbe6-6515855dd68f"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{costo_indirecto_2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="325" y="0" width="75" height="14" uuid="ca268a4f-6722-4163-a3a1-5d9ab430e88a"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{costo_directo_2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="50" height="14" uuid="9f126ee2-5dd7-46c0-a22e-e7c6cb81fe90"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[TOTALES:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="area">
+		<groupExpression><![CDATA[$F{area}]]></groupExpression>
+		<groupHeader>
+			<band height="14">
+				<staticText>
+					<reportElement x="0" y="0" width="58" height="14" uuid="b10e09d2-5f97-46d1-a0e8-941699c4bb2a"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[AREA:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="58" y="0" width="425" height="14" uuid="7ea1c6b5-84ce-4392-b90b-a9feeb15164e"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="14">
+				<textField>
+					<reportElement x="250" y="0" width="75" height="14" uuid="492f05f9-1987-4b09-80a0-e917a5355c6e"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{costo_indirecto_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="325" y="0" width="75" height="14" uuid="58389bd6-a70c-4eef-801f-d89a0fd501d8"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{costo_directo_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="50" height="14" uuid="f11beb8e-ecf8-44a6-8098-423fab8103b7"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[TOTALES:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="50" y="0" width="100" height="14" uuid="4d6561b9-0a52-424a-b1e9-61b695d2e33a"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{accidente_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="100" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="100" height="100" uuid="c240e866-3ff9-468c-bed5-ae665651e512"/>
+				<imageExpression><![CDATA[$P{ruta_img}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="100" y="38" width="652" height="20" uuid="d6322cb7-1e85-4245-9897-ddc5d669fd0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[R. BITACORA DE ACCIDENTES]]></text>
+			</staticText>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="673" y="0" width="79" height="14" uuid="3a729016-b419-4a9c-bcf2-5a2fa1ce0136"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="621" y="0" width="52" height="14" uuid="066387ce-73bc-4548-9ac7-ba3802501195"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[F. EMISION:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="14" uuid="9d3e73bd-9d3e-458b-a332-f892acebb695"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="100" height="14" uuid="2f382ab3-dad6-447b-bad5-21bd27068850"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[ACCIDENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="100" height="14" uuid="2da9dc1f-8a98-404d-ad17-84f5e3e80759"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[RESPONSABLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="75" height="14" uuid="3720c4e5-3898-4d08-beaa-4c0d08c44d59"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[C. INDIRECTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="0" width="75" height="14" uuid="5d3fef3e-b852-411d-b45b-4cc77850343f"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[C.DIRECTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="100" height="14" uuid="9904fb09-b277-43b4-afbe-9ab0dd8f0728"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="0" width="100" height="14" uuid="8ea2a3e7-09ec-41ee-b543-787b023c1f95"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[procedimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="0" width="152" height="14" uuid="75572725-cb11-48d1-b1b6-c7de4b21f465"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[investigacion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="MM/dd/yyyy">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="50" height="14" uuid="9af8a00c-6b76-490e-8cbb-4c8d6a13e757"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="50" y="0" width="100" height="14" uuid="a8a04865-d8c5-4524-81aa-e66626d7fd61"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{accidente}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="150" y="0" width="100" height="14" uuid="16e3d907-7b5c-4118-80cd-3b00cbf5a625"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="250" y="0" width="75" height="14" uuid="d3c7d20e-33e2-40cd-9486-f637952922d0"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{costo_indirecto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="325" y="0" width="75" height="14" uuid="240e012d-eb32-42ae-abd8-a79dd64c0426"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{costo_directo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="400" y="0" width="100" height="14" uuid="ab0aec8e-cffb-4673-a426-ebac157448a6"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="500" y="0" width="100" height="14" uuid="9f80ce54-8058-423d-b9eb-a45037c74e22"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{procedimiento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="600" y="0" width="152" height="14" uuid="4ea24323-541c-4af1-9854-f6f0c3d9a4dc"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{investigacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="633" y="0" width="80" height="20" uuid="d2da17b2-02d9-404e-bd74-021b7c607ffb"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="713" y="0" width="40" height="20" uuid="92611530-d7f0-4590-b0da-794d9900ba48"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,18 @@
+<?php
+
+class A_st_ncsTableSeeder extends Seeder {
+
+	public function run()
+	{
+		// Uncomment the below to wipe the table clean before populating
+		// DB::table('a_st_ncs')->truncate();
+
+		$a_st_ncs = array(
+
+		);
+
+		// Uncomment the below to run the seeder
+		// DB::table('a_st_ncs')->insert($a_st_ncs);
+	}
+
+}

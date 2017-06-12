@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hello_world" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dcd88081-ad8b-41ff-bfd5-2c6283a6de15">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="36"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\x\\htdocs\\siam-impacto\\public\\reportes\\enc_impacto\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select ei.proyecto, cli.cliente, ti.tipo_impacto, ei.fecha_inicio, ei.fecha_fin,
+f.factor, rub.rubro, esp.especifico, c.caracteristica, e.efecto, e.descripcion as desc_efecto,
+reals.imp_real, reals.descripcion as desc_imp_real, potencials.imp_potencial, potencials.descripcion as desc_imp_potencial,
+ln.descripcion as desc_real, ln.resarcion, ee.emision_efecto, da.duracion_accion, ce.continuidad_efecto,
+r.reversibilidad, p.probabilidad, m.mitigacion, ii.intensidad_impacto
+from enc_impactos as ei
+inner join reg_impactos as ri on ri.enc_impacto_id=ei.id
+inner join ln_caracteristicas ln on ln.reg_impacto_id=ri.id
+inner join caracteristicas as c on c.id=ln.caracteristica_id
+inner join efectos as e on e.id=ln.efecto_id
+inner join imp_reals as reals on reals.id=ln.imp_real_id
+inner join imp_potencials as potencials on potencials.id=ln.imp_potencial_id
+inner join emision_efectos as ee on ee.id=ln.emision_efecto_id
+inner join duracion_accions as da on da.id=ln.duracion_accion_id
+inner join continuidad_efectos as ce on ce.id=ln.continuidad_efecto_id
+inner join reversibilidads as r on r.id=ln.reversibilidad_id
+inner join probabilidads as p on p.id=ln.probabilidad_id
+inner join mitigacions as m on m.id=ln.mitigacion_id
+inner join intensidad_impactos as ii on ii.id=ln.intensidad_impacto_id
+inner join factors as f on f.id=ri.factor_id
+inner join rubros as rub on rub.id=ri.rubro_id
+inner join especificos as esp on esp.id=ri.especifico_id
+inner join clientes as cli on cli.id=ei.cliente_id
+inner join tipo_impactos as ti on ti.id=ei.tipo_impacto_id
+where ln.efecto_id>1 and ei.id=$P{id}
+order by ri.factor_id, ri.rubro_id, ri.especifico_id, ln.caracteristica_id]]>
+	</queryString>
+	<field name="proyecto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_impacto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_inicio" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_fin" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="factor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rubro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="especifico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="caracteristica" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="efecto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="desc_efecto" class="java.lang.String"/>
+	<field name="imp_real" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="desc_imp_real" class="java.lang.String"/>
+	<field name="imp_potencial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="desc_imp_potencial" class="java.lang.String"/>
+	<field name="desc_real" class="java.lang.String"/>
+	<field name="resarcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="emision_efecto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="duracion_accion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="continuidad_efecto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="reversibilidad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="probabilidad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mitigacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="intensidad_impacto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="especifico" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{especifico}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<textField>
+					<reportElement x="40" y="0" width="129" height="15" uuid="8dd9e68e-aaf8-4dce-99e6-2754d77c1a5a"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{factor}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="200" y="0" width="150" height="15" uuid="e4d1c280-7269-4610-bdfe-5a5d7a22435e"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{rubro}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="417" y="0" width="155" height="15" uuid="15263b70-a9aa-4da5-a16a-dbed3d74d5e0"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{especifico}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="169" y="0" width="31" height="15" uuid="f93aa2be-a3a8-46a6-a127-57caeeb1ff9a"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Rubro:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="367" y="0" width="50" height="15" uuid="5f143e17-e879-44a2-a0ad-fb44a7f77838"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Especifico:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="40" height="15" uuid="bbbe8aab-c843-411f-ac2b-590263eb2dee"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Factor:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79">
+			<textField>
+				<reportElement x="355" y="34" width="217" height="15" uuid="dd4f1147-ca1b-478c-9a87-1d2000b59e05"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="49" width="225" height="15" uuid="f0389d7a-32e4-41de-9074-6dacd14c330e"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_impacto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="65" y="64" width="225" height="15" uuid="7cf0cc8e-b519-4b8a-885e-eecb94cbe6e9"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="34" width="65" height="15" uuid="bf3c451a-ab03-411d-84b9-29deac94ef6a"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Promovente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="64" width="65" height="15" uuid="be313c36-dad2-4cd2-a511-b3f5c7cd4888"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Fecha Inicio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="49" width="65" height="15" uuid="98240de3-29ec-4b4b-94f8-33a86c07bff9"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Tipo Impacto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="0" width="191" height="20" uuid="f2a4d754-ec66-44ce-9319-c7591ce4ba6a"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE IMPACTO AMBIENTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="34" width="225" height="15" uuid="78bae6ef-380d-438e-bd96-970497ea0a04"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proyecto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="34" width="65" height="15" uuid="a6d62ca7-5272-49b1-88ba-68c70d9d7e60"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Proyecto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="64" width="65" height="15" uuid="ac1bc971-aaa1-4aff-8194-61e9ba782a86"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Fecha Fin:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="355" y="64" width="217" height="15" uuid="7add3d73-0ec4-4d9c-a3be-8e4b9cb1f397"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="90" height="15" backcolor="#CCCCCC" uuid="45dbba4a-c86c-429f-99dd-df08eecc41a3"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[CARACTERISTICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="0" width="90" height="15" backcolor="#CCCCCC" uuid="7a731d1f-308d-44dc-a84b-d3f08108b5e5"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[DESC. DEL IMPACTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="270" y="0" width="90" height="15" backcolor="#CCCCCC" uuid="e132ee0c-d4bb-49c0-903a-0efa46bd2190"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[MEDIDA DE RESARCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="360" y="0" width="212" height="15" backcolor="#CCCCCC" uuid="b70718aa-1c98-4e0c-aa22-0831b4b0c238"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[EVALUACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="90" y="0" width="90" height="15" backcolor="#CCCCCC" uuid="8f23930c-7411-4c74-8147-0d8b3dd4e31c"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[POND. DEL IMP.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="135" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="90" height="135" uuid="1962bb09-b51e-4550-85d2-c09a3f0d8d4e"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{caracteristica}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="0" width="90" height="135" uuid="88ae257a-0df3-45fb-a11b-da593711a3af"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{efecto} + "-" + $F{desc_efecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="90" height="135" uuid="72b47350-1775-4588-a178-eb30ac52aab2"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desc_real}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="90" height="135" uuid="2bfcff0f-5c34-480e-ac93-67bba369b9de"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resarcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="212" height="15" uuid="c8bc3965-0ff0-40e5-8296-28b397c124ed"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Emisión del Efecto: " + $F{emision_efecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="15" width="212" height="15" uuid="2dc25d6a-4755-40bf-b4f2-7a09c3bd7bf2"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Duración de la Acción: " + $F{duracion_accion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="30" width="212" height="15" uuid="c14d0d74-dfec-43e8-9f17-28d3fb1f83aa"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Contiuidad del Efecto: " + $F{continuidad_efecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="45" width="212" height="15" uuid="57c56e06-602c-4d0c-9196-6e831feb45b4"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Reversibilidad: " + $F{reversibilidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="60" width="212" height="15" uuid="dd7c134b-0297-49b8-9d4d-fd557643291d"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Probabilidad: " + $F{probabilidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="75" width="212" height="15" uuid="fd930b01-0197-43ed-a43c-3230db38eac4"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Mitigación del Efecto: " + $F{mitigacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="90" width="212" height="15" uuid="6fb1365b-0da2-4b2e-90e7-aff7914d2133"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Intensidad del Impacto: " + $F{intensidad_impacto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="120" width="212" height="15" uuid="9698d1c8-81cf-4421-82c9-670487a0e341"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Imp. Potencial: " + $F{imp_potencial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="105" width="212" height="15" uuid="28fd5b86-6208-4c9d-b545-032497a225ff"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Impacto Real: " + $F{imp_real}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="433" y="0" width="80" height="15" uuid="8c06983f-39ed-4b3a-89a2-584804589608"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PAGINA "+$V{PAGE_NUMBER}+" DE"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="513" y="0" width="40" height="15" uuid="59288209-e2f6-401e-879a-6c67d0d63811"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

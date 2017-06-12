@@ -1,0 +1,43 @@
+@extends('layouts.tabs')
+
+@section('contenido_tab')
+
+<div class="easyui-tabs" style="width:auto;height:auto;">
+    <div title="Mostrar" style="padding:10px;"> 
+	<table>
+		<tr>
+			@if (Sentry::getUser()->hasAccess('{{model}}-index')) 
+			<td>{{ link_to_route('{{model}}.index', 'Lista', null, array('class'=>'easyui-linkbutton', 'style'=>'height:30px;width:100px;')) }}</td>
+			@endif
+			@if (Sentry::getUser()->hasAccess('{{model}}-edit')) 
+			<td>{{ link_to_route('{{model}}.edit', 'Editar', array(${{model}}->id), array('class' => 'easyui-linkbutton', 'style'=>'height:30px;width:100px;')) }}</td>
+			@endif
+			@if (Sentry::getUser()->hasAccess('menus-destroy')) 
+			<td>{{ Form::model(${{model}}, array('style' => 'display: form-horizontal;', 'method' => 'POST', 'url' => '{{model}}/destroy/'.${{model}}->id)) }}
+				{{ Form::submit('Eliminar', array('class' => 'easyui-linkbutton', 'style'=>'height:32px;width:100px;')) }}
+				{{ Form::close() }}
+			</td>
+			@endif
+		</tr>
+	</table>
+
+	<br/>
+
+	<div class="datagrid">
+	<table>
+		<thead>
+			<tr>
+				{{headings}}
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				{{fields}}
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	</div>
+</div>
+@stop

@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hello_world" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="525"/>
+	<parameter name="id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\x\\htdocs\\siam-impacto\\public\\reportes\\enc_impacto\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codigo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select m.id, m.no_orden, tm.tpo_manto, o.objetivo, s.subequipo, s.clase, s.marca, s.modelo,
+s.fecha_carga, s.ubicacion, a.area, tm.tpo_manto, es.nombre AS solicitante, m.fec_planeada, m.descripcion,
+m.lugar, ee.nombre as ejecutor, er.nombre as responsable, m.recomendaciones, m.materiales, m.horas_inv, m.costo,
+btpp.bnd as cbtpp, m.riesgos, bs.bnd as cbs, bcp.bnd as cbcp, ble.bnd as cble, bcpu.bnd as cbcpu,
+st.estatus, be.bnd as cbe, blf.bnd as cblf, brb.bnd as cbrb, m.accion, m.resultado, m.fec_final,
+m.observaciones
+from m_mantenimientos as m
+inner join m_objetivos as o on o.id= m.objetivo_id
+inner join m_estatuses as st on st.id=m.estatus_id
+inner join subequipos as s on s.id=m.subequipo_id
+inner join areas as a on a.id=s.area_id
+inner join m_tpo_mantos as tm on tm.id=m.m_tpo_manto_id
+inner join empleados as es on es.id=m.solicitante_id
+inner join empleados as er on er.id=m.responsable_id
+inner join empleados as ee on ee.id=m.ejecutor_id
+inner join bnds as btpp on btpp.id=m.tpp_bnd
+inner join bnds as bs on bs.id=m.supervision_bnd
+inner join bnds as bcp on bcp.id=m.conoce_procedimiento_bnd
+inner join bnds as ble on ble.id=m.lleva_equipo_bnd
+inner join bnds as bcpu on bcpu.id=m.cumple_puntos_bnd
+inner join bnds as be on be.id=m.eventualidades_bnd
+inner join bnds as blf on blf.id=m.levantar_formato_bnd
+inner join bnds as brb on brb.id=m.registro_bitacora_bnd
+where m.id=$P{id}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="no_orden" class="java.lang.String"/>
+	<field name="tpo_manto" class="java.lang.String"/>
+	<field name="objetivo" class="java.lang.String"/>
+	<field name="subequipo" class="java.lang.String"/>
+	<field name="clase" class="java.lang.String"/>
+	<field name="marca" class="java.lang.String"/>
+	<field name="modelo" class="java.lang.String"/>
+	<field name="fecha_carga" class="java.sql.Date"/>
+	<field name="ubicacion" class="java.lang.String"/>
+	<field name="area" class="java.lang.String"/>
+	<field name="solicitante" class="java.lang.String"/>
+	<field name="fec_planeada" class="java.sql.Date"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="lugar" class="java.lang.String"/>
+	<field name="ejecutor" class="java.lang.String"/>
+	<field name="responsable" class="java.lang.String"/>
+	<field name="recomendaciones" class="java.lang.String"/>
+	<field name="materiales" class="java.lang.String"/>
+	<field name="horas_inv" class="java.lang.Float"/>
+	<field name="costo" class="java.lang.Float"/>
+	<field name="cbtpp" class="java.lang.String"/>
+	<field name="riesgos" class="java.lang.String"/>
+	<field name="cbs" class="java.lang.String"/>
+	<field name="cbcp" class="java.lang.String"/>
+	<field name="cble" class="java.lang.String"/>
+	<field name="cbcpu" class="java.lang.String"/>
+	<field name="estatus" class="java.lang.String"/>
+	<field name="cbe" class="java.lang.String"/>
+	<field name="cblf" class="java.lang.String"/>
+	<field name="cbrb" class="java.lang.String"/>
+	<field name="accion" class="java.lang.String"/>
+	<field name="resultado" class="java.lang.String"/>
+	<field name="fec_final" class="java.sql.Timestamp"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ORDEN DE MANTENIMIENTO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="626" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="452" width="572" height="48"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="572" height="35"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="142" width="572" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="97" width="572" height="45"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="35" width="572" height="62"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_orden}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="14" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[TIPO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="14" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tpo_manto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="14" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[EQUIPO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="14" width="191" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{objetivo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="35" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[SUBEQUIPO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="35" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subequipo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="50" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CLASE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="50" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clase}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="64" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MODELO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="64" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="50" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA DE CARGA]]></text>
+			</staticText>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="381" y="50" width="191" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_carga}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="79" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[UBICACION]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="79" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ubicacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="65" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[AREA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="65" width="191" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="97" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA PLANEADA]]></text>
+			</staticText>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="381" y="97" width="191" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fec_planeada}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="112" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="112" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="112" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[LUGAR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="112" width="191" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lugar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="142" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[RECOMENDACIONES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="142" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recomendaciones}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="142" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MATERIALES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="142" width="191" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{materiales}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="157" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HORAS INVERIDAS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="157" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{horas_inv}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="157" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[COSTO]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="381" y="157" width="191" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{costo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="792" y="39" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="35" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MARCA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="35" width="191" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="97" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[SOLICITANTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="97" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="127" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[EJECUTOR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="127" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ejecutor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="127" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[RESPONSABLE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="127" width="191" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="172" width="572" height="164"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="337" width="572" height="115"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="191" width="222" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[¿REQUIERE TPP?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="191" width="44" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cbtpp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="231" width="222" height="24"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[¿HAY SUPERVISION POR PARTE  POR PARTE DE SEGURIDAD O RESPONSABLE DE ESTACION?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="231" width="44" height="24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cbs}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="255" width="222" height="24"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[¿CONOCE EL PROCEDIMIENTO DE TRABAJO?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="255" width="44" height="24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cbcp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="279" width="222" height="24"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[¿EL PERSONAL LLEVA EL EQUIPO DE SEGURIDAD QUE INDICA LA PRESENTE AUTORIZACION?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="279" width="44" height="24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cble}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="302" width="222" height="34"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[¿CUMPLEN CON LOS PUNTOS APLICABLES DE LA FRACCION 8.4 Y LAS QUE LA COMPONEN DE LA NORMA NOM-005-ASEA-2016?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="302" width="44" height="34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cbcpu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="211" width="53" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[RIESGOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="211" width="213" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{riesgos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="337" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ESTATUS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="337" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estatus}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="367" width="222" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[¿SE LEVANTO FORMATO DE ACCIDENTES?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="367" width="44" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cblf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="382" width="222" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[¿SE REGISTRO EN BITACORA LA ACTIVIDAD?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="382" width="44" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cbrb}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="337" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ACCION]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="281" y="352" width="291" height="60"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{accion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="412" width="53" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[RESULTADO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="412" width="519" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{resultado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="397" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA FINAL]]></text>
+			</staticText>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="100" y="397" width="166" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fec_final}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="452" width="81" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[OBSERVACIONES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="452" width="491" height="48"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="31" y="596" width="250" height="1"/>
+			</line>
+			<line>
+				<reportElement x="299" y="597" width="250" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="31" y="598" width="250" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="598" width="250" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ejecutor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="352" width="222" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[EVENTUALIDADES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="352" width="44" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cbe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="303" y="255" width="250" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="303" y="253" width="250" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="303" y="321" width="250" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ejecutor}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="303" y="320" width="250" height="1"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="172" width="572" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[AUTORIZACION DE TRABAJO POTENCIALMENTE PELIGROSO]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="111" y="0" width="368" height="15"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{codigo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CODIGO DE SEGURIDAD]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="111" y="15" width="215" height="33"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39 (Extended)" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{id}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="498" y="0" width="74" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

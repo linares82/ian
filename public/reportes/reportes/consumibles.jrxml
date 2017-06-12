@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consumibles" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44db94d5-5255-47cc-82e0-4062c448c036">
+	<property name="ireport.zoom" value="1.1"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="19"/>
+	<parameter name="cia_f" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cia_t" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="consumible_f" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="consumible_t" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_f" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_t" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ruta_img" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select c.abreviatura, co.consumible, co.unidad, b.factor_calculado, b.consumo, b.fecha, b.costo,
+b.fec_inicio, b.fec_fin, b.factor_indicador, b.factor_calculado
+from bitacora_consumibles as b
+inner join entidades as c on c.id = b.cia_id
+inner join ca_consumibles as co on co.id = b.consumible_id
+where b.deleted_at is null
+and b.cia_id>=$P{cia_f} and b.cia_id<=$P{cia_t}
+and b.consumible_id>=$P{consumible_f} and b.consumible_id<=$P{consumible_t}
+and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
+	</queryString>
+	<field name="abreviatura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="consumible" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unidad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="factor_calculado" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="consumo" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="costo" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fec_inicio" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fec_fin" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="factor_indicador" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="costo_1" class="java.lang.Float" resetType="Group" resetGroup="consumible" calculation="Sum">
+		<variableExpression><![CDATA[$F{costo}]]></variableExpression>
+	</variable>
+	<variable name="consumo_1" class="java.lang.Float" resetType="Group" resetGroup="consumible" calculation="Sum">
+		<variableExpression><![CDATA[$F{consumo}]]></variableExpression>
+	</variable>
+	<variable name="consumo_2" class="java.lang.Float" resetType="Group" resetGroup="entidad" calculation="Sum">
+		<variableExpression><![CDATA[$F{consumo}]]></variableExpression>
+	</variable>
+	<variable name="costo_2" class="java.lang.Float" resetType="Group" resetGroup="entidad" calculation="Sum">
+		<variableExpression><![CDATA[$F{costo}]]></variableExpression>
+	</variable>
+	<group name="entidad">
+		<groupExpression><![CDATA[$F{abreviatura}]]></groupExpression>
+		<groupHeader>
+			<band height="14">
+				<textField>
+					<reportElement x="54" y="0" width="511" height="14" uuid="568cf0f2-54dc-4e11-83ed-d809ccbebab3"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{abreviatura}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="54" height="14" uuid="362c9985-7581-4b8f-9762-9919a0b0e462"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[ENTIDAD:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="14">
+				<textField>
+					<reportElement x="100" y="0" width="172" height="14" uuid="c8f6c200-61a4-412a-8625-9b6e3a855152"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{consumo_2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="472" y="0" width="100" height="14" uuid="f19040ca-5d1e-431e-a6f8-0de40e4f3c42"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{costo_2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="54" y="0" width="46" height="14" uuid="f2070ce4-fd69-46c0-83fd-d306ef6fd5b5"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[TOTALES:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="consumible">
+		<groupExpression><![CDATA[$F{consumible}]]></groupExpression>
+		<groupHeader>
+			<band height="14">
+				<textField>
+					<reportElement x="74" y="0" width="285" height="14" uuid="2ddd1972-6b56-41be-a2ad-3c8fd4975ba4"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{consumible}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="400" y="0" width="165" height="14" uuid="5e896462-2dde-479f-924c-e7b7d90ee712"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{unidad}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="74" height="14" uuid="440fa16b-997b-4d07-8093-bc97bd472be9"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[CONSUMIBLE:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="359" y="0" width="41" height="14" uuid="e6778c89-f5d1-47c3-bfff-c09c3d99effd"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[UNIDAD:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="14">
+				<textField>
+					<reportElement x="472" y="0" width="100" height="14" uuid="0ff148a0-6150-494f-b6ec-536e122dd94d"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{costo_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="100" y="0" width="172" height="14" uuid="4339320b-2b9f-403c-b757-9dca8d400ed4"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{consumo_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="54" y="0" width="46" height="14" uuid="a5eea800-b526-4238-b90c-66b6e40003cb"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[TOTALES:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="100" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="100" height="100" uuid="1db723eb-535a-4c76-951c-11b52732d0ee"/>
+				<imageExpression><![CDATA[$P{ruta_img}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="100" y="41" width="472" height="20" uuid="bf8d3c98-182f-45f0-8ffd-42a5536b9b57"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[R. BITACORA DE CONSUMIBLES]]></text>
+			</staticText>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="465" y="0" width="100" height="20" uuid="b19fe98b-087e-4ca5-be1a-1e5c1defe67a"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="414" y="0" width="51" height="20" uuid="415f74a0-8833-46ee-911f-3e392624e438"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[F. EMISION:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="14" uuid="19adcd1c-a1dd-4732-b7d0-7e027aed883a"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="172" height="14" uuid="51eb7a31-5d6c-4ce0-8a58-30ac18fb4077"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[CONSUMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="272" y="0" width="100" height="14" uuid="189583f7-ce65-4a48-ad48-7d5c80c4792d"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[F. INICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="372" y="0" width="100" height="14" uuid="0dfa5ddc-619c-4f9e-b070-e48025069b88"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[F. FIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="0" width="100" height="14" uuid="82c5b714-eb96-4a63-9b1c-01c2678c2a06"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[COSTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="100" height="14" uuid="9c3f1520-8bba-465e-b92a-5e30b15a6aff"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="100" y="0" width="172" height="14" uuid="6206c150-d94b-4ede-946d-0fd7e7a36dbe"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consumo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="372" y="0" width="100" height="14" uuid="41e49c3a-da83-46ee-abe7-5e8a0668ac98"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fec_fin}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="272" y="0" width="100" height="14" uuid="c2f216de-8342-42b9-ac4b-c119bb6baabb"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fec_inicio}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="472" y="0" width="100" height="14" uuid="46ad81ab-8885-47af-91ea-08440ee5d602"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{costo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="452" y="0" width="80" height="20" uuid="f6adb15b-e56a-4d14-81b6-03e373ef761f"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="532" y="0" width="40" height="20" uuid="6cea02c9-0b18-481f-b2bf-15b03f6b8f60"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

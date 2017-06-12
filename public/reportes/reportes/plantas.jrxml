@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="plantas" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5aebadea-dd18-49fb-86a2-4ca8c51779a4">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="41"/>
+	<parameter name="cia_f" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cia_t" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="planta_f" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="planta_t" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="responsable_f" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="responsable_t" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ruta_img" class="java.lang.String"/>
+	<parameter name="fecha_f" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_t" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select c.abreviatura, p.planta, p.ubicacion, p.tipo_planta, p.c_tratamiento, e.nombre, t.turno,
+b.fecha, b.agua_entrada, b.agua_salida,b.q_usados, b.q_existentes, b.tiempo_operacion,
+b.motivo_paro, b.vol_lodos, b.disp_lodos, b.fec_ult_manto, b.desc_manto
+from bitacora_plantas as b
+inner join entidades as c on c.id = b.cia_id
+inner join ca_plantas as p on p.id = b.planta_id
+inner join empleados as e on e.id = b.responsable_id
+inner join turnos as t on t.id = b.turno_id
+where b.deleted_at is null
+and b.cia_id>=$P{cia_f} and b.cia_id<=$P{cia_t}
+and b.planta_id>=$P{planta_f} and b.planta_id<=$P{planta_t}
+and b.responsable_id>=$P{responsable_f} and b.responsable_id<=$P{responsable_t}
+and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
+	</queryString>
+	<field name="abreviatura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="planta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ubicacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_planta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="c_tratamiento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="turno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="agua_entrada" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="agua_salida" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="q_usados" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="q_existentes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tiempo_operacion" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="motivo_paro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vol_lodos" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="disp_lodos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fec_ult_manto" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="desc_manto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="entidad">
+		<groupExpression><![CDATA[$F{abreviatura}]]></groupExpression>
+		<groupHeader>
+			<band height="12">
+				<textField>
+					<reportElement x="56" y="0" width="409" height="12" uuid="87340d4b-f749-4871-ac74-893e8a7b9392"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{abreviatura}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="56" height="12" uuid="a869b04b-37aa-4265-9261-7d7c974731c7"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[ENTIDAD:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="planta">
+		<groupExpression><![CDATA[$F{planta}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<textField>
+					<reportElement x="56" y="0" width="409" height="12" uuid="a8e532f7-296b-42bf-9a58-0e4c8e3d25c7"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{planta}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="56" height="12" uuid="17c20331-3455-4874-91af-6f0cfc3dbec6"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[PLANTA:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="465" y="0" width="56" height="12" uuid="a4fea452-75e2-4e29-8da1-0562b190f95d"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[T. PLANTA:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="12" width="56" height="12" uuid="b5ca2d98-f658-482b-bc08-9d49ff3e7d40"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[UBICACION:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="521" y="0" width="231" height="12" uuid="bb4a5561-b961-4ca4-975a-6ee15c845160"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tipo_planta}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="56" y="12" width="409" height="12" uuid="a6a096a7-98f8-40f2-baa6-95a73373f30e"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ubicacion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="535" y="12" width="217" height="12" uuid="c6503523-6d38-47f9-9a53-dd3a2eb25032"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{c_tratamiento}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="465" y="12" width="70" height="12" uuid="f89f2d36-7a3d-4cb2-8369-51bd4b0f5915"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[C. TRATAMIENTO:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="100" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="100" height="100" uuid="abc6821c-eb0c-4602-85b3-2dcec5a84c12"/>
+				<imageExpression><![CDATA[$P{ruta_img}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="100" y="42" width="652" height="20" uuid="a93c53bf-41b8-48e2-97ba-704ee0c465f0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[R. DE BITACORA DE PLANTAS]]></text>
+			</staticText>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="652" y="0" width="100" height="20" uuid="d72157a8-f302-43a8-96f3-cbf4505d3ad8"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="599" y="0" width="53" height="20" uuid="4798f82e-762b-4bf0-bda0-54930a6bb69b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[F. EMISION:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="14" uuid="3f6ea9a6-8565-421f-9acf-2d9cb0d92ecc"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[RESPONSABLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="50" height="14" uuid="8cd32f3d-9f17-4be8-8f6b-5552d14c4f0b"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="50" height="14" uuid="eb9df062-80b3-4bf6-8009-09b1b1cdf15c"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[TURNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="50" height="14" uuid="aec02112-9c84-4c34-a3df-1f69e0eddc51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[A. ENTRADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="0" width="50" height="14" uuid="4863914f-36aa-4669-acde-8027a6a82601"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[A. SALIDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="80" height="14" uuid="e9ac3caa-1672-49c0-bf02-e7c1dda6894d"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Q. USADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="60" height="14" uuid="76215ca5-e02b-4e61-ba5d-d0a04139767c"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[T. OPERACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="0" width="80" height="14" uuid="7f3fb4a0-310e-4f69-aef3-2403809d881e"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[MOTIVO PARO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="0" width="50" height="14" uuid="60c5b14c-0a3e-49d2-b094-db369e578c22"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[V. LODOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="80" height="14" uuid="1b27a1b8-acf2-49dd-8c38-2f8c4abcd837"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Q. EXISTENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="630" y="0" width="60" height="14" uuid="c2622b1a-3691-4bff-bd06-578f0c84a935"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[D. LODOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="690" y="0" width="62" height="14" uuid="d9175303-3059-4661-8a18-f8ef511aba41"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[F. U. MANTO.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="80" height="14" uuid="ab972542-99d1-4281-974b-cc391afa02f4"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="MM/dd/yyyy">
+				<reportElement stretchType="RelativeToTallestObject" x="80" y="0" width="50" height="14" uuid="474dd589-7b45-4b0b-b6b1-d051ba55b6dc"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="130" y="0" width="50" height="14" uuid="338530ee-ccb3-4372-81c3-6633a193cac8"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="180" y="0" width="50" height="14" uuid="0d18745e-b6ad-48b6-8d2f-4878c61a0f11"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agua_entrada}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="230" y="0" width="50" height="14" uuid="2ab1df20-293f-4c8d-a5e1-1f3a2b20290b"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agua_salida}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="280" y="0" width="80" height="14" uuid="600006d2-a68c-4987-94c5-3510575664c4"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{q_usados}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="440" y="0" width="60" height="14" uuid="ba8ebbe7-2f19-4fe6-a899-bbbb852cd78d"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tiempo_operacion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="500" y="0" width="80" height="14" uuid="aed7f7c9-2814-4d17-a78e-5614e8a2875b"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{motivo_paro}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="580" y="0" width="50" height="14" uuid="3cbe14ee-fe9c-4d9d-93fc-a4ee1a41f3a9"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vol_lodos}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="360" y="0" width="80" height="14" uuid="2e179459-a1f2-4c10-a854-f61ccfc128aa"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{q_existentes}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="630" y="0" width="60" height="14" uuid="5f862712-e3b7-4815-893a-dbff1f9293a7"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{disp_lodos}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="MM/dd/yyyy">
+				<reportElement stretchType="RelativeToTallestObject" x="690" y="0" width="62" height="14" uuid="2a32f1b2-7124-4b5b-aadf-0a17eb761c24"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fec_ult_manto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+			<textField>
+				<reportElement x="632" y="0" width="80" height="20" uuid="d6eaba0e-ffd2-4176-af37-95357f66d6d9"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="712" y="0" width="40" height="20" uuid="b7a5c89a-70d7-408d-b3c0-8a9e6078b794"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

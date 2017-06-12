@@ -1,0 +1,10 @@
+id;name;value;description;created_at;updated_at;deleted_at
+755;a_rr_amb_doc-index;a_rr_amb_doc-index;Lista de a_rr_amb_doc;0000-00-00 00:00:00;0000-00-00 00:00:00;0000-00-00 00:00:00
+756;a_rr_amb_doc-create;a_rr_amb_doc-create;Crear a_rr_amb_doc;0000-00-00 00:00:00;0000-00-00 00:00:00;0000-00-00 00:00:00
+757;a_rr_amb_doc-store;a_rr_amb_doc-store;Guardar a_rr_amb_doc;0000-00-00 00:00:00;0000-00-00 00:00:00;0000-00-00 00:00:00
+758;a_rr_amb_doc-show;a_rr_amb_doc-show;Mostrar a_rr_amb_doc;0000-00-00 00:00:00;0000-00-00 00:00:00;0000-00-00 00:00:00
+759;a_rr_amb_doc-edit;a_rr_amb_doc-edit;Edicion de a_rr_amb_doc;0000-00-00 00:00:00;0000-00-00 00:00:00;0000-00-00 00:00:00
+760;a_rr_amb_doc-update;a_rr_amb_doc-update;Actualizar a_rr_amb_doc;0000-00-00 00:00:00;0000-00-00 00:00:00;0000-00-00 00:00:00
+761;a_rr_amb_doc-destroy;a_rr_amb_doc-destroy;Eliminar a_rr_amb_doc;0000-00-00 00:00:00;0000-00-00 00:00:00;0000-00-00 00:00:00
+762;a_rr_amb_doc-recover;a_rr_amb_doc-recover;Recuperar a_rr_amb_doc;0000-00-00 00:00:00;0000-00-00 00:00:00;0000-00-00 00:00:00
+763;a_rr_amb_doc-contentListIndex;a_rr_amb_doc-contentListIndex;Llena lista de a_rr_amb_doc;0000-00-00 00:00:00;0000-00-00 00:00:00;0000-00-00 00:00:00
