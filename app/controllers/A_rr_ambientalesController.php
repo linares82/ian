@@ -199,7 +199,7 @@ class A_rr_ambientalesController extends BaseController {
 			$documento['archivo']=Input::file('file1')->getClientOriginalName();	
 			$cia=User::find(Sentry::getUser()->id)->Entidad->rzon_social;
 			$usuario=Sentry::getUser()->id;
-			Input::file('file1')->move(public_path().'/uploads/'.$cia.'/'.$usuario.'/manto_doc', Input::file('file1')->getClientOriginalName());
+			Input::file('file1')->move(public_path().'/uploads/'.$cia.'/'.$usuario.'/a_rr_ambientales_doc', Input::file('file1')->getClientOriginalName());
 			
 			$documento['usu_mod_id']=$usuario;
 			$documento['usu_alta_id']=$usuario;

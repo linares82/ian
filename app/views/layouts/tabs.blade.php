@@ -21,6 +21,7 @@
 					"{{ asset('jeasyui/themes/bootstrap/easyui.css') }}"
 				@endif
 			 @endif
+			
 		/>
         <link rel="stylesheet" type="text/css" href="{{ asset('jeasyui/themes/icon.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/form.css')}}" />
