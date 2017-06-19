@@ -23,7 +23,6 @@ class Bitacora_residuo extends Eloquent {
 		'registro_residuos' => 'required',
 		'peligrosidad' => 'required',
 		'fec_ingreso' => 'required',
-		'fec_salida' => 'required',
 		'cedula_operacion' => 'required',
 	);
 	

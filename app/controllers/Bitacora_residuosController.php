@@ -84,6 +84,9 @@ class Bitacora_residuosController extends BaseController {
 		$input['usu_alta_id']=Sentry::getUser()->id;
 		$input['usu_mod_id']=Sentry::getUser()->id;
 		$input['cia_id']=User::find(Sentry::getUser()->id)->Entidad->id;
+		if(strlen(Input::get('fec_salida'))==0){
+			$input['fec_salida']=null;
+		}
 		$validation = Validator::make($input, Bitacora_residuo::$rules, Bitacora_residuo::$rulesMessages);
 
 		if ($validation->passes())
@@ -122,6 +125,7 @@ class Bitacora_residuosController extends BaseController {
 	public function edit($id)
 	{
 		$bitacora_residuo = $this->bitacora_residuo->find($id);
+		//dd($bitacora_residuo);
 
 		if (is_null($bitacora_residuo))
 		{
@@ -146,6 +150,12 @@ class Bitacora_residuosController extends BaseController {
 		$input['anio']=date('Y', strtotime(Input::get('fecha')));;
 		$input['mes']=date('m', strtotime(Input::get('fecha')));
 		
+		//dd(strlen(Input::get('fec_salida')));
+		if(strlen(Input::get('fec_salida'))==0){
+			$input['fec_salida']=null;
+			//dd("hi");
+		}
+
 		$validation = Validator::make($input, Bitacora_residuo::$rules, Bitacora_residuo::$rulesMessages);
 
 		if ($validation->passes())
