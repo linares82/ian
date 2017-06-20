@@ -6,23 +6,9 @@
         <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" />
         
         <link rel="stylesheet" type="text/css" 
-		href = 
-            @if(isset(User::find(Sentry::getUser()->id)->Entidad->tema))
-				@if(User::find(Sentry::getUser()->id)->Entidad->tema=='metro-blue')
-					"{{ asset('jeasyui/themes/metro-blue/easyui.css') }}"
-				@elseif(User::find(Sentry::getUser()->id)->Entidad->tema=='metro-green')
-					"{{ asset('jeasyui/themes/metro-green/easyui.css') }}"
-				@elseif(User::find(Sentry::getUser()->id)->Entidad->tema=='metro-orange')
-					"{{ asset('jeasyui/themes/metro-orange/easyui.css') }}"
-				@elseif(User::find(Sentry::getUser()->id)->Entidad->tema=='metro-red')
-					"{{ asset('jeasyui/themes/metro-red/easyui.css') }}"
-				@elseif(User::find(Sentry::getUser()->id)->Entidad->tema=='metro-gray')
-					"{{ asset('jeasyui/themes/metro-gray/easyui.css') }}"
-				@else
-					"{{ asset('jeasyui/themes/bootstrap/easyui.css') }}"
-				@endif
-			 @endif
-			
+		href = "{{ asset('jeasyui/themes/metro-blue/easyui.css') }}"
+            
+            
 		/>
         <link rel="stylesheet" type="text/css" href="{{ asset('jeasyui/themes/icon.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/form.css')}}" />
