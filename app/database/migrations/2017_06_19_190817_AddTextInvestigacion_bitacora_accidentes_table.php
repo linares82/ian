@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTextInvestigacion_Bitacora_Accidentes_Table extends Migration {
+class AddTextInvestigacionBitacoraAccidentesTable extends Migration {
 
 	/**
 	 * Run the migrations.
