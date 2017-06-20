@@ -6,7 +6,8 @@
         <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" />
         
         <link rel="stylesheet" type="text/css" 
-		href = @if(isset(User::find(Sentry::getUser()->id)->Entidad->tema))
+		href = 
+            @if(isset(User::find(Sentry::getUser()->id)->Entidad->tema))
 				@if(User::find(Sentry::getUser()->id)->Entidad->tema=='metro-blue')
 					"{{ asset('jeasyui/themes/metro-blue/easyui.css') }}"
 				@elseif(User::find(Sentry::getUser()->id)->Entidad->tema=='metro-green')
