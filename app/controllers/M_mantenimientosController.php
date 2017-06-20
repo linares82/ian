@@ -173,7 +173,7 @@ class M_mantenimientosController extends BaseController {
 	public function edit($id)
 	{
 		$m_mantenimiento = $this->m_mantenimiento->find($id);
-		$documentos = DB::table('Manto_docs')
+		$documentos = DB::table('manto_docs')
 						->where('mantenimiento_id', '=', $id)
 						->where('deleted_at', '=', null)
 						->get();
