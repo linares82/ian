@@ -131,6 +131,8 @@ class M_mantenimientosController extends BaseController {
 
 		if ($validation->passes())
 		{
+			$input['fec_inicio']=Carbon\Carbon::parse($input['fec_inicio'])->format('Y/m/d H:i:s');
+			$input['fec_final']=Carbon\Carbon::parse($input['fec_final'])->format('Y/m/d H:i:s');
 			$r=$this->m_mantenimiento->create($input);
 			$input['codigo']=Hash::make($r->id); 
 			$ru=$this->m_mantenimiento->find($r->id);
