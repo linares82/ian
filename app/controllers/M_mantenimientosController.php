@@ -133,10 +133,14 @@ class M_mantenimientosController extends BaseController {
 		{
 			$input['fec_inicio']=Carbon\Carbon::parse($input['fec_inicio'])->format('Y/m/d H:i:s');
 			$input['fec_final']=Carbon\Carbon::parse($input['fec_final'])->format('Y/m/d H:i:s');
+			//dd($input['fec_inicio']);
+			
 			$r=$this->m_mantenimiento->create($input);
 			$input['codigo']=Hash::make($r->id); 
+			unset($input['_token']);
+			//dd($r->id);
 			$ru=$this->m_mantenimiento->find($r->id);
-			$this->m_mantenimiento->update($input);
+			$ru->update($input);
 
 			return Redirect::route('m_mantenimiento.index');
 		}
