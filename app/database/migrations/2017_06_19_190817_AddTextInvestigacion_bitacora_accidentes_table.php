@@ -13,7 +13,7 @@ class AddTextInvestigacionBitacoraAccidentesTable extends Migration {
 	public function up()
 	{
 		Schema::table('bitacora_accidentes', function(Blueprint $table) {
-			$table->text('investigacion');
+			$table->text('investigacion')->nullable();
 		});
 	}
 
