@@ -1,0 +1,98 @@
+@extends('layouts.tabs')
+
+@section('contenido_tab')
+<style>
+@media print {
+   table, th, td
+    {
+        border-collapse:collapse;
+        border: 1px solid black;
+        width:100%;
+        text-align:right;
+    }
+}
+</style>
+
+<div id="printeArea">
+<table>
+    <tr>
+        <td style="width:33%;">
+            <img scr="{{ $img }}" alt="Logo" height=80>
+        </td>
+        <td style="width:33%;">
+            <h3> BITACORA DE CONSUMOS </h3>
+        </td>
+        <td style="width:33%;">
+
+        </td>
+    </tr>
+</table>
+
+<table id="dg" style="width:auto;height:auto;border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th data-options="field:'cia_id'" style="border:1px solid #ccc;">
+                Entidad
+            </th>
+            <th data-options="field:'residuo'" style="border:1px solid #ccc;">
+                Consumible
+            </th>
+            <th data-options="field:'unidad'" style="border:1px solid #ccc;">
+                Unidad
+            </th>
+            <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
+                Fecha
+            </th>
+            <th data-options="field:'nombre'" style="border:1px solid #ccc;">
+                Consumo
+            </th>
+            <th data-options="field:'fecha'" style="border:1px solid #ccc;">
+                F. Inicio 
+            </th>
+            <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
+                F. Fin
+            </th>
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                Costo
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($cs as $c)
+        <tr>
+            <td style="border:1px solid #ccc;">
+                {{ $c->cia_id }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $c->consumible->consumible }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $c->consumible->unidad }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $c->fecha }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $c->consumo }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $c->fec_inicio }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $c->fec_fin }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $c->costo }}
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+</div>
+@stop
+@section('js_local')
+    
+    <script type="text/javascript">
+    
+    </script>
+@stop

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="manto" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="400d0d8a-2c7c-4de9-b5d9-2a7a8440fce6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="manto" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="153"/>
 	<property name="ireport.y" value="0"/>
@@ -117,28 +117,28 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 		<groupFooter>
 			<band height="14">
 				<textField>
-					<reportElement x="250" y="0" width="50" height="14" uuid="aecf0e1f-dfec-4df2-acbc-8261e3d3a0ea"/>
+					<reportElement x="250" y="0" width="50" height="14" />
 					<textElement textAlignment="Right">
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{horas_inv_2}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="692" y="0" width="60" height="14" uuid="60b9766b-a837-4c28-aa39-9ff4b348370a"/>
+					<reportElement x="692" y="0" width="60" height="14" />
 					<textElement textAlignment="Right">
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{costo}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="632" y="0" width="60" height="14" uuid="3375f787-1a44-4169-9e2e-9f475a1973cd"/>
+					<reportElement x="632" y="0" width="60" height="14" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<text><![CDATA[T. ENTIDAD]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="190" y="0" width="60" height="14" uuid="f56fbbcc-8882-4fbb-9688-8cb5e1012371"/>
+					<reportElement x="190" y="0" width="60" height="14" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
@@ -152,28 +152,28 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 		<groupHeader>
 			<band height="15">
 				<textField>
-					<reportElement x="43" y="1" width="173" height="14" uuid="15e34236-ea70-4dde-aaff-39ad0fbaaf12"/>
+					<reportElement x="43" y="1" width="173" height="14" />
 					<textElement>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{abreviatura}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="250" y="0" width="250" height="14" uuid="56173795-d3ba-4571-a406-34e8f04b105c"/>
+					<reportElement x="250" y="0" width="250" height="14" />
 					<textElement>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="1" width="43" height="14" uuid="43abdd0c-66c3-467b-bb97-c67381e5ac9d"/>
+					<reportElement x="0" y="1" width="43" height="14" />
 					<textElement>
 						<font size="8"/>
 					</textElement>
 					<text><![CDATA[Entidad:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="216" y="0" width="34" height="14" uuid="6fd27009-f1ef-4a61-acc2-384910a4e4f3"/>
+					<reportElement x="216" y="0" width="34" height="14" />
 					<textElement>
 						<font size="8"/>
 					</textElement>
@@ -184,28 +184,28 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 		<groupFooter>
 			<band height="14">
 				<textField>
-					<reportElement x="250" y="0" width="50" height="14" uuid="e2d8df49-2c17-4a48-893d-dfb035f935b8"/>
+					<reportElement x="250" y="0" width="50" height="14" />
 					<textElement textAlignment="Right">
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{horas_inv_1}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="692" y="0" width="60" height="14" uuid="08c6d0dc-391e-487c-8f70-db0bf23b7c8d"/>
+					<reportElement x="692" y="0" width="60" height="14" />
 					<textElement textAlignment="Right">
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{costo_1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="632" y="0" width="60" height="14" uuid="b66cad39-ff9e-4305-b430-fc2b96755e6d"/>
+					<reportElement x="632" y="0" width="60" height="14" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<text><![CDATA[T. AREA]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="190" y="0" width="60" height="14" uuid="c9af04b1-52a0-41e4-92e9-16943e8377e0"/>
+					<reportElement x="190" y="0" width="60" height="14" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
@@ -220,25 +220,25 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 	<pageHeader>
 		<band height="100" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="100" height="100" uuid="cc104f3e-dfc1-4779-8c53-ad6b59764a40"/>
+				<reportElement x="0" y="0" width="100" height="100" />
 				<imageExpression><![CDATA[$P{ruta_img}]]></imageExpression>
 			</image>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="652" y="0" width="100" height="20" uuid="408e8427-f3af-4e42-a8dc-6e0520e7fb74"/>
+				<reportElement x="652" y="0" width="100" height="20" />
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="595" y="0" width="57" height="20" uuid="d9aef15a-c957-407b-b732-eafe807ee0cc"/>
+				<reportElement x="595" y="0" width="57" height="20" />
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[F. Emisión:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="43" width="652" height="20" uuid="aaf6523b-c242-479a-a308-ac3935bdf338"/>
+				<reportElement x="100" y="43" width="652" height="20" />
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[R. DE MANTENIMIENTO]]></text>
 			</staticText>
@@ -247,7 +247,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 	<columnHeader>
 		<band height="14" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="50" height="14" backcolor="#CCCCCC" uuid="bb1f4ec0-4d7a-4ad0-963d-d830fa66acc3"/>
+				<reportElement mode="Opaque" x="0" y="0" width="50" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -261,7 +261,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="50" y="0" width="60" height="14" backcolor="#CCCCCC" uuid="9905409d-07d0-4511-b76d-361af259cd90"/>
+				<reportElement mode="Opaque" x="50" y="0" width="60" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -275,7 +275,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<text><![CDATA[ESTATUS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="110" y="0" width="60" height="14" backcolor="#CCCCCC" uuid="c9c212f3-a9c4-420d-b1c3-4b9e72b697aa"/>
+				<reportElement mode="Opaque" x="110" y="0" width="60" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -289,7 +289,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<text><![CDATA[OBJETIVO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="170" y="0" width="80" height="14" backcolor="#CCCCCC" uuid="7dd78f98-d4a0-4af9-a96f-f9a1fc62b053"/>
+				<reportElement mode="Opaque" x="170" y="0" width="80" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -303,7 +303,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<text><![CDATA[ELEMENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="250" y="0" width="50" height="14" backcolor="#CCCCCC" uuid="bfc7ebeb-dce3-4f9e-a355-7624ae7aed96"/>
+				<reportElement mode="Opaque" x="250" y="0" width="50" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -317,7 +317,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<text><![CDATA[H. INV.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="300" y="0" width="60" height="14" backcolor="#CCCCCC" uuid="81da50e4-4fca-4d82-83e8-03dd59132fc9"/>
+				<reportElement mode="Opaque" x="300" y="0" width="60" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -331,7 +331,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<text><![CDATA[F. PLANEADA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="360" y="0" width="60" height="14" backcolor="#CCCCCC" uuid="b43d8151-4a63-49e3-b4c9-c55e0469840f"/>
+				<reportElement mode="Opaque" x="360" y="0" width="60" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -345,7 +345,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<text><![CDATA[TIPO MANTO.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="480" y="0" width="152" height="14" backcolor="#CCCCCC" uuid="16802fa0-907d-4487-b575-27294e28e0a5"/>
+				<reportElement mode="Opaque" x="480" y="0" width="152" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -359,7 +359,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<text><![CDATA[NOMBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="420" y="0" width="60" height="14" backcolor="#CCCCCC" uuid="a4f6e205-2915-4f44-924d-16ea57ac9fb7"/>
+				<reportElement mode="Opaque" x="420" y="0" width="60" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -373,7 +373,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<text><![CDATA[CLASE MANTO.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="632" y="0" width="60" height="14" backcolor="#CCCCCC" uuid="2ec36c4e-437e-4d31-952b-16c82cf791ca"/>
+				<reportElement mode="Opaque" x="632" y="0" width="60" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -387,7 +387,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<text><![CDATA[F. REAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="692" y="0" width="60" height="14" backcolor="#CCCCCC" uuid="53e44943-3987-4946-b48d-96f33b4093b8"/>
+				<reportElement mode="Opaque" x="692" y="0" width="60" height="14" backcolor="#CCCCCC" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -405,7 +405,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 	<detail>
 		<band height="14" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="50" height="14" uuid="dc16e65e-36f3-48c2-8526-211d9af21a81"/>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="50" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -419,7 +419,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="50" y="0" width="60" height="14" uuid="da726690-6912-43e4-a476-0308203b9ad1"/>
+				<reportElement stretchType="RelativeToTallestObject" x="50" y="0" width="60" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -433,7 +433,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<textFieldExpression><![CDATA[$F{estatus}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="60" height="14" uuid="b8584e62-a897-485e-bb5a-3b1d75687aa6"/>
+				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="60" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -447,7 +447,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<textFieldExpression><![CDATA[$F{objetivo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="170" y="0" width="80" height="14" uuid="373529dc-b03f-4f51-bd8d-f4c4ec5f176a"/>
+				<reportElement stretchType="RelativeToTallestObject" x="170" y="0" width="80" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -461,7 +461,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<textFieldExpression><![CDATA[$F{elemento}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="250" y="0" width="50" height="14" uuid="35c778aa-e4c5-4b9b-9f7c-f6d6eee09e71"/>
+				<reportElement stretchType="RelativeToTallestObject" x="250" y="0" width="50" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -475,7 +475,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<textFieldExpression><![CDATA[$F{horas_inv}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="300" y="0" width="60" height="14" uuid="1c226110-e7a3-48b2-9839-c191d3c6c048"/>
+				<reportElement stretchType="RelativeToTallestObject" x="300" y="0" width="60" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -489,7 +489,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<textFieldExpression><![CDATA[$F{fec_planeada}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="360" y="0" width="60" height="14" uuid="a22e6d48-d5b7-4d34-b469-1c8e110eb98b"/>
+				<reportElement stretchType="RelativeToTallestObject" x="360" y="0" width="60" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -503,7 +503,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<textFieldExpression><![CDATA[$F{tpo_manto}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="480" y="0" width="152" height="14" uuid="ee77fda2-ab64-4fa7-b037-ec438267bc1e"/>
+				<reportElement stretchType="RelativeToTallestObject" x="480" y="0" width="152" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -517,7 +517,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="420" y="0" width="60" height="14" uuid="ed1b6101-3d4f-4333-b1df-29d4f579a60b"/>
+				<reportElement stretchType="RelativeToTallestObject" x="420" y="0" width="60" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -531,7 +531,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<textFieldExpression><![CDATA[$F{clase_manto}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="632" y="0" width="60" height="14" uuid="f15e4e1b-3976-4b3d-8943-f9d563815b77"/>
+				<reportElement stretchType="RelativeToTallestObject" x="632" y="0" width="60" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -545,7 +545,7 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 				<textFieldExpression><![CDATA[$F{fec_real}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="692" y="0" width="60" height="14" uuid="a1e05569-4906-43d6-89ad-d6f89841c979"/>
+				<reportElement stretchType="RelativeToTallestObject" x="692" y="0" width="60" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -563,14 +563,14 @@ and m.tpo_manto_id>=$P{tpo_manto_f} and m.tpo_manto_id<=$P{tpo_manto_t}]]>
 	<pageFooter>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="632" y="0" width="80" height="20" uuid="bd675953-0468-452c-b75a-ad8c8d0c98d0"/>
+				<reportElement x="632" y="0" width="80" height="20" />
 				<textElement textAlignment="Right">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="712" y="0" width="40" height="20" uuid="12af6d9e-46a3-4c49-9f15-994abe07be27"/>
+				<reportElement x="712" y="0" width="40" height="20" />
 				<textElement>
 					<font size="7"/>
 				</textElement>

@@ -12,7 +12,7 @@
                 <div class="module-body">
                     <form class="form-horizontal" id="create-user-form" method="POST">
                         <div class="row">
-                            <div class="col-lg-6" style="width:50%; float:left;">
+                            <div class="col-lg-6">
                                  <div class="form-group">
                                     <label class="control-label">{{ trans('syntara::users.username') }}</label>
                                     <p><input class="col-lg-12 form-control" type="text" placeholder="{{ trans('syntara::users.username') }}" id="username" name="username"></p>
@@ -34,7 +34,7 @@
                                     <p><input class="col-lg-12 form-control" type="text" placeholder="{{ trans('syntara::users.first-name') }}" id="first_name" name="first_name"></p>
                                 </div>
                             </div>
-                            <div class="col-lg-6" style="width:50%; float:left;">
+                            <div class="col-lg-6">
                             @if($currentUser->hasAccess(Config::get('syntara::permissions.addUserGroup')))
                                 <label class="control-label">{{ trans('syntara::users.groups') }}</label>
                                 <div class="form-group">

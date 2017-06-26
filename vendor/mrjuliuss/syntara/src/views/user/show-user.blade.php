@@ -5,7 +5,7 @@
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/user.js') }}"></script>
 <div class="container" id="main-container">
     <div class="row">
-        <div class="col-lg-8" style="width:75%; float:left;">
+        <div class="col-lg-8">
             <section class="module">
                 <div class="module-head">
                     <b>{{ $user->getId() }} - {{ $user->username }}</b>
@@ -13,7 +13,7 @@
                 <div class="module-body">
                     <form class="form-horizontal" id="edit-user-form" method="PUT">
                     <div class="row">
-                        <div class="col-lg-6" style="width:50%; float:left;">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="control-label">{{ trans('syntara::users.username') }}</label>
                                 <input class="col-lg-12 form-control" type="text" id="username" name="username" value="{{ $user->username}}">
@@ -35,7 +35,7 @@
                                 <input class="col-lg-12 form-control" type="text" id="first_name" name="first_name" value="{{ $user->first_name }}">
                             </div>
                         </div>
-                        <div class="col-lg-6" style="width:50%; float:left;">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="control-label">{{ trans('syntara::users.groups') }}</label>
                             </div>
@@ -51,13 +51,13 @@
                             @endforeach
                             </div>
                         </div>
-                        <div class="col-lg-5" style="width:50%; float:left;">
+                        <div class="col-lg-5">
                             @if($currentUser->hasAccess(Config::get('syntara::permissions.addUserPermission')))
                                 @include(Config::get('syntara::views.permissions-select'), array('permissions'=> $permissions))
                             @endif
                         </div>
                         @if($user->getId() !== $currentUser->getId())
-                        <div class="col-lg-2" style="width:20%; float:left;">
+                        <div class="col-lg-2">
                             <label>{{ trans('syntara::users.banned') }}</label>
                             <div class="switch-toggle well">
                                 <input id="no" name="banned" type="radio" value="no" {{ ($throttle->isBanned() === false) ? 'checked' : '' }}>
@@ -83,7 +83,7 @@
                 </div>
             </section>
         </div>
-        <div class="col-lg-4" style="width:25%; float:left;">
+        <div class="col-lg-4">
             <section class="module">
             <div class="module-head">
                 <b>{{ trans('syntara::users.information') }}</b>

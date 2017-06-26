@@ -10,7 +10,8 @@
 		"dollar/generators": "dev-master",
 		"maatwebsite/excel": "~1.2.1",
 		"cossou/jasperphp": "dev-master",
-		"venturecraft/revisionable": "1.*"
+		"venturecraft/revisionable": "1.*",
+		"barryvdh/laravel-dompdf": "0.4.*"
 	},
 	"autoload": {
 		"classmap": [

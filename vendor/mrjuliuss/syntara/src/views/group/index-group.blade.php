@@ -5,7 +5,7 @@
 <div class="container" id="main-container">
  @include('syntara::layouts.dashboard.confirmation-modal',  array('title' => trans('syntara::all.confirm-delete-title'), 'content' => trans('syntara::all.confirm-delete-message'), 'type' => 'delete-group'))
     <div class="row">
-        <div class="col-lg-10" style="width:75%; float:left;">
+        <div class="col-lg-10">
             <section class="module">
                 <div class="module-head">
                     <b>{{ trans('syntara::groups.all') }}</b>
@@ -15,7 +15,7 @@
                 </div>
             </section>
         </div>
-        <div class="col-lg-2" style="width:25%; float:left;">
+        <div class="col-lg-2">
             <section class="module">
                 <div class="module-head">
                     <b>{{ trans('syntara::all.search') }}</b>

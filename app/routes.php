@@ -28,7 +28,7 @@
     }
      
     Log::info($sql);
-});*/ 
+});*/
 
 Route::group(array('before' => 'basicAuth2'), function()
 {

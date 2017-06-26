@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="residuos" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1ee9213c-3c01-4f03-9869-b7a7186b6df0">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="residuos" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="1"/>
@@ -118,14 +118,14 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 		<groupHeader>
 			<band height="12">
 				<textField>
-					<reportElement x="55" y="0" width="525" height="12" uuid="b81126a7-9a74-4d50-be84-e9bf59cb7d16"/>
+					<reportElement x="55" y="0" width="525" height="12" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{abreviatura}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="55" height="12" uuid="8244cf78-2a56-4069-a806-ab087df5cde8"/>
+					<reportElement x="0" y="0" width="55" height="12" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
@@ -136,14 +136,14 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 		<groupFooter>
 			<band height="15">
 				<textField>
-					<reportElement x="250" y="0" width="50" height="15" uuid="a4e701e9-1f8d-48b9-a3e3-4a62b9871d65"/>
+					<reportElement x="250" y="0" width="50" height="15" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{cantidad_2}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="202" y="0" width="48" height="15" uuid="c24729c2-26f1-4249-bb23-1c822c426cbf"/>
+					<reportElement x="202" y="0" width="48" height="15" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
@@ -157,42 +157,42 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 		<groupHeader>
 			<band height="12">
 				<textField>
-					<reportElement x="55" y="0" width="308" height="12" uuid="4a4a8af2-b577-45ef-bd52-be6c0773a09e"/>
+					<reportElement x="55" y="0" width="308" height="12" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{residuo}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="418" y="0" width="100" height="12" uuid="fde03372-1029-4723-b2f8-a8432a8142c4"/>
+					<reportElement x="418" y="0" width="100" height="12" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{unidad}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="573" y="0" width="100" height="12" uuid="f756aab1-de49-45d5-a788-06a56e87e403"/>
+					<reportElement x="573" y="0" width="100" height="12" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{peligroso}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="55" height="12" uuid="0839dbc4-fe14-4240-a2c4-a1507810c87f"/>
+					<reportElement x="0" y="0" width="55" height="12" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<text><![CDATA[RESIDUO:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="363" y="0" width="55" height="12" uuid="b2ce5352-4cf2-4f10-8bee-08836d61d7ef"/>
+					<reportElement x="363" y="0" width="55" height="12" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<text><![CDATA[UNIDAD:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="518" y="0" width="55" height="12" uuid="0b12993f-ca73-4865-9586-285f374754a8"/>
+					<reportElement x="518" y="0" width="55" height="12" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
@@ -203,14 +203,14 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 		<groupFooter>
 			<band height="15">
 				<textField>
-					<reportElement x="250" y="0" width="50" height="15" uuid="b6c00203-ee97-42e2-bd07-39f698438d64"/>
+					<reportElement x="250" y="0" width="50" height="15" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{cantidad_1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="202" y="0" width="53" height="15" uuid="3da99dac-cb97-4c48-9aaf-ea08c86b9a2d"/>
+					<reportElement x="202" y="0" width="53" height="15" />
 					<textElement>
 						<font size="7"/>
 					</textElement>
@@ -225,20 +225,20 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 	<pageHeader>
 		<band height="100" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="100" height="100" uuid="5385b0ae-fb19-4ac9-a8bf-85e8c8401823"/>
+				<reportElement x="0" y="0" width="100" height="100" />
 				<imageExpression><![CDATA[$P{ruta_img}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="100" y="45" width="652" height="20" uuid="4d7d4ec5-9638-4e66-882a-5e756aca3413"/>
+				<reportElement x="100" y="45" width="652" height="20" />
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[R. DE BITACORA DE RESIUDOS]]></text>
 			</staticText>
 			<textField pattern="MM/dd/yyyy">
-				<reportElement x="652" y="0" width="100" height="15" uuid="c92cc55f-3b7d-47ed-90ac-8cd36344888e"/>
+				<reportElement x="652" y="0" width="100" height="15" />
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="590" y="0" width="62" height="15" uuid="5914e2dc-7162-4733-bd5b-cd468c219b58"/>
+				<reportElement x="590" y="0" width="62" height="15" />
 				<text><![CDATA[F. EMISION:]]></text>
 			</staticText>
 		</band>
@@ -246,7 +246,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 	<columnHeader>
 		<band height="14" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="14" uuid="e9372cf4-431f-4d6b-80c8-3f2964834623"/>
+				<reportElement x="0" y="0" width="100" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -260,7 +260,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<text><![CDATA[NOMBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="0" width="50" height="14" uuid="fe43d266-9e22-4dc4-8a1f-59aec5f26736"/>
+				<reportElement x="100" y="0" width="50" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -274,7 +274,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<text><![CDATA[FECHA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="150" y="0" width="100" height="14" uuid="a20ad165-7994-4541-b03c-337982298ea7"/>
+				<reportElement x="150" y="0" width="100" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -288,7 +288,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<text><![CDATA[LUGAR GENERACION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="250" y="0" width="50" height="14" uuid="9ec16d7c-267f-4486-9dbc-22d1cb0c9416"/>
+				<reportElement x="250" y="0" width="50" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -302,7 +302,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<text><![CDATA[CANTIDAD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="300" y="0" width="100" height="14" uuid="9b801e6d-55d9-41dc-af49-94159402e9c7"/>
+				<reportElement x="300" y="0" width="100" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -316,7 +316,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<text><![CDATA[UBICACION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="0" width="100" height="14" uuid="f1b49876-0129-43f3-bc27-177980ef4355"/>
+				<reportElement x="400" y="0" width="100" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -330,7 +330,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<text><![CDATA[DISPOSICION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="500" y="0" width="100" height="14" uuid="9cd2fdbc-4aa5-4a1c-acb8-5e645037829b"/>
+				<reportElement x="500" y="0" width="100" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -344,7 +344,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<text><![CDATA[TRANSPORTISTA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="600" y="0" width="152" height="14" uuid="62febf50-9122-477f-9e1d-e6b7fbdd59e3"/>
+				<reportElement x="600" y="0" width="152" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -362,7 +362,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 	<detail>
 		<band height="14" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="100" height="14" uuid="1f7ad704-15a0-431c-b5a7-9794871146ce"/>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="100" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -376,7 +376,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="MM/dd/yyyy">
-				<reportElement stretchType="RelativeToTallestObject" x="100" y="0" width="50" height="14" uuid="3a7f7f51-1b1f-4657-8151-ef8b73c1bf5d"/>
+				<reportElement stretchType="RelativeToTallestObject" x="100" y="0" width="50" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -390,7 +390,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="150" y="0" width="100" height="14" uuid="0c24b219-cd4c-484d-aaa0-51e8d5ad3b57"/>
+				<reportElement stretchType="RelativeToTallestObject" x="150" y="0" width="100" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -404,7 +404,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<textFieldExpression><![CDATA[$F{lugar_generacion}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="250" y="0" width="50" height="14" uuid="b052e923-4e45-4446-bef7-eaf17cfe208b"/>
+				<reportElement stretchType="RelativeToTallestObject" x="250" y="0" width="50" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -418,7 +418,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="300" y="0" width="100" height="14" uuid="2d38d3d0-6e75-41a5-9384-d73f1e62460a"/>
+				<reportElement stretchType="RelativeToTallestObject" x="300" y="0" width="100" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -432,7 +432,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<textFieldExpression><![CDATA[$F{ubicacion}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="400" y="0" width="100" height="14" uuid="89bbc06b-b28a-4777-8412-ef6c68bafadb"/>
+				<reportElement stretchType="RelativeToTallestObject" x="400" y="0" width="100" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -446,7 +446,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<textFieldExpression><![CDATA[$F{dispocision}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="500" y="0" width="100" height="14" uuid="bc8c1289-0c03-4199-8895-d058d497a704"/>
+				<reportElement stretchType="RelativeToTallestObject" x="500" y="0" width="100" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -460,7 +460,7 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 				<textFieldExpression><![CDATA[$F{transportista}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="600" y="0" width="152" height="14" uuid="53ecdae0-408b-4cf8-963d-8b283d23e342"/>
+				<reportElement stretchType="RelativeToTallestObject" x="600" y="0" width="152" height="14" />
 				<box>
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -478,14 +478,14 @@ and b.fecha>=$P{fecha_f} and b.fecha<=$P{fecha_t}]]>
 	<pageFooter>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="628" y="0" width="80" height="20" uuid="c837b250-10ef-47d5-b7f1-1a5dea342f2c"/>
+				<reportElement x="628" y="0" width="80" height="20" />
 				<textElement textAlignment="Right">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="708" y="0" width="40" height="20" uuid="efdc6e4c-5ae8-4786-888f-8806768fe600"/>
+				<reportElement x="708" y="0" width="40" height="20" />
 				<textElement>
 					<font size="7"/>
 				</textElement>

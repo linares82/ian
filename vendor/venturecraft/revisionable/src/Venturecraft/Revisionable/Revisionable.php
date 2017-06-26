@@ -9,13 +9,35 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  *
  */
 
+/**
+ * Class Revisionable
+ * @package Venturecraft\Revisionable
+ */
 class Revisionable extends Eloquent
 {
-
+    /**
+     * @var
+     */
     private $originalData;
+
+    /**
+     * @var
+     */
     private $updatedData;
+
+    /**
+     * @var
+     */
     private $updating;
+
+    /**
+     * @var array
+     */
     private $dontKeep = array();
+
+    /**
+     * @var array
+     */
     private $doKeep = array();
 
     /**
@@ -29,7 +51,6 @@ class Revisionable extends Eloquent
      * Create the event listeners for the saving and saved events
      * This lets us save revisions whenever a save is made, no matter the
      * http method.
-     *
      */
     public static function boot()
     {
@@ -43,13 +64,19 @@ class Revisionable extends Eloquent
             $model->postSave();
         });
 
+        static::created(function($model){
+            $model->postCreate();
+        });
+
         static::deleted(function ($model) {
             $model->preSave();
             $model->postDelete();
         });
-
     }
 
+    /**
+     * @return mixed
+     */
     public function revisionHistory()
     {
         return $this->morphMany('\Venturecraft\Revisionable\Revision', 'revisionable');
@@ -62,7 +89,6 @@ class Revisionable extends Eloquent
      */
     public function preSave()
     {
-
         if (!isset($this->revisionEnabled) || $this->revisionEnabled) {
             // if there's no revisionEnabled. Or if there is, if it's true
 
@@ -81,11 +107,11 @@ class Revisionable extends Eloquent
             // the below is ugly, for sure, but it's required so we can save the standard model
             // then use the keep / dontkeep values for later, in the isRevisionable method
             $this->dontKeep = isset($this->dontKeepRevisionOf) ?
-                $this->dontKeepRevisionOf + $this->dontKeep
+                array_merge($this->dontKeepRevisionOf, $this->dontKeep)
                 : $this->dontKeep;
 
             $this->doKeep = isset($this->keepRevisionOf) ?
-                $this->keepRevisionOf + $this->doKeep
+                array_merge($this->keepRevisionOf, $this->doKeep)
                 : $this->doKeep;
 
             unset($this->attributes['dontKeepRevisionOf']);
@@ -93,9 +119,7 @@ class Revisionable extends Eloquent
 
             $this->dirtyData = $this->getDirty();
             $this->updating = $this->exists;
-
         }
-
     }
 
 
@@ -116,27 +140,56 @@ class Revisionable extends Eloquent
             $revisions = array();
 
             foreach ($changes_to_record as $key => $change) {
-
                 $revisions[] = array(
-                    'revisionable_type'     => get_class($this),
+                    'revisionable_type'     => $this->getMorphClass(),
                     'revisionable_id'       => $this->getKey(),
                     'key'                   => $key,
                     'old_value'             => array_get($this->originalData, $key),
                     'new_value'             => $this->updatedData[$key],
-                    'user_id'               => $this->getUserId(),
+                    'user_id'               => $this->getSystemUserId(),
                     'created_at'            => new \DateTime(),
                     'updated_at'            => new \DateTime(),
                 );
-
             }
 
             if (count($revisions) > 0) {
                 $revision = new Revision;
                 \DB::table($revision->getTable())->insert($revisions);
             }
+        }
+    }
 
+    /**
+    * Called after record successfully created
+    */
+    public function postCreate()
+    {
+
+        // Check if we should store creations in our revision history
+        // Set this value to true in your model if you want to
+        if(empty($this->revisionCreationsEnabled))
+        {
+            // We should not store creations.
+            return false;
         }
 
+        if ((!isset($this->revisionEnabled) || $this->revisionEnabled))
+        {
+            $revisions[] = array(
+                'revisionable_type' => $this->getMorphClass(),
+                'revisionable_id' => $this->getKey(),
+                'key' => self::CREATED_AT,
+                'old_value' => null,
+                'new_value' => $this->{self::CREATED_AT},
+                'user_id' => $this->getSystemUserId(),
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
+            );
+
+            $revision = new Revision;
+            \DB::table($revision->getTable())->insert($revisions);
+
+        }
     }
 
     /**
@@ -146,14 +199,14 @@ class Revisionable extends Eloquent
     {
         if ((!isset($this->revisionEnabled) || $this->revisionEnabled)
             && $this->isSoftDelete()
-            && $this->isRevisionable('deleted_at')) {
+            && $this->isRevisionable($this->getDeletedAtColumn())) {
             $revisions[] = array(
-                'revisionable_type' => get_class($this),
+                'revisionable_type' => $this->getMorphClass(),
                 'revisionable_id' => $this->getKey(),
-                'key' => 'deleted_at',
+                'key' => $this->getDeletedAtColumn(),
                 'old_value' => null,
-                'new_value' => $this->deleted_at,
-                'user_id' => $this->getUserId(),
+                'new_value' => $this->{$this->getDeletedAtColumn()},
+                'user_id' => $this->getSystemUserId(),
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             );
@@ -166,7 +219,7 @@ class Revisionable extends Eloquent
      * Attempt to find the user id of the currently logged in user
      * Supports Cartalyst Sentry/Sentinel based authentication, as well as stock Auth
      **/
-    private function getUserId()
+    private function getSystemUserId()
     {
         try {
             if (class_exists($class = '\Cartalyst\Sentry\Facades\Laravel\Sentry')
@@ -190,7 +243,6 @@ class Revisionable extends Eloquent
      */
     private function changedRevisionableFields()
     {
-
         $changes_to_record = array();
         foreach ($this->dirtyData as $key => $value) {
             // check that the field is revisionable, and double check
@@ -208,7 +260,6 @@ class Revisionable extends Eloquent
         }
 
         return $changes_to_record;
-
     }
 
     /**
@@ -225,8 +276,12 @@ class Revisionable extends Eloquent
         // If it's explicitly not revisionable, return false.
         // Otherwise, if neither condition is met, only return true if
         // we aren't specifying revisionable fields.
-        if (isset($this->doKeep) && in_array($key, $this->doKeep)) return true;
-        if (isset($this->dontKeep) && in_array($key, $this->dontKeep)) return false;
+        if (isset($this->doKeep) && in_array($key, $this->doKeep)) {
+            return true;
+        }
+        if (isset($this->dontKeep) && in_array($key, $this->dontKeep)) {
+            return false;
+        }
         return empty($this->doKeep);
     }
 
@@ -238,19 +293,29 @@ class Revisionable extends Eloquent
     private function isSoftDelete()
     {
         // check flag variable used in laravel 4.2+
-        if (isset($this->forceDeleting)) return !$this->forceDeleting;
+        if (isset($this->forceDeleting)) {
+            return !$this->forceDeleting;
+        }
 
         // otherwise, look for flag used in older versions
-        if (isset($this->softDelete)) return $this->softDelete;
+        if (isset($this->softDelete)) {
+            return $this->softDelete;
+        }
 
         return false;
     }
 
+    /**
+     * @return mixed
+     */
     public function getRevisionFormattedFields()
     {
         return $this->revisionFormattedFields;
     }
 
+    /**
+     * @return mixed
+     */
     public function getRevisionFormattedFieldNames()
     {
         return $this->revisionFormattedFieldNames;
@@ -258,7 +323,7 @@ class Revisionable extends Eloquent
 
     /**
      * Identifiable Name
-     * When displaying revision history, when a foreigh key is updated
+     * When displaying revision history, when a foreign key is updated
      * instead of displaying the ID, you can choose to display a string
      * of your choice, just override this method in your model
      * By default, it will fall back to the models ID.
@@ -272,10 +337,11 @@ class Revisionable extends Eloquent
 
     /**
      * Revision Unknown String
-     * When displaying revision history, when a foreigh key is updated
+     * When displaying revision history, when a foreign key is updated
      * instead of displaying the ID, you can choose to display a string
      * of your choice, just override this method in your model
      * By default, it will fall back to the models ID.
+     *
      * @return string an identifying name for the model
      */
     public function getRevisionNullString()
@@ -288,6 +354,7 @@ class Revisionable extends Eloquent
      * When displaying revision history, if the revisions value
      * cant be figured out, this is used instead.
      * It can be overridden.
+     *
      * @return string an identifying name for the model
      */
     public function getRevisionUnknownString()
@@ -319,6 +386,5 @@ class Revisionable extends Eloquent
             $this->dontKeepRevisionOf = $donts;
             unset($donts);
         }
-
     }
 }

@@ -2,6 +2,7 @@
 
 Syntara is an admin system for Laravel 4, made for user management easier.
 
+**Because of a dependency to Sentry 2, Syntara 1.x will not support Laravel 5. Syntara 2 will be develop in 2015 (not sure), with Laravel 5 and without Sentry 2. If you want to help to the development, any help is appreciated.** 
 
 [![Build Status](https://travis-ci.org/MrJuliuss/syntara.png?branch=master)](https://travis-ci.org/MrJuliuss/syntara)
 [![Latest Stable Version](https://poser.pugx.org/mrjuliuss/syntara/v/stable.png)](https://packagist.org/packages/mrjuliuss/syntara)
@@ -53,14 +54,14 @@ Syntara is an admin system for Laravel 4, made for user management easier.
 
 ## Requirements
 
-* Syntara 1.1.x : PHP 5.3+ - Laravel 4.0.x
+* Syntara 1.1.x : PHP 5.3+ - Laravel 4.0.x **(deprecated)**
 * Syntara 1.2.x : PHP 5.4+ - Laravel 4.1.x & 4.2.x
 
 ## Dependencies
 
 * [Cartalyst Sentry 2 package](https://github.com/cartalyst/sentry)
-* jQuery 2.x
-* Twitter Bootstrap 3.x
+* jQuery 2.1
+* Twitter Bootstrap 3.3
 
 ## Contributions
 
@@ -69,7 +70,7 @@ Thanks to all [contributors](https://github.com/MrJuliuss/syntara/graphs/contrib
 ### Pull requests
 
 * Laravel 4 support, send pull request on 1.1 branch
-* Laravel 4.1 support, send pull requests on 1.2 branch
+* Laravel 4.1 /4.2support, send pull requests on 1.2 branch
 
 ## <a href="http://mrjuliuss.github.io/syntara/docs/screenshots.html" target="_blank">Screenshots</a>
 

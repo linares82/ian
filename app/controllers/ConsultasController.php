@@ -2,6 +2,19 @@
 
 class ConsultasController extends BaseController {
 
+	protected $residuos;
+	protected $consumibles;
+	protected $mantenimientos;
+
+	public function __construct(Bitacora_residuo $bitacora_res, 
+								Bitacora_consumible $bitacora_consu,
+								M_mantenimiento $m_manto)
+	{
+		$this->residuos = $bitacora_res;
+		$this->consumibles=$bitacora_consu;
+		$this->mantenimientos=$m_manto;
+	}
+
 	public $rulesMessages=array(
 			'required' => 'El campo :attribute es obligatorio.',
 			'not_in' => 'El campo :attribute es obligatorio.',
@@ -150,7 +163,7 @@ class ConsultasController extends BaseController {
 		$usuario=User::find(Sentry::getUser()->id)->username;
 		$carpeta=base_path().'/public/reportes/reportes/'.$usuario;
 		$img  =  User::find(Sentry::getUser()->id)->Entidad->logo;
-		
+		//dd($input['cia_f']);
 		/* Reglas de validacion */
 		$rules = array(
 			'cia_f' => 'not_in:0',
@@ -164,13 +177,22 @@ class ConsultasController extends BaseController {
 		);
 		
 		$validation = Validator::make($input, $rules, $this->rulesMessages);
+		
 		if (!$validation->passes()){
 			return Redirect::route('consulta.residuo')
 			->withInput()
 			->withErrors($validation)
 			->with('message', 'Existen errores de validación.');
 		}
-
+		//dd('fil');
+		$rs=$this->residuos->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
+									->whereBetween('residuo', array($input['residuo_f'], $input['residuo_t']))
+									->whereBetween('responsable_id', array($input['responsable_f'], $input['responsable_t']))
+									->whereBetween('fecha', array($input['fecha_f'], $input['fecha_t']))
+									->get();
+		//dd($rs);
+		//Generacion para pdf
+		/* 
 		if(!file_exists($carpeta)){
 			mkdir($carpeta);
 		}
@@ -201,6 +223,11 @@ class ConsultasController extends BaseController {
 	    	}
 	    }
 	    return Response::download($carpeta.'/residuos.pdf');	    
+		*/
+		//return View::make('consultas.residuosr', compact('rs'));
+		$pdf = PDF::loadView('consultas.residuosr', array('rs'=>$rs, 'img'=>$img))
+		->setPaper('letter')->setOrientation('landscape');
+		return $pdf->download('reporte.pdf');
 	}		
 
 	public function getConsumible(){
@@ -242,6 +269,12 @@ class ConsultasController extends BaseController {
 			unlink($carpeta . '/consumibles.pdf');
 		}
 		
+		$cs=$this->consumibles->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
+									->whereBetween('consumible_id', array($input['consumible_f'], $input['consumible_t']))
+									->whereBetween('fecha', array($input['fecha_f'], $input['fecha_t']))
+									->get();
+
+		/*
 		JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/consumibles.jasper', 
 	    $carpeta . '/consumibles', 
@@ -263,6 +296,10 @@ class ConsultasController extends BaseController {
 	    	}
 	    }
 	    return Response::download($carpeta.'/consumibles.pdf');	    
+		*/
+		$pdf = PDF::loadView('consultas.consumosr', array('cs'=>$cs, 'img'=>$img))
+		->setPaper('letter')->setOrientation('portrait');
+		return $pdf->download('reporte.pdf');
 	}
 
 	public function getNoConformidad(){
@@ -621,8 +658,15 @@ class ConsultasController extends BaseController {
 		if(file_exists($carpeta . '/manto.pdf')){
 			unlink($carpeta . '/manto.pdf');
 		}
+		$ms=$this->mantenimientos->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
+		->join('subequipos as s', 's.id', '=', 'm_mantenimientos.subequipo_id')
+									->whereBetween('s.area_id', array($input['area_f'], $input['area_t']))
+									->whereBetween('objetivo_id', array($input['objetivo_f'], $input['objetivo_t']))
+									->whereBetween('estatus_id', array($input['estatus_f'], $input['estatus_t']))
+									->whereBetween('m_tpo_manto_id', array($input['tpo_manto_f'], $input['tpo_manto_t']))
+									->get();
 		//dd(Input::all());
-		JasperPHP::process(
+		/*JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/manto.jasper', 
 	    $carpeta . '/manto', 
 	    array("pdf"), 
@@ -650,6 +694,9 @@ class ConsultasController extends BaseController {
 	    	}
 	    }
 	    return Response::download($carpeta.'/manto.pdf');	    
-	    
+	    */
+		$pdf = PDF::loadView('consultas.mantenimientosr', array('ms'=>$ms, 'img'=>$img))
+		->setPaper('letter')->setOrientation('lanscape');
+		return $pdf->download('reporte.pdf');		
 	}
 }

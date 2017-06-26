@@ -4,7 +4,7 @@
 <script src="{{ asset('packages/mrjuliuss/syntara/assets/js/dashboard/group.js') }}"></script>
 <div class="container" id="main-container">
     <div class="row">
-        <div class="col-lg-6" style="width:50%; float:left;">
+        <div class="col-lg-6">
             <section class="module">
                 <div class="module-head">
                     <b>{{ $group->getId() }} - {{ $group->name }}</b>
@@ -35,7 +35,7 @@
                 </div>
             </section>
         </div>
-        <div class="col-lg-6" style="width:50%; float:left;">
+        <div class="col-lg-6">
             <section class="module">
             <div class="module-head">
                 <b>{{ trans('syntara::groups.groups-users-title') }}</b>

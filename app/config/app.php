@@ -134,6 +134,7 @@ return array(
 		'Dollar\Generators\GeneratorsServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
 		'JasperPHP\JasperPHPServiceProvider',
+		'Barryvdh\DomPDF\ServiceProvider',
 	),
 
 	/*
@@ -200,8 +201,9 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
-		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+		'Sentry' 		  => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
+		'Excel'     	  => 'Maatwebsite\Excel\Facades\Excel',
+		'PDF' 			  => 'Barryvdh\DomPDF\Facade',
 	),
 
 );

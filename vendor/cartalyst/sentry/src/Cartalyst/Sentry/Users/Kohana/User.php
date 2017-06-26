@@ -363,7 +363,7 @@ class User extends \ORM implements UserInterface {
 			return false;
 		}
 
-		return $persistCode == $this->persist_code;
+		return $persistCode === $this->persist_code;
 	}
 
 	/**
@@ -605,12 +605,7 @@ class User extends \ORM implements UserInterface {
 	{
 		$mergedPermissions = $this->getMergedPermissions();
 
-		if ( ! is_array($permissions))
-		{
-			$permissions = (array) $permissions;
-		}
-
-		foreach ($permissions as $permission)
+		foreach ((array) $permissions as $permission)
 		{
 			// We will set a flag now for whether this permission was
 			// matched at all.
@@ -749,7 +744,7 @@ class User extends \ORM implements UserInterface {
 			throw new \RuntimeException("A hasher has not been provided for the user.");
 		}
 
-		return static::$hasher->checkHash($string, $hashedString);
+		return static::$hasher->checkhash($string, $hashedString);
 	}
 
 	/**
