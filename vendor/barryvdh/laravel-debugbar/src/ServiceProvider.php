@@ -1,5 +1,7 @@
 <?php namespace Barryvdh\Debugbar;
 
+use Barryvdh\Debugbar\LaravelDebugbar;
+
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
