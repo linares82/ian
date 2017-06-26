@@ -204,6 +204,7 @@ return array(
 		'Sentry' 		  => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 		'Excel'     	  => 'Maatwebsite\Excel\Facades\Excel',
 		'PDF' 			  => 'Barryvdh\DomPDF\Facade',
+		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 	),
 
 );

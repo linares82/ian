@@ -6,7 +6,7 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"mrjuliuss/syntara": "1.2.*",
-		"barryvdh/laravel-debugbar": "1.*",
+		"barryvdh/laravel-debugbar":"~1.8",
 		"dollar/generators": "dev-master",
 		"maatwebsite/excel": "~1.2.1",
 		"cossou/jasperphp": "dev-master",
