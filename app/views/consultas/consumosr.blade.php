@@ -14,16 +14,16 @@
 </style>
 
 <div id="printeArea">
-<table>
+<table style="width:100%;height:auto;border:1px solid #ccc;">
     <tr>
-        <td style="width:33%;">
-            <img scr="{{ $img }}" alt="Logo" height=80>
+        <td style="width:33%;text-align:right" align="right">
+            <img src="{{$img}}" alt="Logo" height=80>
         </td>
-        <td style="width:33%;">
+        <td style="width:33%;text-align:center" align="center">
             <h3> BITACORA DE CONSUMOS </h3>
         </td>
-        <td style="width:33%;">
-
+        <td style="width:33%;text-align:left" align="left">
+            Fecha de Elaboración: {{$fecha}}
         </td>
     </tr>
 </table>

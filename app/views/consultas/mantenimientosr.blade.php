@@ -13,22 +13,22 @@
 }
 </style>
 
-<div id="printeArea">
-<table>
+
+<table style="width:100%;height:auto;border:1px solid #ccc;">
     <tr>
-        <td style="width:33%;">
-            <img scr="{{ $img }}" alt="Logo" height=80>
+        <td style="width:33%;text-align:right" align="right">
+            <img src="{{$img}}" alt="Logo" height=80>
         </td>
-        <td style="width:33%;">
+        <td style="width:33%;text-align:center" align="center">
             <h3> BITACORA DE    MANTENIMIENTO </h3>
         </td>
-        <td style="width:33%;">
-
+        <td style="width:33%;text-align:left" align="left">
+            Fecha de Elaboración: {{$fecha}}
         </td>
     </tr>
 </table>
 
-<table id="dg" style="width:auto;height:auto;border-collapse: collapse;">
+<table id="dg" style="width:100%;height:auto;border-collapse: collapse;">
     <thead>
         <tr>
             <th data-options="field:'cia_id'" style="border:1px solid #ccc;">
@@ -55,9 +55,7 @@
             <th data-options="field:'ubicacion'" style="border:1px solid #ccc;">
                 Tpo. Manto.
             </th>
-            <th data-options="field:'ubicacion'" style="border:1px solid #ccc;">
-                Clase Manto.
-            </th>
+            
             <th data-options="field:'disposicion'" style="border:1px solid #ccc;">
                 Nombre
             </th>
@@ -73,7 +71,7 @@
         @foreach($ms as $m)
         <tr>
             <td style="border:1px solid #ccc;">
-                {{ $m->cia }}
+                {{ $m->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $m->equipo->area_id }}
@@ -94,16 +92,14 @@
                 {{ $m->fec_planeada }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $m->tpoManto }}
+                {{ $m->tpoManto->tpo_manto }}
             </td>
-            <td style="border:1px solid #ccc;">
-                {{ $m->claseManto }}
-            </td>
+            
             <td style="border:1px solid #ccc;">
                 {{ $m->responsable->nombre }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $m->fec_manto }}
+                {{ $m->fec_final }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $m->costo }}
@@ -112,7 +108,7 @@
         @endforeach
     </tbody>
 </table>
-</div>
+
 @stop
 @section('js_local')
     

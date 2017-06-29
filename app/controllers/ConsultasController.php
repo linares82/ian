@@ -225,7 +225,9 @@ class ConsultasController extends BaseController {
 	    return Response::download($carpeta.'/residuos.pdf');	    
 		*/
 		//return View::make('consultas.residuosr', compact('rs'));
-		$pdf = PDF::loadView('consultas.residuosr', array('rs'=>$rs, 'img'=>$img))
+		$img=asset('uploads/cias/'.$img);
+		$fecha=date('d/m/Y');
+		$pdf = PDF::loadView('consultas.residuosr', array('rs'=>$rs, 'img'=>$img, 'fecha'=>'fecha'))
 		->setPaper('letter')->setOrientation('landscape');
 		return $pdf->download('reporte.pdf');
 	}		
@@ -297,7 +299,9 @@ class ConsultasController extends BaseController {
 	    }
 	    return Response::download($carpeta.'/consumibles.pdf');	    
 		*/
-		$pdf = PDF::loadView('consultas.consumosr', array('cs'=>$cs, 'img'=>$img))
+		$img=asset('uploads/cias/'.$img);
+		$fecha=date('d/m/Y');
+		$pdf = PDF::loadView('consultas.consumosr', array('cs'=>$cs, 'img'=>$img, 'fecha'=>$fecha))
 		->setPaper('letter')->setOrientation('portrait');
 		return $pdf->download('reporte.pdf');
 	}
@@ -665,6 +669,7 @@ class ConsultasController extends BaseController {
 									->whereBetween('estatus_id', array($input['estatus_f'], $input['estatus_t']))
 									->whereBetween('m_tpo_manto_id', array($input['tpo_manto_f'], $input['tpo_manto_t']))
 									->get();
+		
 		//dd(Input::all());
 		/*JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/manto.jasper', 
@@ -695,8 +700,13 @@ class ConsultasController extends BaseController {
 	    }
 	    return Response::download($carpeta.'/manto.pdf');	    
 	    */
-		$pdf = PDF::loadView('consultas.mantenimientosr', array('ms'=>$ms, 'img'=>$img))
+		$img=asset('uploads/cias/'.$img);
+		$fecha=date('d/m/Y');
+		//dd($img);
+		$pdf = PDF::loadView('consultas.mantenimientosr', array('ms'=>$ms, 'img'=>$img, 'fecha'=>$fecha))
 		->setPaper('letter')->setOrientation('lanscape');
 		return $pdf->download('reporte.pdf');		
+		
+		//return View::make('consultas.mantenimientosr', compact('ms', 'img', 'fecha'));
 	}
 }

@@ -47,7 +47,7 @@ class M_mantenimiento extends Eloquent {
     }
     public function cia()
     {
-        return $this->belongsTo('Entidad', 'abreviatura_id');
+        return $this->belongsTo('Entidad', 'cia_id');
     }
     public function objetivo()
     {
@@ -59,11 +59,11 @@ class M_mantenimiento extends Eloquent {
     }
     public function tpoManto()
     {
-        return $this->belongsTo('M_tpo_manto', 'tpo_manto_id');
+        return $this->belongsTo('M_tpo_manto', 'm_tpo_manto_id');
     }
     public function claseManto()
     {
-        return $this->belongsTo('M_clase_manto', 'clase_manto_id');
+        return $this->belongsTo('M_clase_manto', 'm_clase_manto_id');
     }
     public function estatus()
     {
