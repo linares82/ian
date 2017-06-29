@@ -39,8 +39,8 @@ class CreateANoConformidadesTable extends Migration {
 			$table->foreign('cia_id')->references('id')->on('entidades');
 			$table->foreign('estatus_id')->references('id')->on('a_st_ncs');
 			$table->foreign('responsable_id')->references('id')->on('empleados');
-			$table->foreign('tpo_inconformidad_id')->references('id')->on('cs_tpo_inconformidades');
-			$table->foreign('tpo_bitacora_id')->references('id')->on('cs_tpo_bitacoras');
+			$table->foreign('tpo_inconformidad_id')->references('id')->on('ca_tpo_noconformidades');
+			$table->foreign('tpo_bitacora_id')->references('id')->on('ca_tpo_bitacoras');
 			$table->foreign('tpo_deteccion_id')->references('id')->on('cs_tpo_deteccions');
 		});
 	}

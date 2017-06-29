@@ -5,14 +5,17 @@ class ConsultasController extends BaseController {
 	protected $residuos;
 	protected $consumibles;
 	protected $mantenimientos;
+	protected $fuentesFijas;
 
 	public function __construct(Bitacora_residuo $bitacora_res, 
 								Bitacora_consumible $bitacora_consu,
-								M_mantenimiento $m_manto)
+								M_mantenimiento $m_manto,
+								Bitacora_ff $bitacora_ff)
 	{
 		$this->residuos = $bitacora_res;
 		$this->consumibles=$bitacora_consu;
 		$this->mantenimientos=$m_manto;
+		$this->fuentesFijas=$bitacora_ff;
 	}
 
 	public $rulesMessages=array(
@@ -61,8 +64,13 @@ class ConsultasController extends BaseController {
 		if(file_exists($carpeta . '/fuentesFijas.pdf')){
 			unlink($carpeta . '/fuentesFijas.pdf');
 		}
+
+		$fs=$this->consumibles->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
+									->whereBetween('consumible_id', array($input['consumible_f'], $input['consumible_t']))
+									->whereBetween('fecha', array($input['fecha_f'], $input['fecha_t']))
+									->get();
 		
-		JasperPHP::process(
+		/*JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/fuentesFijas.jasper', 
 	    $carpeta . '/fuentesFijas', 
 	    array("pdf"), 
@@ -84,6 +92,13 @@ class ConsultasController extends BaseController {
 	    	}
 	    }
 	    return Response::download($carpeta.'/fuentesFijas.pdf');	    
+		*/
+		/*$img=asset('uploads/cias/'.$img);
+		$fecha=date('d/m/Y');
+		$pdf = PDF::loadView('consultas.fuentesFijasr', array('rs'=>$fs, 'img'=>$img, 'fecha'=>'fecha'))
+		->setPaper('letter')->setOrientation('landscape');
+		return $pdf->download('reporte.pdf');
+		*/
 	}
 
 	public function getPlanta(){

@@ -10,7 +10,7 @@ class Ca_tpo_noconformidade extends Eloquent {
 	/* Reglas de validacion */
 	public static $rules = array(
 		'tpo_bitacora_id' => 'required',
-		'tpo_informidad' => 'required'
+		'tpo_inconformidad' => 'required'
 	);
 	
 	/* Mensajes de validaciones */

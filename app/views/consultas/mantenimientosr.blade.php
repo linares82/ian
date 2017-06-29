@@ -14,7 +14,7 @@
 </style>
 
 
-<table style="width:100%;height:auto;border:1px solid #ccc;">
+<table style="width:100%;height:auto;border:1px solid #ccc;font-size: 0.75em;">
     <tr>
         <td style="width:33%;text-align:right" align="right">
             <img src="{{$img}}" alt="Logo" height=80>
@@ -28,7 +28,7 @@
     </tr>
 </table>
 
-<table id="dg" style="width:100%;height:auto;border-collapse: collapse;">
+<table id="dg" style="width:100%;height:auto;border-collapse: collapse;font-size: 0.75em;">
     <thead>
         <tr>
             <th data-options="field:'cia_id'" style="border:1px solid #ccc;">
