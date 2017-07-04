@@ -61,7 +61,7 @@
         @foreach($cs as $c)
         <tr>
             <td style="border:1px solid #ccc;">
-                {{ $f->cia->rzon_social }}
+                {{ $c->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $c->consumible->consumible }}
