@@ -43,4 +43,8 @@ class Acheck extends Eloquent {
     		return $query->where('achecks.id', 'like', '%'.$id.'%');
     	}
     }
+	public function scopeCmbAreasChequeo($query, $valor){
+		$query->get();
+		return $query->lists('area', 'id');
+	}
 }

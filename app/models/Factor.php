@@ -49,4 +49,9 @@ class Factor extends Eloquent {
     		return $query->where('factors.id', 'like', '%'.$value.'%');
     	}
     }
+
+	public function scopeCmbFactores($query, $valor){
+		$query->get();
+		return $query->lists('factor', 'id');
+	}
 }

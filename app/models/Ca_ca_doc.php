@@ -41,4 +41,8 @@ class Ca_ca_doc extends Eloquent {
     		return $query->where('ca_ca_docs.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbDocsCalidadAmbiental($query, $valor){
+		$query->get();
+		return $query->lists('doc', 'id');
+	}
 }

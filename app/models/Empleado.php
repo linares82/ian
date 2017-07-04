@@ -87,4 +87,9 @@ class Empleado extends Eloquent {
     		return $query->where('empleados.cia_id', 'like', '%'.$valor.'%');
     	}
     }
+
+	public function scopeCmbEmpleados($query, $valor){
+		$query->get();
+		return $query->lists('nombre', 'id');
+	}
 }

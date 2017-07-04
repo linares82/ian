@@ -49,4 +49,8 @@ class Tipo_impacto extends Eloquent {
     		return $query->where('tipo_impactos.id', 'like', '%'.$value.'%');
     	}
     }
+	public function scopeCmbTipoImpacto($query, $valor){
+		$query->get();
+		return $query->lists('tipo_impacto', 'id');
+	}
 }

@@ -21,7 +21,8 @@ class PuestosController extends BaseController {
 	 */
 	public function index()
 	{
-
+		$cmbPuestos=$this->puesto->CmbPuestos(0);
+		//ss($cmbPuestos);
 		return View::make('puestos.index');
 	}
 	
@@ -165,5 +166,4 @@ class PuestosController extends BaseController {
 			echo json_encode(array('msg'=>'Errores en el proceso.'));
 		}
 	}
-
 }

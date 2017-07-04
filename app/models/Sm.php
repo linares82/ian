@@ -42,4 +42,8 @@ class Sm extends Eloquent {
     		return $query->where('sm.id', 'like', '%'.$id.'%');
     	}
     }
+	public function scopeCmbSalarioMinimo($query, $valor){
+		$query->get();
+		return $query->lists('monto', 'id');
+	}
 }

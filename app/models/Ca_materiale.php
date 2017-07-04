@@ -41,4 +41,8 @@ class Ca_materiale extends Eloquent {
     		return $query->where('ca_materiales.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbMateriales($query, $valor){
+		$query->get();
+		return $query->lists('material', 'id');
+	}
 }

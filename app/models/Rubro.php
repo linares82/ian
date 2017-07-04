@@ -50,4 +50,8 @@ class Rubro extends Eloquent {
     		return $query->where('rubros.id', 'like', '%'.$value.'%');
     	}
     }
+	public function scopeCmbRubros($query, $valor){
+		$query->get();
+		return $query->lists('rubro', 'id');
+	}
 }

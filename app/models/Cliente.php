@@ -49,4 +49,9 @@ class Cliente extends Eloquent {
     		return $query->where('clientes.id', 'like', '%'.$value.'%');
     	}
     }
+
+	public function scopeCmbClientes($query, $valor){
+		$query->get();
+		return $query->lists('cliente', 'id');
+	}
 }

@@ -168,5 +168,4 @@ class AreasController extends BaseController {
 			echo json_encode(array('msg'=>'Errores en el proceso.'));
 		}
 	}
-
 }

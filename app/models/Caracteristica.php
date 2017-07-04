@@ -50,4 +50,8 @@ class Caracteristica extends Eloquent {
     		return $query->where('caracteristicas.id', 'like', '%'.$value.'%');
     	}
     }
+	public function scopeCmbCaracteristicas($query, $valor){
+		$query->get();
+		return $query->lists('caracteristica', 'id');
+	}
 }

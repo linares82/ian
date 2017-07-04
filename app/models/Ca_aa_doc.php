@@ -67,4 +67,8 @@ class Ca_aa_doc extends Eloquent {
     		return $query->where('ca_aa_docs.categoria_id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbDocsRegistro($query, $valor){
+		$query->get();
+		return $query->lists('documento', 'id');
+	}
 }

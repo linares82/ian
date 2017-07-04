@@ -41,4 +41,9 @@ class Puesto extends Eloquent {
     		return $query->where('puesto.id', 'like', '%'.$valor.'%');
     	}
     }
+
+	public function scopeCmbPuestos($query, $valor){
+		$query->get();
+		return $query->lists('puesto', 'id');
+	}
 }

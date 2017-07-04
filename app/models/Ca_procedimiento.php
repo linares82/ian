@@ -41,4 +41,8 @@ class Ca_procedimiento extends Eloquent {
     		return $query->where('ca_procedimientos.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbProcedimientos($query, $valor){
+		$query->get();
+		return $query->lists('procedimiento', 'id');
+	}
 }

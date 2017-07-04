@@ -49,4 +49,9 @@ class Area extends Eloquent {
     		return $query->where('areas.cia_id', 'like', '%'.$valor.'%');
     	}
     }
+
+	public function scopeCmbAreas($query, $valor){
+		$query->get();
+		return $query->lists('area', 'id');
+	}
 }

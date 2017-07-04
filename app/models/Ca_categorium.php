@@ -55,4 +55,8 @@ class Ca_categorium extends Eloquent {
     		return $query->where('ca_categorias.material_id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbCategorias($query, $valor){
+		$query->get();
+		return $query->lists('categoria', 'id');
+	}
 }

@@ -46,4 +46,8 @@ class Ca_fuentes_fija extends Eloquent {
     		return $query->where('ca_fuentes_fijas.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbFuentes($query, $valor){
+		$query->get();
+		return $query->lists('planta', 'id');
+	}
 }

@@ -47,4 +47,8 @@ class Norma extends Eloquent {
     		return $query->where('normas.id', 'like', '%'.$id.'%');
     	}
     }
+	public function scopeCmbNormas($query, $valor){
+		$query->get();
+		return $query->lists('norma', 'id');
+	}
 }

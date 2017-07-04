@@ -50,4 +50,8 @@ class Especifico extends Eloquent {
     		return $query->where('especificos.id', 'like', '%'.$value.'%');
     	}
     }
+	public function scopeCmbEspecificos($query, $valor){
+		$query->get();
+		return $query->lists('especifico', 'id');
+	}
 }

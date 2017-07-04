@@ -50,4 +50,8 @@ class Efecto extends Eloquent {
     		return $query->where('efectos.id', 'like', '%'.$value.'%');
     	}
     }
+	public function scopeCmbEfectos($query, $valor){
+		$query->get();
+		return $query->lists('efecto', 'id');
+	}
 }

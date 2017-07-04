@@ -73,7 +73,7 @@
         @foreach($rs as $r)
         <tr>
             <td style="border:1px solid #ccc;">
-                {{ $f->cia->rzon_social }}
+                {{ $r->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $r->residuos->residuo }}
