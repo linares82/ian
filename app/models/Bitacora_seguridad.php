@@ -44,6 +44,10 @@ class Bitacora_seguridad extends Eloquent {
     {
         return $this->belongsTo('User', 'usu_mod_id');
     }
+    public function cia()
+    {
+        return $this->belongsTo('Entidad', 'cia_id', 'id');
+    }
     public function area()
     {
         return $this->belongsTo('Area', 'area_id');

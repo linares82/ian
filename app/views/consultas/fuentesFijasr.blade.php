@@ -20,7 +20,7 @@
             <img src="{{$img}}" alt="Logo" height=80>
         </td>
         <td style="width:33%;text-align:center" align="center">
-            <h3> BITACORA DE RESIDUOS </h3>
+            <h3> BITACORA DE CONSUMO DE FUENSTES FIJAS </h3>
         </td>
         <td style="width:33%;text-align:left" align="left">
             Fecha de Elaboración: {{$fecha}}
@@ -35,78 +35,90 @@
                 Entidad
             </th>
             <th data-options="field:'residuo'" style="border:1px solid #ccc;">
-                Residuo
+                Fuente Fija
             </th>
             <th data-options="field:'unidad'" style="border:1px solid #ccc;">
-                Unidad
+                Marca
             </th>
             <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
-                Peligroso
+                Capacidad Térmica
             </th>
             <th data-options="field:'nombre'" style="border:1px solid #ccc;">
-                Nombre
-            </th>
-            <th data-options="field:'fecha'" style="border:1px solid #ccc;">
-                Fecha 
-            </th>
-            <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
-                Lugar de Generación
-            </th>
-            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
-                Cantidad
-            </th>
-            <th data-options="field:'ubicacion'" style="border:1px solid #ccc;">
                 Ubicación
             </th>
+            <th data-options="field:'fecha'" style="border:1px solid #ccc;">
+                T. Combustible
+            </th>
+            <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
+                Responsable
+            </th>
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                Fecha
+            </th>
+            <th data-options="field:'ubicacion'" style="border:1px solid #ccc;">
+                Consumo
+            </th>
             <th data-options="field:'disposicion'" style="border:1px solid #ccc;">
-                Disposición
+                C. Diseño
             </th>
             <th data-options="field:'transportista'" style="border:1px solid #ccc;">
-                Transportista
+                T. P. Gases
             </th>
             <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
-                Manifiesto
+                T. P. Chimenea
+            </th>
+            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
+                F. Ult. Manto.
+            </th>
+            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
+                Ult. Manto.
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach($rs as $r)
+        @foreach($fs as $f)
         <tr>
             <td style="border:1px solid #ccc;">
-                {{ $r->cia_id }}
+                {{ $f->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->residuos->residuo }}
+                {{ $f->fuenteFija->planta }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->residuos->unidad }}
+                {{ $f->fuenteFija->marca }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->residuos->Bnd->bnd }}
+                {{ $f->fuenteFija->c_termica }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->responsable->nombre }}
+                {{ $f->fuenteFija->ubicacion }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->fecha }}
+                {{ $f->fuenteFija->tipo_combustible }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->lugar_generacion }}
+                {{ $f->nombre }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->cantidad }}
+                {{ $f->fec_ult_manto }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->ubicacion }}
+                {{ $f->consumo }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->disposicion }}
+                {{ $f->capacidad_diseno }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->transportista }}
+                {{ $f->tp_gases }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->manifiesto }}
+                {{ $f->tp_chimenea }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $f->fec_ult_manto }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $f->desc_manto }}
             </td>
         </tr>
         @endforeach

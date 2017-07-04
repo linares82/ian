@@ -40,7 +40,17 @@ class Bitacora_ff extends Eloquent {
     {
         return $this->belongsTo('User', 'usu_mod_id');
     }
-    public function fuenteFija()
+    
+	public function cia()
+    {
+        return $this->belongsTo('Entidad', 'cia_id', 'id');
+    }
+
+	public function responsableFf()
+    {
+        return $this->belongsTo('Empleado', 'responsable_id', 'id');
+    }
+	public function fuenteFija()
     {
         return $this->belongsTo('Ca_fuentes_fija', 'ca_fuente_fija_id');
     }
@@ -48,10 +58,7 @@ class Bitacora_ff extends Eloquent {
     {
         return $this->belongsTo('Turno', 'turno_id');
     }
-    public function responsable()
-    {
-        return $this->belongsTo('Empleado', 'responsable_id');
-    }
+    
 	
 	/* Scopes */
 	public function scopeId($query, $valor)

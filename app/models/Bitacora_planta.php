@@ -44,6 +44,10 @@ class Bitacora_planta extends Eloquent {
     {
         return $this->belongsTo('User', 'usu_mod_id');
     }
+	public function cia()
+    {
+        return $this->belongsTo('Entidad', 'cia_id', 'id');
+    }
     public function planta()
     {
         return $this->belongsTo('Ca_planta', 'planta_id');

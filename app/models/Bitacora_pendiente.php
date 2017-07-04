@@ -38,6 +38,10 @@ class Bitacora_pendiente extends Eloquent {
     {
         return $this->belongsTo('User', 'usu_mod_id');
     }
+    public function cia()
+    {
+        return $this->belongsTo('Entidad', 'cia_id', 'id');
+    }
     public function estatus()
     {
         return $this->belongsTo('Bit_st', 'bit_st_id');

@@ -1,5 +1,7 @@
 <?php
 // My common functions
+
+
 function cargaMenu($padre)
 {
     $menu="";

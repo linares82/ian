@@ -6,16 +6,31 @@ class ConsultasController extends BaseController {
 	protected $consumibles;
 	protected $mantenimientos;
 	protected $fuentesFijas;
+	protected $plantas;
+	protected $no_conformidades;
+	protected $accidentes;
+	protected $enfermedades;
+	protected $aspectos_ambientales;
 
 	public function __construct(Bitacora_residuo $bitacora_res, 
 								Bitacora_consumible $bitacora_consu,
 								M_mantenimiento $m_manto,
-								Bitacora_ff $bitacora_ff)
+								Bitacora_ff $bitacora_ff,
+								Bitacora_planta $bitacora_plan,
+								A_no_conformidade $a_no_confor,
+								Bitacora_accidente $bitacora_acci,
+								Bitacora_enfermedade $bitacora_enfer,
+								Aspectos_ambientale $aspectos_amb)
 	{
 		$this->residuos = $bitacora_res;
 		$this->consumibles=$bitacora_consu;
 		$this->mantenimientos=$m_manto;
 		$this->fuentesFijas=$bitacora_ff;
+		$this->plantas=$bitacora_plan;
+		$this->no_conformidades=$a_no_confor;
+		$this->accidentes=$bitacora_acci;
+		$this->enfermedades=$bitacora_enfer;
+		$this->aspectos_ambientales=$aspectos_amb;
 	}
 
 	public $rulesMessages=array(
@@ -65,9 +80,12 @@ class ConsultasController extends BaseController {
 			unlink($carpeta . '/fuentesFijas.pdf');
 		}
 
-		$fs=$this->consumibles->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
-									->whereBetween('consumible_id', array($input['consumible_f'], $input['consumible_t']))
-									->whereBetween('fecha', array($input['fecha_f'], $input['fecha_t']))
+		$fs=$this->plantas->select('bitacora_ffs.*', 'e.nombre')
+									->whereBetween('bitacora_ffs.cia_id', array($input['cia_f'], $input['cia_t']))
+									->join('empleados as e', 'e.id', '=', 'bitacora_ffs.responsable_id')
+									->whereBetween('bitacora_ffs.ca_fuente_fija_id', array($input['fuente_f'], $input['fuente_t']))
+									->whereBetween('bitacora_ffs.responsable_id', array($input['responsable_f'], $input['responsable_t']))
+									->whereBetween('bitacora_ffs.fecha', array($input['fecha_f'], $input['fecha_t']))
 									->get();
 		
 		/*JasperPHP::process(
@@ -93,12 +111,12 @@ class ConsultasController extends BaseController {
 	    }
 	    return Response::download($carpeta.'/fuentesFijas.pdf');	    
 		*/
-		/*$img=asset('uploads/cias/'.$img);
+		$img=asset('uploads/cias/'.$img);
 		$fecha=date('d/m/Y');
-		$pdf = PDF::loadView('consultas.fuentesFijasr', array('rs'=>$fs, 'img'=>$img, 'fecha'=>'fecha'))
+		$pdf = PDF::loadView('consultas.fuentesFijasr', array('fs'=>$fs, 'img'=>$img, 'fecha'=>'fecha'))
 		->setPaper('letter')->setOrientation('landscape');
 		return $pdf->download('reporte.pdf');
-		*/
+		
 	}
 
 	public function getPlanta(){
@@ -141,8 +159,14 @@ class ConsultasController extends BaseController {
 		if(file_exists($carpeta . '/plantas.pdf')){
 			unlink($carpeta . '/plantas.pdf');
 		}
+
+		$ps=$this->plantas->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
+									->whereBetween('planta_id', array($input['planta_f'], $input['planta_t']))
+									->whereBetween('responsable_id', array($input['responsable_f'], $input['responsable_t']))
+									->whereBetween('fecha', array($input['fecha_f'], $input['fecha_t']))
+									->get();
 		
-		JasperPHP::process(
+		/*JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/plantas.jasper', 
 	    $carpeta . '/plantas', 
 	    array("pdf"), 
@@ -163,7 +187,12 @@ class ConsultasController extends BaseController {
 	    		break;
 	    	}
 	    }
-	    return Response::download($carpeta.'/plantas.pdf');	    
+	    return Response::download($carpeta.'/plantas.pdf');	    */
+		$img=asset('uploads/cias/'.$img);
+		$fecha=date('d/m/Y');
+		$pdf = PDF::loadView('consultas.plantasr', array('ps'=>$ps, 'img'=>$img, 'fecha'=>$fecha))
+		->setPaper('letter')->setOrientation('landscape');
+		return $pdf->download('reporte.pdf');
 	}
 
 	public function getResiduo(){
@@ -242,7 +271,7 @@ class ConsultasController extends BaseController {
 		//return View::make('consultas.residuosr', compact('rs'));
 		$img=asset('uploads/cias/'.$img);
 		$fecha=date('d/m/Y');
-		$pdf = PDF::loadView('consultas.residuosr', array('rs'=>$rs, 'img'=>$img, 'fecha'=>'fecha'))
+		$pdf = PDF::loadView('consultas.residuosr', array('rs'=>$rs, 'img'=>$img, 'fecha'=>$fecha))
 		->setPaper('letter')->setOrientation('landscape');
 		return $pdf->download('reporte.pdf');
 	}		
@@ -378,9 +407,17 @@ class ConsultasController extends BaseController {
 		if(file_exists($carpeta . '/noConformidades.pdf')){
 			unlink($carpeta . '/noConformidades.pdf');
 		}
+		$ncs=$this->no_conformidades->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
+									->whereBetween('area_id', array($input['area_f'], $input['area_t']))
+									->whereBetween('tpo_deteccion_id', array($input['tpo_deteccion_f'], $input['tpo_deteccion_t']))
+									->whereBetween('tpo_bitacora_id', array($input['tpo_bitacora_f'], $input['tpo_bitacora_t']))
+									->whereBetween('tpo_inconformidad_id', array($input['tpo_inconformidad_f'], $input['tpo_inconformidad_t']))
+									->whereBetween('responsable_id', array($input['responsable_f'], $input['responsable_t']))
+									->whereBetween('estatus_id', array($input['estatus_f'], $input['estatus_t']))
+									->whereBetween('fecha', array($input['fecha_f'], $input['fecha_t']))
+									->get();
 		
-		
-		JasperPHP::process(
+		/*JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/noConformidades.jasper', 
 	    $carpeta . '/noConformidades', 
 	    array("pdf"), 
@@ -406,7 +443,12 @@ class ConsultasController extends BaseController {
 	    	}
 	    }
 	    return Response::download($carpeta.'/noConformidades.pdf');	    
-	    
+	    */
+		$img=asset('uploads/cias/'.$img);
+		$fecha=date('d/m/Y');
+		$pdf = PDF::loadView('consultas.noConformidadesr', array('ncs'=>$ncs, 'img'=>$img, 'fecha'=>$fecha))
+		->setPaper('letter')->setOrientation('portrait');
+		return $pdf->download('reporte.pdf');
 	}
 
 	public function getAccidente(){
@@ -457,7 +499,15 @@ class ConsultasController extends BaseController {
 			unlink($carpeta . '/accidentes.pdf');
 		}
 		
-		JasperPHP::process(
+		$as=$this->accidentes->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
+									->whereBetween('accidente_id', array($input['accidente_f'], $input['accidente_t']))
+									->whereBetween('responsable_id', array($input['responsable_f'], $input['responsable_t']))
+									->whereBetween('area_id', array($input['area_f'], $input['area_t']))
+									->whereBetween('accion_id', array($input['accion_f'], $input['accion_t']))
+									->whereBetween('fecha', array($input['fecha_f'], $input['fecha_t']))
+									->get();
+
+		/*JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/accidentes.jasper', 
 	    $carpeta . '/accidentes', 
 	    array("pdf"), 
@@ -481,6 +531,12 @@ class ConsultasController extends BaseController {
 	    	}
 	    }
 	    return Response::download($carpeta.'/accidentes.pdf');	    
+		*/
+		$img=asset('uploads/cias/'.$img);
+		$fecha=date('d/m/Y');
+		$pdf = PDF::loadView('consultas.accidentesr', array('as'=>$as, 'img'=>$img, 'fecha'=>$fecha))
+		->setPaper('letter')->setOrientation('portrait');
+		return $pdf->download('reporte.pdf');
 	}
 
 	public function getEnfermedad(){
@@ -528,7 +584,15 @@ class ConsultasController extends BaseController {
 		if(file_exists($carpeta . '/enfermedades.pdf')){
 			unlink($carpeta . '/enfermedades.pdf');
 		}
-		
+
+		$es=$this->enfermedades->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
+									->whereBetween('enfermedad_id', array($input['enfermedad_f'], $input['enfermedad_t']))
+									->whereBetween('area_id', array($input['area_f'], $input['area_t']))
+									->whereBetween('accion_id', array($input['accion_f'], $input['accion_t']))
+									->whereBetween('fecha', array($input['fecha_f'], $input['fecha_t']))
+									->get();
+
+		/*
 		JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/enfermedades.jasper', 
 	    $carpeta . '/enfermedades', 
@@ -552,7 +616,12 @@ class ConsultasController extends BaseController {
 	    	}
 	    }
 	    return Response::download($carpeta.'/enfermedades.pdf');	    
-	    
+	    */
+		$img=asset('uploads/cias/'.$img);
+		$fecha=date('d/m/Y');
+		$pdf = PDF::loadView('consultas.enfermedadesr', array('es'=>$es, 'img'=>$img, 'fecha'=>$fecha))
+		->setPaper('letter')->setOrientation('portrait');
+		return $pdf->download('reporte.pdf');
 	}
 
 	public function getAspectosAmbientales(){
@@ -599,8 +668,16 @@ class ConsultasController extends BaseController {
 		if(file_exists($carpeta . '/aspectosAmbientales.pdf')){
 			unlink($carpeta . '/aspectosAmbientales.pdf');
 		}
+
+		$ass=$this->aspectos_ambientales->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
+									->whereBetween('proceso_id', array($input['proceso_f'], $input['proceso_t']))
+									->whereBetween('area_id', array($input['area_f'], $input['area_t']))
+									->whereBetween('imp_real_id', array($input['imp_real_f'], $input['imp_real_t']))
+									->whereBetween('imp_potencial_id', array($input['imp_potencial_f'], $input['imp_potencial_t']))
+									->get();
+
 		//dd(Input::all());
-		JasperPHP::process(
+		/*JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/aspectosAmbientales.jasper', 
 	    $carpeta . '/aspectosAmbientales', 
 	    array("pdf"), 
@@ -628,7 +705,12 @@ class ConsultasController extends BaseController {
 	    	}
 	    }
 	    return Response::download($carpeta.'/aspectosAmbientales.pdf');	    
-	    
+	    */
+		$img=asset('uploads/cias/'.$img);
+		$fecha=date('d/m/Y');
+		$pdf = PDF::loadView('consultas.aspectosAmbientalesr', array('ass'=>$ass, 'img'=>$img, 'fecha'=>$fecha))
+		->setPaper('letter')->setOrientation('portrait');
+		return $pdf->download('reporte.pdf');
 	}
 
 	public function getManto(){

@@ -20,7 +20,7 @@
             <img src="{{$img}}" alt="Logo" height=80>
         </td>
         <td style="width:33%;text-align:center" align="center">
-            <h3> BITACORA DE CONSUMOS </h3>
+            <h3> BITACORA DE ACCIDENTES </h3>
         </td>
         <td style="width:33%;text-align:left" align="left">
             Fecha de Elaboración: {{$fecha}}
@@ -28,61 +28,73 @@
     </tr>
 </table>
 
-<table id="dg" style="width:auto;height:auto;border-collapse: collapse;font-size: 0.75em;">
+<table id="dg" style="width:100%;height:auto;border-collapse: collapse;font-size: 0.75em;">
     <thead>
         <tr>
             <th data-options="field:'cia_id'" style="border:1px solid #ccc;">
                 Entidad
             </th>
             <th data-options="field:'residuo'" style="border:1px solid #ccc;">
-                Consumible
+                Area
             </th>
             <th data-options="field:'unidad'" style="border:1px solid #ccc;">
-                Unidad
-            </th>
-            <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
                 Fecha
             </th>
+            <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
+                Accidente
+            </th>
             <th data-options="field:'nombre'" style="border:1px solid #ccc;">
-                Consumo
+                Responsable
             </th>
             <th data-options="field:'fecha'" style="border:1px solid #ccc;">
-                F. Inicio 
+                C. Indirecto 
             </th>
             <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
-                F. Fin
+                C. Directo
             </th>
             <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
-                Costo
+                Descripcion
+            </th>
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                Procedimiento
+            </th>
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                Investigación
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach($cs as $c)
+        @foreach($as as $a)
         <tr>
             <td style="border:1px solid #ccc;">
-                {{ $f->cia->rzon_social }}
+                {{ $a->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->consumible->consumible }}
+                {{ $a->area->area }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->consumible->unidad }}
+                {{ $a->fecha }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->fecha }}
+                {{ $a->accidente->accidente }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->consumo }}
+                {{ $a->responsable->nombre }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->fec_inicio }}
+                {{ $a->costo_indirecto }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->fec_fin }}
+                {{ $a->costo_directo }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->costo }}
+                {{ $a->descripcion }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $a->procedimiento }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $a->investigacion }}
             </td>
         </tr>
         @endforeach

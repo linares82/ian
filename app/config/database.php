@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'siam_scribe',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'olmec8212lemon.',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

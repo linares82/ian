@@ -20,7 +20,7 @@
             <img src="{{$img}}" alt="Logo" height=80>
         </td>
         <td style="width:33%;text-align:center" align="center">
-            <h3> BITACORA DE RESIDUOS </h3>
+            <h3> BITACORA DE ASPECTOS AMBIENTALES </h3>
         </td>
         <td style="width:33%;text-align:left" align="left">
             Fecha de Elaboración: {{$fecha}}
@@ -28,85 +28,109 @@
     </tr>
 </table>
 
-<table id="dg" style="width:auto;height:auto;border-collapse: collapse;font-size: 0.75em;">
+<table id="dg" style="width:100%;height:auto;border-collapse: collapse;font-size: 0.75em;">
     <thead>
         <tr>
             <th data-options="field:'cia_id'" style="border:1px solid #ccc;">
                 Entidad
             </th>
             <th data-options="field:'residuo'" style="border:1px solid #ccc;">
-                Residuo
+                Area
             </th>
             <th data-options="field:'unidad'" style="border:1px solid #ccc;">
-                Unidad
+                Proceso
             </th>
             <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
-                Peligroso
+                Actividad
             </th>
             <th data-options="field:'nombre'" style="border:1px solid #ccc;">
-                Nombre
+                Descripción
             </th>
             <th data-options="field:'fecha'" style="border:1px solid #ccc;">
-                Fecha 
+                Aspecto
             </th>
             <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
-                Lugar de Generación
+                5 EMES
             </th>
             <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
-                Cantidad
+                Condición
             </th>
-            <th data-options="field:'ubicacion'" style="border:1px solid #ccc;">
-                Ubicación
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                Impacto
             </th>
-            <th data-options="field:'disposicion'" style="border:1px solid #ccc;">
-                Disposición
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                A.L.F.
             </th>
-            <th data-options="field:'transportista'" style="border:1px solid #ccc;">
-                Transportista
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                A.L.E.
             </th>
-            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
-                Manifiesto
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                O.C.
+            </th>
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                Quejas
+            </th>
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                Severidad
+            </th>
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                I.P.
+            </th>
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                I.R.
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach($rs as $r)
+        @foreach($ass as $as)
         <tr>
             <td style="border:1px solid #ccc;">
-                {{ $f->cia->rzon_social }}
+                {{ $as->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->residuos->residuo }}
+                {{ $as->area->area }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->residuos->unidad }}
+                {{ $as->proceso->proceso }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->residuos->Bnd->bnd }}
+                {{ $as->descripcion }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->responsable->nombre }}
+                {{ $as->aspecto->aspectos }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->fecha }}
+                {{ $as->eme->eme }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->lugar_generacion }}
+                {{ $as->condicion->condicion }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->cantidad }}
+                {{ $as->impacto->impacto }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->ubicacion }}
+                {{ $as->alFederalBnd->bnd }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->disposicion }}
+                {{ $as->alEstatalBnd->bnd }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->transportista }}
+                {{ $as->objCorporativoBnd->bnd }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->manifiesto }}
+                {{ $as->quejasBnd->bnd }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $as->severidad->descripcion }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $as->frecuencia->duracion_accion }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $as->impPotencial->imp_potencial }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $as->impReal->imp_real }}
             </td>
         </tr>
         @endforeach

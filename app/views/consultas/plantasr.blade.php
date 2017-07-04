@@ -20,7 +20,7 @@
             <img src="{{$img}}" alt="Logo" height=80>
         </td>
         <td style="width:33%;text-align:center" align="center">
-            <h3> BITACORA DE RESIDUOS </h3>
+            <h3> BITACORA DE PLANTAS </h3>
         </td>
         <td style="width:33%;text-align:left" align="left">
             Fecha de Elaboración: {{$fecha}}
@@ -35,78 +35,108 @@
                 Entidad
             </th>
             <th data-options="field:'residuo'" style="border:1px solid #ccc;">
-                Residuo
+                Planta
             </th>
             <th data-options="field:'unidad'" style="border:1px solid #ccc;">
-                Unidad
+                T. Planta
             </th>
             <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
-                Peligroso
+                Ubicacion
             </th>
             <th data-options="field:'nombre'" style="border:1px solid #ccc;">
-                Nombre
+                C. Tratamiento
             </th>
             <th data-options="field:'fecha'" style="border:1px solid #ccc;">
-                Fecha 
+                Responsable
             </th>
             <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
-                Lugar de Generación
+                Fecha
             </th>
             <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
-                Cantidad
+                Turno
             </th>
             <th data-options="field:'ubicacion'" style="border:1px solid #ccc;">
-                Ubicación
+                A. Entrada
             </th>
             <th data-options="field:'disposicion'" style="border:1px solid #ccc;">
-                Disposición
+                A. Salida
             </th>
             <th data-options="field:'transportista'" style="border:1px solid #ccc;">
-                Transportista
+                Q. Usados
             </th>
             <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
-                Manifiesto
+                Q. exitentes
+            </th>
+            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
+                T. Operación
+            </th>
+            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
+                Motivo Paro
+            </th>
+            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
+                V. Lodos
+            </th>
+            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
+                D. Lodos
+            </th>
+            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
+                F. U. Manto.
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach($rs as $r)
+        @foreach($ps as $p)
         <tr>
             <td style="border:1px solid #ccc;">
-                {{ $f->cia->rzon_social }}
+                {{ $p->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->residuos->residuo }}
+                {{ $p->planta->planta }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->residuos->unidad }}
+                {{ $p->planta->tipo_planta }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->residuos->Bnd->bnd }}
+                {{ $p->planta->ubicacion }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->responsable->nombre }}
+                {{ $p->planta->c_tratamiento }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->fecha }}
+                {{ $p->responsable->nombre }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->lugar_generacion }}
+                {{ $p->fecha }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->cantidad }}
+                {{ $p->turno->turno }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->ubicacion }}
+                {{ $p->agua_entrada }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->disposicion }}
+                {{ $p->agua_salida }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->transportista }}
+                {{ $p->q_usados }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->manifiesto }}
+                {{ $p->q_existentes }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $p->tiempo_operacion }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $p->motivo_paro }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $p->vol_lodos }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $p->disp_lodos }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $p->fec_ult_manto }}
             </td>
         </tr>
         @endforeach

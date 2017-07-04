@@ -47,6 +47,10 @@ class Aspectos_ambientale extends Eloquent {
     {
         return $this->belongsTo('User', 'usu_mod_id');
     }
+    public function cia()
+    {
+        return $this->belongsTo('Entidad', 'cia_id', 'id');
+    }
     public function proceso()
     {
         return $this->belongsTo('Aa_proceso', 'proceso_id');

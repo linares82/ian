@@ -45,6 +45,10 @@ class Bitacora_residuo extends Eloquent {
     {
         return $this->belongsTo('User', 'usu_mod_id');
     }
+    public function cia()
+    {
+        return $this->belongsTo('Entidad', 'cia_id', 'id');
+    }
     public function residuos()
     {
         return $this->belongsTo('Ca_residuo', 'residuo');

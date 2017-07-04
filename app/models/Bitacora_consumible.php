@@ -42,6 +42,10 @@ class Bitacora_consumible extends Eloquent {
     {
         return $this->belongsTo('Ca_consumible', 'consumible_id');
     }
+	public function cia()
+    {
+        return $this->belongsTo('Entidad', 'cia_id', 'id');
+    }
 	
 	/* Scopes */
 	public function scopeId($query, $valor)

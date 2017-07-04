@@ -13,14 +13,14 @@
 }
 </style>
 
-<div id="printeArea">
+
 <table style="width:100%;height:auto;border:1px solid #ccc;font-size: 0.75em;">
     <tr>
         <td style="width:33%;text-align:right" align="right">
             <img src="{{$img}}" alt="Logo" height=80>
         </td>
         <td style="width:33%;text-align:center" align="center">
-            <h3> BITACORA DE CONSUMOS </h3>
+            <h3> BITACORA DE NO CONFORMIDADES </h3>
         </td>
         <td style="width:33%;text-align:left" align="left">
             Fecha de Elaboración: {{$fecha}}
@@ -28,67 +28,62 @@
     </tr>
 </table>
 
-<table id="dg" style="width:auto;height:auto;border-collapse: collapse;font-size: 0.75em;">
+<table id="dg" style="width:100%;height:auto;border-collapse: collapse;font-size: 0.75em;">
     <thead>
         <tr>
             <th data-options="field:'cia_id'" style="border:1px solid #ccc;">
                 Entidad
             </th>
             <th data-options="field:'residuo'" style="border:1px solid #ccc;">
-                Consumible
-            </th>
-            <th data-options="field:'unidad'" style="border:1px solid #ccc;">
-                Unidad
-            </th>
-            <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
                 Fecha
             </th>
-            <th data-options="field:'nombre'" style="border:1px solid #ccc;">
-                Consumo
+            <th data-options="field:'unidad'" style="border:1px solid #ccc;">
+                T. Bitacora
             </th>
-            <th data-options="field:'fecha'" style="border:1px solid #ccc;">
-                F. Inicio 
+            <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
+                T. Inconformidad 
+            </th>
+            <th data-options="field:'nombre'" style="border:1px solid #ccc;">
+                No Conformidad
             </th>
             <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
-                F. Fin
+                F. Solución
             </th>
             <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
-                Costo
+                Nombre
             </th>
+            
         </tr>
     </thead>
     <tbody>
-        @foreach($cs as $c)
+        @foreach($ncs as $nc)
         <tr>
             <td style="border:1px solid #ccc;">
-                {{ $f->cia->rzon_social }}
+                {{ $nc->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->consumible->consumible }}
+                {{ $nc->fecha }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->consumible->unidad }}
+                {{ $nc->tpoBitacora->tpo_bitacora }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->fecha }}
+                {{ $nc->tpoInconformidad->tpo_inconformidad }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->consumo }}
+                {{ $nc->no_conformidad }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->fec_inicio }}
+                {{ $nc->fec_solucion }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $c->fec_fin }}
-            </td>
-            <td style="border:1px solid #ccc;">
-                {{ $c->costo }}
+                {{ $nc->responsable->nombre }}
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
-</div>
+
 @stop
 @section('js_local')
     

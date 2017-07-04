@@ -35,6 +35,11 @@ class Ca_planta extends Eloquent {
     {
         return $this->belongsTo('User', 'usu_mod_id');
     }
+
+	public function turno()
+    {
+        return $this->belongsTo('Turno', 'turno_id');
+    }
 	
 	/* Scopes */
 	public function scopeId($query, $valor)
