@@ -28,7 +28,7 @@
     </tr>
 </table>
 
-<table id="dg" style="width:auto;height:auto;border-collapse: collapse;font-size: 0.75em;">
+<table id="dg" style="width:100%;height:auto;border-collapse: collapse;font-size: 0.75em;">
     <thead>
         <tr>
             <th data-options="field:'cia_id'" style="border:1px solid #ccc;">
