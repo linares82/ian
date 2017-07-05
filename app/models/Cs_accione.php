@@ -41,4 +41,8 @@ class Cs_accione extends Eloquent {
     		return $query->where('cs_acciones.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbAcciones($query, $valor){
+		$query->get();
+		return $query->lists('accion', 'id');
+	}
 }

@@ -41,4 +41,8 @@ class Aa_impacto extends Eloquent {
     		return $query->where('aa_impactos.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbImpactos($query, $valor){
+		$query->get();
+		return $query->lists('impacto', 'id');
+	}
 }

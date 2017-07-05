@@ -41,4 +41,8 @@ class Cs_enfermedade extends Eloquent {
     		return $query->where('cs_enfermedades.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbEnfermedades($query, $valor){
+		$query->get();
+		return $query->lists('enfermedad', 'id');
+	}
 }

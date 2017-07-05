@@ -41,4 +41,8 @@ class Aa_proceso extends Eloquent {
     		return $query->where('aa_procesos.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbProcesos($query, $valor){
+		$query->get();
+		return $query->lists('pproceso', 'id');
+	}
 }

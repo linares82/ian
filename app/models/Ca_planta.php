@@ -50,4 +50,8 @@ class Ca_planta extends Eloquent {
     		return $query->where('ca_plantas.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbPlantas($query, $valor){
+		$query->get();
+		return $query->lists('planta', 'id');
+	}
 }

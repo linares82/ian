@@ -60,4 +60,8 @@ class Subequipo extends Eloquent {
     		return $query->where('.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbSubequipos($query, $valor){
+		$query->get();
+		return $query->lists('subequipo', 'id');
+	}
 }

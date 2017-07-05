@@ -801,7 +801,7 @@ class ConsultasController extends BaseController {
 		$fecha=date('d/m/Y');
 		//dd($img);
 		$pdf = PDF::loadView('consultas.mantenimientosr', array('ms'=>$ms, 'img'=>$img, 'fecha'=>$fecha))
-		->setPaper('letter')->setOrientation('lanscape');
+		->setPaper('letter')->setOrientation('landscape');
 		return $pdf->download('reporte.pdf');		
 		
 		//return View::make('consultas.mantenimientosr', compact('ms', 'img', 'fecha'));

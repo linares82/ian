@@ -42,4 +42,8 @@ class Cs_grupo_norma extends Eloquent {
     		return $query->where('grupo_normas.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbGruposNormas($query, $valor){
+		$query->get();
+		return $query->lists('grupo_norma', 'id');
+	}
 }

@@ -152,7 +152,7 @@ return array(
          *
          * @see CPDF_Adapter::PAPER_SIZES for valid sizes ('letter', 'legal', 'A4', etc.)
          */
-        "DOMPDF_DEFAULT_PAPER_SIZE" => "a4",
+        "DOMPDF_DEFAULT_PAPER_SIZE" => "lette",
 
         /**
          * The default font family
@@ -209,7 +209,7 @@ return array(
          *
          * @var bool
          */
-        "DOMPDF_ENABLE_PHP" => false,
+        "DOMPDF_ENABLE_PHP" => true,
 
         /**
          * Enable inline Javascript

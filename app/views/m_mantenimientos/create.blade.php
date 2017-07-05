@@ -78,6 +78,12 @@
               {{ Form::text('fec_inicio', Input::old('fec_inicio'), array('placeholder'=>'fec_inicio', 'class'=>'easyui-datetimebox', 'data-options'=>'required:true,showSeconds:false', 'style'=>'width:85%')) }}
             {{ $errors->first('fec_inicio', '<div class="errorMessage">:message</div>') }}
         </div>
+
+		<div class="row_1 @if ( $errors->has('fec_final')) has-error @endif" >
+            {{ Form::label('fec_final', 'F. Final:') }}
+              {{ Form::text('fec_final', Input::old('fec_final'), array('placeholder'=>'fec_final', 'class'=>'easyui-datetimebox', 'data-options'=>'required:true,showSeconds:false', 'style'=>'width:85%')) }}
+            {{ $errors->first('fec_final', '<div class="errorMessage">:message</div>') }}
+        </div>
 		
 		<div class="row @if ( $errors->has('descripcion')) has-error @endif">
             {{ Form::label('descripcion', 'Descripcion:') }}

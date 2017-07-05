@@ -41,4 +41,8 @@ class Cs_cat_doc extends Eloquent {
     		return $query->where('cs_cat_docs.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbCategoriaDocumentos($query, $valor){
+		$query->get();
+		return $query->lists('cat_doc', 'id');
+	}
 }

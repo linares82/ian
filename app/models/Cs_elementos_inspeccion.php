@@ -59,4 +59,8 @@ class Cs_elementos_inspeccion extends Eloquent {
     		return $query->where('cs_elementos_inspeccions.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbElementos($query, $valor){
+		$query->get();
+		return $query->lists('elemento', 'id');
+	}
 }

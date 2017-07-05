@@ -54,4 +54,8 @@ class Cs_tpo_doc extends Eloquent {
     		return $query->where('cs_tpo_docs.tpo_procedimiento_id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbTipoDocumentos($query, $valor){
+		$query->get();
+		return $query->lists('tpo_doc', 'id');
+	}
 }

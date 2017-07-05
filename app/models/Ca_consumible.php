@@ -42,4 +42,8 @@ class Ca_consumible extends Eloquent {
     		return $query->where('consumibles.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbConsumibles($query, $valor){
+		$query->get();
+		return $query->lists('consumible', 'id');
+	}
 }

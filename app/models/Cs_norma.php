@@ -55,4 +55,8 @@ class Cs_norma extends Eloquent {
     		return $query->where('cs_normas.grupo_norma_id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbNormas($query, $valor){
+		$query->get();
+		return $query->lists('norma', 'id');
+	}
 }

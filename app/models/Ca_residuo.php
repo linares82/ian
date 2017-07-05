@@ -47,4 +47,8 @@ class Ca_residuo extends Eloquent {
     		return $query->where('ca_residuos.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbResiduos($query, $valor){
+		$query->get();
+		return $query->lists('residuo', 'id');
+	}
 }

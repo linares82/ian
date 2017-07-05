@@ -55,4 +55,8 @@ class Ca_tpo_noconformidade extends Eloquent {
     		return $query->where('ca_tpo_noconformidad.tpo_bitacora_id', '=', $valor);
     	}
     }
+	public function scopeCmbTiposNoConformidad($query, $valor){
+		$query->get();
+		return $query->lists('tpo_inconformidad', 'id');
+	}
 }

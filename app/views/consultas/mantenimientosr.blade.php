@@ -37,72 +37,106 @@
             <th data-options="field:'residuo'" style="border:1px solid #ccc;">
                 Area
             </th>
-            <th data-options="field:'unidad'" style="border:1px solid #ccc;">
-                Id
-            </th>
-            <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
-                Estatus
-            </th>
             <th data-options="field:'nombre'" style="border:1px solid #ccc;">
                 Objetivo
             </th>
-            <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
-                H. Inv.
+            <th data-options="field:'nombre'" style="border:1px solid #ccc;">
+                Subequipo
             </th>
             <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
                 F. Planeada
             </th>
-            <th data-options="field:'ubicacion'" style="border:1px solid #ccc;">
-                Tpo. Manto.
+            <th data-options="field:'unidad'" style="border:1px solid #ccc;">
+                No. Orden
             </th>
-            
+            <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
+                Requiere TPP
+            </th>
+            <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
+                Descripcion
+            </th>
+            <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
+                Ejecutor
+            </th>
+            <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
+                Pormenores
+            </th>
+            <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
+                Acción
+            </th>
+            <th data-options="field:'ubicacion'" style="border:1px solid #ccc;">
+                Resultado
+            </th>
+            <th data-options="field:'ubicacion'" style="border:1px solid #ccc;">
+                F. Final
+            </th>
             <th data-options="field:'disposicion'" style="border:1px solid #ccc;">
-                Nombre
+                Responsable Estación
             </th>
             <th data-options="field:'transportista'" style="border:1px solid #ccc;">
-                F. Real
+                Firma Responsable Estación
             </th>
             <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
-                Costo
+                Firma Responsable Actividad
+            </th>
+            <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
+                Estatus
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach($ms as $m)
         <tr>
-            <td style="border:1px solid #ccc;">
+            <td style="border:1px solid #ccc;height:60px">
                 {{ $m->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $m->equipo->area_id }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $m->id }}
-            </td>
-            <td style="border:1px solid #ccc;">
-                {{ $m->estatus->estatus }}
-            </td>
-            <td style="border:1px solid #ccc;">
                 {{ $m->objetivo->objetivo }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $m->horas_inv }}
+                {{ $m->equipo->subequipo }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $m->fec_planeada }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $m->tpoManto->tpo_manto }}
+                {{ $m->id }}
             </td>
-            
             <td style="border:1px solid #ccc;">
-                {{ $m->responsable->nombre }}
+                {{ $m->Tpp->bnd }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $m->descripcion }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $m->ejecutor->nombre }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $m->accion }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $m->resultado }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $m->fec_final }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $m->costo }}
+                {{ $m->responsable->nombre }}
+            </td>
+            <td style="border:1px solid #ccc;">
+            
+            </td>
+            <td style="border:1px solid #ccc;">
+
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $m->estatus->estatus }}
             </td>
         </tr>
         @endforeach
@@ -111,8 +145,11 @@
 
 @stop
 @section('js_local')
-    
-    <script type="text/javascript">
-    
+    <script type="text/php">
+        if (isset($pdf))
+            {
+            $font = Font_Metrics::get_font("Arial", "bold");
+            $pdf->page_text(670, 580, "Pagina {PAGE_NUM} de {PAGE_COUNT}", $font, 9, array(0, 0, 0));
+            }
     </script>
 @stop

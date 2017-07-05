@@ -41,4 +41,8 @@ class Ca_tpo_bitacora extends Eloquent {
     		return $query->where('ca_tpo_bitacora.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbTiposBitacora($query, $valor){
+		$query->get();
+		return $query->lists('tpo_bitacora', 'id');
+	}
 }

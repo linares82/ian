@@ -41,4 +41,8 @@ class M_clase_manto extends Eloquent {
     		return $query->where('m_clase_mantos.id', '=', $valor);
     	}
     }
+	public function scopeCmbClasesMantenimiento($query, $valor){
+		$query->get();
+		return $query->lists('clase_manto', 'id');
+	}
 }

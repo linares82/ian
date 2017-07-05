@@ -21,11 +21,13 @@ class EmpleadosController extends BaseController {
 	 */
 	public function index()
 	{
+		
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
 		$puestos_ls=['0' => 'Seleccionar'] + Puesto::lists('puesto','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		$jefes_ls=['0' => 'Seleccionar'] + Empleado::wherein('bnd_subordinados', array('1'))
-													->lists('nombre','id');
+											->Cia(User::find(Sentry::getUser()->id)->getCia())
+											->lists('nombre','id');
 		return View::make('empleados.index', array('areas_ls'=>$areas_ls, 'puestos_ls'=>$puestos_ls, 
 											'bnds_ls'=>$bnds_ls, 'jefes_ls'=>$jefes_ls));
 	}
@@ -40,7 +42,7 @@ class EmpleadosController extends BaseController {
 		$cia=0;
 		$cia=User::find(Sentry::getUser()->id)->getCia();
 		$result = array();
-
+		
 		$count_rows=0;
 		$model=array();
 
@@ -71,7 +73,8 @@ class EmpleadosController extends BaseController {
 		$puestos_ls=['0' => 'Seleccionar'] + Puesto::lists('puesto','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		$jefes_ls=['0' => 'Seleccionar'] + Empleado::wherein('bnd_subordinados', array('1'))
-													->lists('nombre','id');
+											->Cia(User::find(Sentry::getUser()->id)->getCia())
+											->lists('nombre','id');
 		return View::make('empleados.create', array('areas_ls'=>$areas_ls, 'puestos_ls'=>$puestos_ls, 
 											'bnds_ls'=>$bnds_ls, 'jefes_ls'=>$jefes_ls));
 	}
@@ -133,7 +136,8 @@ class EmpleadosController extends BaseController {
 		$puestos_ls=['0' => 'Seleccionar'] + Puesto::lists('puesto','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		$jefes_ls=['0' => 'Seleccionar'] + Empleado::wherein('bnd_subordinados', array('1'))
-													->lists('nombre','id');
+											->Cia(User::find(Sentry::getUser()->id)->getCia())		
+											->lists('nombre','id');
 		return View::make('empleados.edit', array('empleado'=>$empleado,'areas_ls'=>$areas_ls, 'puestos_ls'=>$puestos_ls, 
 											'bnds_ls'=>$bnds_ls, 'jefes_ls'=>$jefes_ls));
 	}

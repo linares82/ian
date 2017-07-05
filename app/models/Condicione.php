@@ -47,4 +47,8 @@ class Condicione extends Eloquent {
     		return $query->where('condicion.id', '=', $valor);
     	}
     }
+	public function scopeCmbCondiciones($query, $valor){
+		$query->get();
+		return $query->lists('condicion', 'id');
+	}
 }

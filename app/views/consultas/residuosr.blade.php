@@ -37,46 +37,53 @@
             <th data-options="field:'residuo'" style="border:1px solid #ccc;">
                 Residuo
             </th>
+            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
+                Cantidad
+            </th>
             <th data-options="field:'unidad'" style="border:1px solid #ccc;">
                 Unidad
             </th>
             <th data-options="field:'peligroso'" style="border:1px solid #ccc;">
                 Peligroso
             </th>
-            <th data-options="field:'nombre'" style="border:1px solid #ccc;">
-                Nombre
-            </th>
-            <th data-options="field:'fecha'" style="border:1px solid #ccc;">
-                Fecha 
-            </th>
             <th data-options="field:'lugar_generacion'" style="border:1px solid #ccc;">
                 Lugar de Generación
             </th>
-            <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
-                Cantidad
+            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
+                Fecha de Ingreso
             </th>
-            <th data-options="field:'ubicacion'" style="border:1px solid #ccc;">
-                Ubicación
+            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
+                Fecha de Salida
             </th>
-            <th data-options="field:'disposicion'" style="border:1px solid #ccc;">
-                Disposición
+            <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
+                Fase Manejo
             </th>
-            <th data-options="field:'transportista'" style="border:1px solid #ccc;">
-                Transportista
+            <th data-options="field:'nombre'" style="border:1px solid #ccc;">
+                Nombre Transportista
+            </th>
+            <th data-options="field:'nombre'" style="border:1px solid #ccc;">
+                Autorización Transportista
+            </th>
+            <th data-options="field:'fecha'" style="border:1px solid #ccc;">
+                Responsable Tecnico
             </th>
             <th data-options="field:'manifiesto'" style="border:1px solid #ccc;">
                 Manifiesto
             </th>
+            
         </tr>
     </thead>
     <tbody>
         @foreach($rs as $r)
         <tr>
-            <td style="border:1px solid #ccc;">
+            <td style="border:1px solid #ccc;height:60px">
                 {{ $r->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $r->residuos->residuo }}
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $r->cantidad }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $r->residuos->unidad }}
@@ -85,29 +92,30 @@
                 {{ $r->residuos->Bnd->bnd }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->responsable->nombre }}
-            </td>
-            <td style="border:1px solid #ccc;">
-                {{ $r->fecha }}
-            </td>
-            <td style="border:1px solid #ccc;">
                 {{ $r->lugar_generacion }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->cantidad }}
+                {{ $r->fec_ingreso }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->ubicacion }}
+                {{ $r->fec_salida }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->disposicion }}
+                
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $r->transportista }}
             </td>
             <td style="border:1px solid #ccc;">
+                
+            </td>
+            <td style="border:1px solid #ccc;">
+                {{ $r->responsable->nombre }}
+            </td>
+            <td style="border:1px solid #ccc;">
                 {{ $r->manifiesto }}
             </td>
+            
         </tr>
         @endforeach
     </tbody>
@@ -115,8 +123,11 @@
 </div>
 @stop
 @section('js_local')
-    
-    <script type="text/javascript">
-    
+    <script type="text/php">
+        if (isset($pdf))
+            {
+            $font = Font_Metrics::get_font("Arial", "bold");
+            $pdf->page_text(670, 580, "Pagina {PAGE_NUM} de {PAGE_COUNT}", $font, 9, array(0, 0, 0));
+            }
     </script>
 @stop

@@ -42,4 +42,8 @@ class Cs_tpo_procedimiento extends Eloquent {
     		return $query->where('cs_tpo_procedimiento.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbTipoProcedimientos($query, $valor){
+		$query->get();
+		return $query->lists('tpo_procedimiento', 'id');
+	}
 }

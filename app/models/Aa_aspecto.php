@@ -42,4 +42,8 @@ class Aa_aspecto extends Eloquent {
     		return $query->where('aa_aspectos.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbAspectos($query, $valor){
+		$query->get();
+		return $query->lists('aspectos', 'id');
+	}
 }

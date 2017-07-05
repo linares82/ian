@@ -48,4 +48,8 @@ class R_documento extends Eloquent {
     		return $query->where('r_documentos.id', '=', $valor);
     	}
     }
+	public function scopeCmbDocumentos($query, $valor){
+		$query->get();
+		return $query->lists('r_documento', 'id');
+	}
 }

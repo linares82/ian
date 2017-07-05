@@ -41,4 +41,8 @@ class Cs_accidente extends Eloquent {
     		return $query->where('cs_accidentes.id', 'like', '%'.$valor.'%');
     	}
     }
+	public function scopeCmbAccidentes($query, $valor){
+		$query->get();
+		return $query->lists('accidente', 'id');
+	}
 }

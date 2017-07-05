@@ -77,6 +77,14 @@ class M_mantenimiento extends Eloquent {
     {
         return $this->belongsTo('Empleado', 'responsable_id');
     }
+    public function ejecutor()
+    {
+        return $this->belongsTo('Empleado', 'ejecutor_id');
+    }
+    public function Tpp()
+    {
+        return $this->belongsTo('Bnd', 'tpp_bnd');
+    }
 	
 	/* Scopes */
 	public function scopeIsObjetivo($query, $valor)

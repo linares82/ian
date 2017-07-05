@@ -41,4 +41,8 @@ class M_tpo_manto extends Eloquent {
     		return $query->where('m_tpo_mantos.id', '=', $valor);
     	}
     }
+	public function scopeCmbTipoMantenimientos($query, $valor){
+		$query->get();
+		return $query->lists('tpo_manto', 'id');
+	}
 }
