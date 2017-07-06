@@ -25,7 +25,7 @@ class S_procedimientosController extends BaseController {
 		$tpo_documentos_ls=['0' => 'Seleccionar'] + Cs_tpo_doc::lists('tpo_doc','id');
 		$estatus_ls=['0' => 'Seleccionar'] + S_estatus_procedimiento::lists('estatus','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('s_procedimientos.index', compact(['tpo_procedimientos_ls', 'tpo_documentos_ls', 'bnds_ls', 'estatus_ls', 'responsables_ls']));
 	}
 	
@@ -80,7 +80,7 @@ class S_procedimientosController extends BaseController {
 		$tpo_procedimientos_ls=['0' => 'Seleccionar'] + Cs_tpo_procedimiento::lists('tpo_procedimiento','id');
 		$tpo_documentos_ls=['0' => 'Seleccionar'] + Cs_tpo_doc::lists('tpo_doc','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('s_procedimientos.create', compact(['tpo_procedimientos_ls', 'tpo_documentos_ls', 'bnds_ls', 'responsables_ls']));
 	}
 
@@ -158,7 +158,7 @@ class S_procedimientosController extends BaseController {
 		$tpo_procedimientos_ls=['0' => 'Seleccionar'] + Cs_tpo_procedimiento::lists('tpo_procedimiento','id');
 		$tpo_documentos_ls=['0' => 'Seleccionar'] + Cs_tpo_doc::lists('tpo_doc','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('s_procedimientos.edit', compact(['s_procedimiento', 'tpo_procedimientos_ls', 'tpo_documentos_ls', 'bnds_ls', 'responsables_ls']));
 	}
 

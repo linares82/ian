@@ -26,7 +26,7 @@ class S_registrosController extends BaseController {
 		$elementos_ls=['0' => 'Seleccionar'] + Cs_elementos_inspeccion::lists('elemento','id');
 		$estatus_ls=['0' => 'Seleccionar'] + S_estatus_procedimiento::lists('estatus','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('s_registros.index', compact(['grupos_ls', 'normas_ls', 'elementos_ls', 'bnds_ls', 'estatus_ls', 'responsables_ls']));
 	}
 	
@@ -84,7 +84,7 @@ class S_registrosController extends BaseController {
 		$normas_ls=['0' => 'Seleccionar'] + Cs_norma::lists('norma','id');
 		$elementos_ls=['0' => 'Seleccionar'] + Cs_elementos_inspeccion::lists('elemento','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('s_registros.create', compact(['grupos_ls', 'normas_ls', 'elementos_ls', 'bnds_ls', 'responsables_ls']));
 	}
 
@@ -163,7 +163,7 @@ class S_registrosController extends BaseController {
 		$normas_ls=['0' => 'Seleccionar'] + Cs_norma::lists('norma','id');
 		$elementos_ls=['0' => 'Seleccionar'] + Cs_elementos_inspeccion::lists('elemento','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('s_registros.edit', compact(['s_registro', 'grupos_ls', 'normas_ls', 'elementos_ls', 'bnds_ls', 'responsables_ls']));
 	}
 

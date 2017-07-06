@@ -28,7 +28,7 @@ class M_mantenimientosController extends BaseController {
 		$tpo_mantos_ls=['0' => 'Seleccionar'] + M_tpo_manto::lists('tpo_manto','id');
 		$clase_mantos_ls=['0' => 'Seleccionar'] + M_clase_manto::lists('clase_manto','id');
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('m_mantenimientos.index', 
 				 compact(['objetivos_ls', 'estatus_ls', 'clase_mantos_ls', 'tpo_mantos_ls',
 				 		  'areas_ls', 'responsables_ls']));
@@ -104,9 +104,9 @@ class M_mantenimientosController extends BaseController {
 		$tpo_mantos_ls=['0' => 'Seleccionar'] + M_tpo_manto::lists('tpo_manto','id');
 		$clase_mantos_ls=['0' => 'Seleccionar'] + M_clase_manto::lists('clase_manto','id');
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
-		$solicitantes_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
-		$ejecutores_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
+		$solicitantes_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
+		$ejecutores_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('m_mantenimientos.create', 
 				 compact(['objetivos_ls','subequipos_ls', 'estatus_ls', 'aviso_bnd_ls','tpp_bnd_ls',
 						'clase_mantos_ls', 'tpo_mantos_ls',
@@ -202,9 +202,9 @@ class M_mantenimientosController extends BaseController {
 		$tpo_mantos_ls=['0' => 'Seleccionar'] + M_tpo_manto::lists('tpo_manto','id');
 		$clase_mantos_ls=['0' => 'Seleccionar'] + M_clase_manto::lists('clase_manto','id');
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
-		$solicitantes_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
-		$ejecutores_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
+		$solicitantes_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
+		$ejecutores_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('m_mantenimientos.edit', 
 				 compact(['m_mantenimiento','objetivos_ls','subequipos_ls', 'estatus_ls', 'aviso_bnd_ls','tpp_bnd_ls',
 						'clase_mantos_ls', 'tpo_mantos_ls',

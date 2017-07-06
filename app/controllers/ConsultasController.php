@@ -41,7 +41,7 @@ class ConsultasController extends BaseController {
 	public function getFuenteFija(){
 	$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
 	$fuentes_fijas_ls=['0' => 'Seleccionar'] + Ca_fuentes_fija::lists('planta','id');
-	$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+	$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 	return View::make('consultas.fuentesFijas', compact('cias_ls', 'fuentes_fijas_ls', 'responsables_ls'));	
 	}
 
@@ -122,7 +122,7 @@ class ConsultasController extends BaseController {
 	public function getPlanta(){
 	$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
 	$plantas_ls=['0' => 'Seleccionar'] + Ca_planta::lists('planta','id');
-	$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+	$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 	return View::make('consultas.plantas', compact('cias_ls', 'plantas_ls', 'responsables_ls'));	
 	}
 
@@ -198,7 +198,7 @@ class ConsultasController extends BaseController {
 	public function getResiduo(){
 	$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
 	$residuos_ls=['0' => 'Seleccionar'] + Ca_residuo::lists('residuo','id');
-	$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+	$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 	return View::make('consultas.residuos', compact('cias_ls', 'residuos_ls', 'responsables_ls'));	
 	}
 
@@ -279,7 +279,7 @@ class ConsultasController extends BaseController {
 	public function getConsumible(){
 	$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
 	$consumibles_ls=['0' => 'Seleccionar'] + Ca_consumible::lists('consumible','id');
-	$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+	$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 	return View::make('consultas.consumibles', compact('cias_ls', 'consumibles_ls', 'responsables_ls'));	
 	}
 
@@ -356,7 +356,7 @@ class ConsultasController extends BaseController {
 	$tpo_detecciones_ls=['0' => 'Seleccionar'] + Cs_tpo_deteccion::lists('tpo_deteccion','id');
 	$tpo_bitacoras_ls=['0' => 'Seleccionar'] + DB::Table('ca_tpo_bitacoras')->lists('tpo_bitacora','id');
 	$tpo_inconformidades_ls=['0' => 'Seleccionar'] + DB::Table('ca_tpo_noconformidades')->lists('tpo_inconformidad','id');
-	$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+	$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 	$tpo_detecciones_ls=['0' => 'Seleccionar'] + Cs_tpo_deteccion::lists('tpo_deteccion','id');
 	$estatus_ls=['0' => 'Seleccionar'] + A_st_nc::lists('estatus','id');
 	
@@ -455,7 +455,7 @@ class ConsultasController extends BaseController {
 	
 	$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
 	$accidentes_ls=['0' => 'Seleccionar'] + Cs_accidente::lists('accidente','id');
-	$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+	$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 	$areas_ls=['0' => 'Seleccionar'] +Area::lists('area','id');
 	$acciones_ls=['0' => 'Seleccionar'] + Cs_accione::lists('accion','id');
 	return View::make('consultas.accidentes', compact('cias_ls', 'accidentes_ls', 'responsables_ls', 'areas_ls', 'acciones_ls'));	
@@ -543,7 +543,7 @@ class ConsultasController extends BaseController {
 	
 	$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
 	$enfermedades_ls=['0' => 'Seleccionar'] + Cs_enfermedade::lists('enfermedad','id');
-	$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+	$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 	$areas_ls=['0' => 'Seleccionar'] +Area::lists('area','id');
 	$acciones_ls=['0' => 'Seleccionar'] + Cs_accione::lists('accion','id');
 	return View::make('consultas.enfermedades', compact('cias_ls', 'enfermedades_ls', 'responsables_ls', 'areas_ls', 'acciones_ls'));	

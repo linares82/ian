@@ -24,7 +24,7 @@ class S_documentosController extends BaseController {
 		$cat_docs_ls=['0' => 'Seleccionar'] + Cs_cat_doc::lists('cat_doc','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		$estatus_ls=['0' => 'Seleccionar'] + S_estatus_procedimiento::lists('estatus','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('s_documentos.index', compact('cat_docs_ls', 'bnds_ls', 'estatus_ls', 'responsables_ls'));
 	}
 	
@@ -73,7 +73,7 @@ class S_documentosController extends BaseController {
 	{
 		$cat_docs_ls=['0' => 'Seleccionar'] + Cs_cat_doc::lists('cat_doc','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('s_documentos.create', compact('cat_docs_ls', 'bnds_ls', 'responsables_ls'));
 	}
 
@@ -150,7 +150,7 @@ class S_documentosController extends BaseController {
 		}
 		$cat_docs_ls=['0' => 'Seleccionar'] + Cs_cat_doc::lists('cat_doc','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('s_documentos.edit', compact(['s_documento', 'cat_docs_ls', 'bnds_ls', 'responsables_ls']));
 	}
 

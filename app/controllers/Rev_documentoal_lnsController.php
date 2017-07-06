@@ -74,7 +74,7 @@ class Rev_documentoal_lnsController extends BaseController {
 		$tpo_documentos_ls=['0' => 'Seleccionar'] + Tpo_doc::lists('tpo_doc','id');
 		$estatus_ls=['0' => 'Seleccionar'] + Estatus_condicione::lists('estatus','id');
 		$importancia_ls=['0' => 'Seleccionar'] + Importancium::lists('importancia','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$r_documentos_ls=['0' => 'Seleccionar'] + R_documento::lists('r_documento','id');
 		$grupos_ls=['0' => 'Seleccionar'] + Cs_grupo_norma::lists('grupo_norma','id');
 		$normas_ls=['0' => 'Seleccionar'] + Cs_norma::lists('norma','id');
@@ -157,7 +157,7 @@ class Rev_documentoal_lnsController extends BaseController {
 		$tpo_documentos_ls=['0' => 'Seleccionar'] + Tpo_doc::lists('tpo_doc','id');
 		$estatus_ls=['0' => 'Seleccionar'] + Estatus_condicione::lists('estatus','id');
 		$importancia_ls=['0' => 'Seleccionar'] + Importancium::lists('importancia','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$r_documentos_ls=['0' => 'Seleccionar'] + R_documento::lists('r_documento','id');
 		$grupos_ls=['0' => 'Seleccionar'] + Cs_grupo_norma::lists('grupo_norma','id');
 		$normas_ls=['0' => 'Seleccionar'] + Cs_norma::lists('norma','id');

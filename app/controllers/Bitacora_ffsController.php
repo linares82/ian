@@ -23,7 +23,7 @@ class Bitacora_ffsController extends BaseController {
 	{
 		$fuentes_fijas_ls=['0' => 'Seleccionar'] + Ca_fuentes_fija::lists('planta','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('bitacora_ffs.index', array('fuentes_fijas_ls'=>$fuentes_fijas_ls, 'turnos_ls'=>$turnos_ls, 'responsables_ls'=>$responsables_ls));
 	}
 	
@@ -68,7 +68,7 @@ class Bitacora_ffsController extends BaseController {
 	{
 		$fuentes_fijas_ls=['0' => 'Seleccionar'] + Ca_fuentes_fija::lists('planta','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('bitacora_ffs.create', array('fuentes_fijas_ls'=>$fuentes_fijas_ls, 'turnos_ls'=>$turnos_ls, 'responsables_ls'=>$responsables_ls));
 	}
 
@@ -129,7 +129,7 @@ class Bitacora_ffsController extends BaseController {
 		}
 		$fuentes_fijas_ls=['0' => 'Seleccionar'] + Ca_fuentes_fija::lists('planta','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('bitacora_ffs.edit', array('bitacora_ff'=>$bitacora_ff, 'fuentes_fijas_ls'=>$fuentes_fijas_ls, 'turnos_ls'=>$turnos_ls, 'responsables_ls'=>$responsables_ls));
 	}
 

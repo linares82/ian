@@ -23,7 +23,7 @@ class P_correo_bitacorasController extends BaseController {
 	{
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1','2'))->lists('bnd','id');
 		$bitacoras_ls=['0' => 'Seleccionar'] + Bitacora::lists('bitacora','id');
-		$empleados_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$empleados_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('p_correo_bitacoras.index', compact(['bnds_ls', 'bitacoras_ls', 'empleados_ls']));
 	}
 	
@@ -71,7 +71,7 @@ class P_correo_bitacorasController extends BaseController {
 	{
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1','2'))->lists('bnd','id');
 		$bitacoras_ls=['0' => 'Seleccionar'] + Bitacora::lists('bitacora','id');
-		$empleados_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$empleados_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('p_correo_bitacoras.create', compact(['bnds_ls', 'bitacoras_ls', 'empleados_ls']));
 	}
 
@@ -130,7 +130,7 @@ class P_correo_bitacorasController extends BaseController {
 		}
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1','2'))->lists('bnd','id');
 		$bitacoras_ls=['0' => 'Seleccionar'] + Bitacora::lists('bitacora','id');
-		$empleados_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$empleados_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('p_correo_bitacoras.edit', compact(['p_correo_bitacora', 'bnds_ls', 'bitacoras_ls', 'empleados_ls']));
 	}
 

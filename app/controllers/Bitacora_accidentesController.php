@@ -24,8 +24,8 @@ class Bitacora_accidentesController extends BaseController {
 	public function index()
 	{
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
-		$personas_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
+		$personas_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$accidentes_ls=['0' => 'Seleccionar'] + Cs_accidente::lists('accidente','id');
 		$acciones_ls=['0' => 'Seleccionar'] + Cs_accione::lists('accion','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');
@@ -71,8 +71,8 @@ class Bitacora_accidentesController extends BaseController {
 	public function create()
 	{
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
-		$personas_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
+		$personas_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$accidentes_ls=['0' => 'Seleccionar'] + Cs_accidente::lists('accidente','id');
 		$acciones_ls=['0' => 'Seleccionar'] + Cs_accione::lists('accion','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');
@@ -141,8 +141,8 @@ class Bitacora_accidentesController extends BaseController {
 			return Redirect::route('bitacora_accidentes.index');
 		}
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
-		$personas_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
+		$personas_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$accidentes_ls=['0' => 'Seleccionar'] + Cs_accidente::lists('accidente','id');
 		$acciones_ls=['0' => 'Seleccionar'] + Cs_accione::lists('accion','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');

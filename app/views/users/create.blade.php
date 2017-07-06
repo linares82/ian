@@ -67,7 +67,7 @@
         </div>
         <div class="row_1 @if ($errors->has('empleado_id')) has-error @endif">
             {{ Form::label('empleado_id', 'Empleado:') }}
-            {{ Form::select('empleado_id', ['0' => 'Seleccionar'] +Empleado::lists('nombre','id')) }}
+            {{ Form::select('empleado_id', ['0' => 'Seleccionar'] +Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id')) }}
             @if ($errors->has('empleado_id')) <div class="errorMessage">{{ $errors->first('empleado_id') }}</div> @endif
         </div>
 

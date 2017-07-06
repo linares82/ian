@@ -23,7 +23,7 @@ class Bitacora_plantasController extends BaseController {
 	{
 		$plantas_ls=['0' => 'Seleccionar'] + Ca_planta::lists('planta','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('bitacora_plantas.index', array('plantas_ls'=>$plantas_ls, 'turnos_ls'=>$turnos_ls, 'responsables_ls'=>$responsables_ls));
 	}
 	
@@ -67,7 +67,7 @@ class Bitacora_plantasController extends BaseController {
 	{
 		$plantas_ls=['0' => 'Seleccionar'] + Ca_planta::lists('planta','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('bitacora_plantas.create', array('plantas_ls'=>$plantas_ls, 'turnos_ls'=>$turnos_ls, 'responsables_ls'=>$responsables_ls));
 	}
 
@@ -128,7 +128,7 @@ class Bitacora_plantasController extends BaseController {
 		}
 		$plantas_ls=['0' => 'Seleccionar'] + Ca_planta::lists('planta','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('bitacora_plantas.edit', array('bitacora_planta'=>$bitacora_planta, 'plantas_ls'=>$plantas_ls, 'turnos_ls'=>$turnos_ls, 'responsables_ls'=>$responsables_ls));
 	}
 

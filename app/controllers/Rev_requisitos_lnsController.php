@@ -74,7 +74,7 @@ class Rev_requisitos_lnsController extends BaseController {
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
 		$estatus_ls=['0' => 'Seleccionar'] + Estatus_condicione::lists('estatus','id');
 		$importancia_ls=['0' => 'Seleccionar'] + Importancium::lists('importancia','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$condiciones_ls=['0' => 'Seleccionar'] + Condicione::lists('condicion','id');
 		return View::make('rev_requisitos_lns.create', 
 				  compact('rev_requisitos_id', 'impactos_ls', 
@@ -140,7 +140,7 @@ class Rev_requisitos_lnsController extends BaseController {
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
 		$estatus_ls=['0' => 'Seleccionar'] + Estatus_condicione::lists('estatus','id');
 		$importancia_ls=['0' => 'Seleccionar'] + Importancium::lists('importancia','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$condiciones_ls=['0' => 'Seleccionar'] + Condicione::lists('condicion','id');
 		return View::make('rev_requisitos_lns.edit', 
 				  compact(['rev_requisitos_ln', 'impactos_ls', 'areas_ls', 'estatus_ls',

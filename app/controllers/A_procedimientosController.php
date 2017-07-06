@@ -24,7 +24,7 @@ class A_procedimientosController extends BaseController {
 		$procedimientos_ls=['0' => 'Seleccionar'] + Ca_procedimiento::lists('procedimiento','id');
 		$estatus_ls=['0' => 'Seleccionar'] + A_st_archivo::lists('estatus','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('a_procedimientos.index', compact(['procedimientos_ls','bnds_ls', 'estatus_ls', 'responsables_ls']));
 		
 	}
@@ -74,7 +74,7 @@ class A_procedimientosController extends BaseController {
 	{	
 		$procedimientos_ls=['0' => 'Seleccionar'] + Ca_procedimiento::lists('procedimiento','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('a_procedimientos.create', array('procedimientos_ls'=>$procedimientos_ls, 'bnds_ls'=>$bnds_ls, 'responsables_ls'=>$responsables_ls));
 		
 	}
@@ -153,7 +153,7 @@ class A_procedimientosController extends BaseController {
 		}
 		$procedimientos_ls=['0' => 'Seleccionar'] + Ca_procedimiento::lists('procedimiento','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('a_procedimientos.edit', array('a_procedimiento'=>$a_procedimiento, 'procedimientos_ls'=>$procedimientos_ls, 'bnds_ls'=>$bnds_ls, 'responsables_ls'=>$responsables_ls));
 	}
 

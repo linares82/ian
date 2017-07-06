@@ -23,7 +23,7 @@ class Bitacora_pendientesController extends BaseController {
 	{
 		$estatus_ls=['0' => 'Seleccionar'] + Bit_st::lists('estatus','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('bitacora_pendientes.index', compact(['estatus_ls', 'bnds_ls', 'responsables_ls']));
 	}
 	
@@ -66,7 +66,7 @@ class Bitacora_pendientesController extends BaseController {
 	{
 		$estatus_ls=['0' => 'Seleccionar'] + Bit_st::lists('estatus','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('bitacora_pendientes.create', compact(['estatus_ls', 'bnds_ls', 'responsables_ls']));
 	}
 
@@ -126,7 +126,7 @@ class Bitacora_pendientesController extends BaseController {
 		}
 		$estatus_ls=['0' => 'Seleccionar'] + Bit_st::lists('estatus','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('bitacora_pendientes.edit', compact(['bitacora_pendiente', 'estatus_ls', 'bnds_ls','responsables_ls']));
 	}
 

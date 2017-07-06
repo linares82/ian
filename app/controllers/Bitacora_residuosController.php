@@ -22,7 +22,7 @@ class Bitacora_residuosController extends BaseController {
 	public function index()
 	{
 		$residuos_ls=['0' => 'Seleccionar'] + Ca_residuo::lists('residuo','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		return View::make('bitacora_residuos.index', array('residuos_ls'=>$residuos_ls, 'responsables_ls'=>$responsables_ls, 'bnds_ls'=>$bnds_ls));
 	}
@@ -65,7 +65,7 @@ class Bitacora_residuosController extends BaseController {
 	public function create()
 	{
 		$residuos_ls=['0' => 'Seleccionar'] + Ca_residuo::lists('residuo','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		//print_r($bnds_ls);
 		return View::make('bitacora_residuos.create',array('responsables_ls'=>$responsables_ls, 'residuos_ls'=>$residuos_ls, 'bnds_ls'=>$bnds_ls));
@@ -132,7 +132,7 @@ class Bitacora_residuosController extends BaseController {
 			return Redirect::route('bitacora_residuos.index');
 		}
 		$residuos_ls=['0' => 'Seleccionar'] + Ca_residuo::lists('residuo','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		return View::make('bitacora_residuos.edit', array('bitacora_residuo'=>$bitacora_residuo, 'residuos_ls'=>$residuos_ls, 'responsables_ls'=>$responsables_ls, 'bnds_ls'=>$bnds_ls));
 	}

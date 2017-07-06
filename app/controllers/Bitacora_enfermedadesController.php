@@ -22,7 +22,7 @@ class Bitacora_enfermedadesController extends BaseController {
 	public function index()
 	{
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
-		$personas_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$personas_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$enfermedades_ls=['0' => 'Seleccionar'] + Cs_enfermedade::lists('enfermedad','id');
 		$acciones_ls=['0' => 'Seleccionar'] + Cs_accione::lists('accion','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');
@@ -68,7 +68,7 @@ class Bitacora_enfermedadesController extends BaseController {
 	public function create()
 	{
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
-		$personas_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$personas_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$enfermedades_ls=['0' => 'Seleccionar'] + Cs_enfermedade::lists('enfermedad','id');
 		$acciones_ls=['0' => 'Seleccionar'] + Cs_accione::lists('accion','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');
@@ -131,7 +131,7 @@ class Bitacora_enfermedadesController extends BaseController {
 			return Redirect::route('bitacora_enfermedades.index');
 		}
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
-		$personas_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$personas_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$enfermedades_ls=['0' => 'Seleccionar'] + Cs_enfermedade::lists('enfermedad','id');
 		$acciones_ls=['0' => 'Seleccionar'] + Cs_accione::lists('accion','id');
 		$turnos_ls=['0' => 'Seleccionar'] + Turno::lists('turno','id');

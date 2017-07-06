@@ -25,7 +25,7 @@ class Bitacora_seguridadsController extends BaseController {
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + Cs_tpo_bitacora::lists('tpo_bitacora','id');
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Cs_tpo_inconformidade::lists('tpo_inconformidad','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$grupos_ls=['0' => 'Seleccionar'] + Cs_grupo_norma::lists('grupo_norma','id');
 		$normas_ls=['0' => 'Seleccionar'] + Cs_norma::lists('norma','id');
 		$estatus_ls=['0' => 'Seleccionar'] + A_st_nc::lists('estatus','id');
@@ -80,7 +80,7 @@ class Bitacora_seguridadsController extends BaseController {
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + Cs_tpo_bitacora::lists('tpo_bitacora','id');
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Cs_tpo_inconformidade::lists('tpo_inconformidad','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$grupos_ls=['0' => 'Seleccionar'] + Cs_grupo_norma::lists('grupo_norma','id');
 		$normas_ls=['0' => 'Seleccionar'] + Cs_norma::lists('norma','id');
 		return View::make('bitacora_seguridads.create', compact(['tpo_detecciones_ls', 'areas_ls', 'tpo_bitacoras_ls', 'tpo_inconformidades_ls', 'responsables_ls', 'grupos_ls', 'normas_ls']));
@@ -147,7 +147,7 @@ class Bitacora_seguridadsController extends BaseController {
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + Cs_tpo_bitacora::lists('tpo_bitacora','id');
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Cs_tpo_inconformidade::lists('tpo_inconformidad','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$grupos_ls=['0' => 'Seleccionar'] + Cs_grupo_norma::lists('grupo_norma','id');
 		$normas_ls=['0' => 'Seleccionar'] + Cs_norma::lists('norma','id');
 

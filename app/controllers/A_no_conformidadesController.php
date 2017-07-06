@@ -25,7 +25,7 @@ class A_no_conformidadesController extends BaseController {
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + DB::Table('ca_tpo_bitacoras')->lists('tpo_bitacora','id');
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Ca_tpo_noconformidade::lists('tpo_inconformidad','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$estatus_ls=['0' => 'Seleccionar'] + A_st_nc::lists('estatus','id');
 		return View::make('a_no_conformidades.index', compact(['tpo_detecciones_ls', 'areas_ls', 'tpo_bitacoras_ls', 'tpo_inconformidades_ls', 'responsables_ls', 'estatus_ls']));
 	}
@@ -79,7 +79,7 @@ class A_no_conformidadesController extends BaseController {
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + DB::Table('ca_tpo_bitacoras')->lists('tpo_bitacora','id');
 		//dd($tpo_bitacoras_ls);
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Ca_tpo_noconformidade::lists('tpo_inconformidad','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('a_no_conformidades.create', compact(['tpo_detecciones_ls', 'areas_ls', 'tpo_bitacoras_ls', 'tpo_inconformidades_ls', 'responsables_ls']));
 	}
 
@@ -144,7 +144,7 @@ class A_no_conformidadesController extends BaseController {
 		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + DB::Table('ca_tpo_bitacoras')->lists('tpo_bitacora','id');
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Ca_tpo_noconformidade::lists('tpo_inconformidad','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 
 		return View::make('a_no_conformidades.edit', compact(['a_no_conformidade', 'tpo_detecciones_ls', 'areas_ls', 'tpo_bitacoras_ls', 'tpo_inconformidades_ls', 'responsables_ls']));
 	}

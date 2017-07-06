@@ -29,7 +29,7 @@ class A_rr_ambientalesController extends BaseController {
 		$documentos_ls=['0' => 'Seleccionar'] + Ca_aa_doc::where('cia_id',$cia)->lists('doc','id');
 		$estatus_ls=['0' => 'Seleccionar'] + A_st_archivo::lists('estatus','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1','2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('a_rr_ambientales.index', compact(['materiales_ls', 'categorias_ls', 
 					'documentos_ls', 'bnds_ls', 'estatus_ls', 'responsables_ls']));
 	}
@@ -87,7 +87,7 @@ class A_rr_ambientalesController extends BaseController {
 		$categorias_ls=['0' => 'Seleccionar'] + Ca_categorium::lists('categoria','id');
 		$documentos_ls=['0' => 'Seleccionar'] + Ca_aa_doc::lists('doc','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1','2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('a_rr_ambientales.create', array('materiales_ls'=>$materiales_ls, 
 			'categorias_ls'=>$categorias_ls, 'documentos_ls'=>$documentos_ls, 'bnds_ls'=>$bnds_ls, 'responsables_ls'=>$responsables_ls));
 	}
@@ -175,7 +175,7 @@ class A_rr_ambientalesController extends BaseController {
 		$categorias_ls=['0' => 'Seleccionar'] + Ca_categorium::lists('categoria','id');
 		$documentos_ls=['0' => 'Seleccionar'] + DB::Table('ca_aa_docs')->lists('doc','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1','2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Empleado::lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('a_rr_ambientales.edit', array('a_rr_ambientale'=>$a_rr_ambientale, 
 			'materiales_ls'=>$materiales_ls, 'categorias_ls'=>$categorias_ls, 
 			'documentos_ls'=>$documentos_ls, 'bnds_ls'=>$bnds_ls, 'responsables_ls'=>$responsables_ls,
