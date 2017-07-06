@@ -101,7 +101,7 @@
                 {{ $r->fec_salida }}
             </td>
             <td style="border:1px solid #ccc;">
-                
+                {{ $r->dispocision }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $r->transportista }}

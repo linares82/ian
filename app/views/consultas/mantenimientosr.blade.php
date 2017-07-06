@@ -44,7 +44,7 @@
                 Subequipo
             </th>
             <th data-options="field:'cantidad'" style="border:1px solid #ccc;">
-                F. Planeada
+                Fecha
             </th>
             <th data-options="field:'unidad'" style="border:1px solid #ccc;">
                 No. Orden
@@ -100,7 +100,7 @@
                 {{ $m->equipo->subequipo }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $m->fec_planeada }}
+                {{ $m->fec_inicio }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $m->id }}
@@ -115,7 +115,7 @@
                 {{ $m->ejecutor->nombre }}
             </td>
             <td style="border:1px solid #ccc;">
-                
+                {{ $m->observaciones }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $m->accion }}
