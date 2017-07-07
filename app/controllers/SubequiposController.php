@@ -76,6 +76,7 @@ class SubequiposController extends BaseController {
 		$input = Input::all();
 		$input['usu_alta_id']=Sentry::getUser()->id;
 		$input['usu_mod_id']=Sentry::getUser()->id;
+		$input['cia_id']=User::find(Sentry::getUser()->id)->getCia();
 		$validation = Validator::make($input, Subequipo::$rules, Subequipo::$rulesMessages);
 
 		if ($validation->passes())
@@ -135,6 +136,7 @@ class SubequiposController extends BaseController {
 	{
 		$input = array_except(Input::all(), '_method');
 		$input['usu_mod_id']=Sentry::getUser()->id;
+		$input['cia_id']=User::find(Sentry::getUser()->id)->getCia();
 		$validation = Validator::make($input, Subequipo::$rules, Subequipo::$rulesMessages);
 
 		if ($validation->passes())
