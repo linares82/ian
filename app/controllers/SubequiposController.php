@@ -61,8 +61,8 @@ class SubequiposController extends BaseController {
 	 */
 	public function create()
 	{
-		$equipos_ls=['0' => 'Seleccionar'] + M_objetivo::lists('objetivo','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$equipos_ls=['0' => 'Seleccionar'] + M_objetivo::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('objetivo','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		return View::make('subequipos.create', compact(['equipos_ls', 'areas_ls']));
 	}
 
@@ -119,8 +119,8 @@ class SubequiposController extends BaseController {
 			return Redirect::route('subequipos.index');
 		}
 		
-		$equipos_ls=['0' => 'Seleccionar'] + M_objetivo::lists('objetivo','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$equipos_ls=['0' => 'Seleccionar'] + M_objetivo::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('objetivo','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 
 		return View::make('subequipos.edit', compact('subequipo', 'equipos_ls', 'areas_ls'));
 	}

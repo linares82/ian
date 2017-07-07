@@ -41,6 +41,14 @@ class M_objetivo extends Eloquent {
     		return $query->where('m_objetivos.id', '=', $valor);
     	}
     }
+	public function scopeCia($query, $valor)
+    {
+    	if ($valor==0){
+    		return $query;
+    	}else{
+    		return $query->where('m_objetivos.cia_id', '=', $valor);
+    	}
+    }
 	public function scopeCmbObjetivos($query, $valor){
 		$query->get();
 		return $query->lists('objetivo', 'id');

@@ -57,7 +57,15 @@ class Subequipo extends Eloquent {
     	if ($valor==0){
     		return $query;
     	}else{
-    		return $query->where('.id', 'like', '%'.$valor.'%');
+    		return $query->where('subequipos.id', 'like', '%'.$valor.'%');
+    	}
+    }
+	public function scopeCia($query, $valor)
+    {
+    	if ($valor==0){
+    		return $query;
+    	}else{
+    		return $query->where('subequipos.cia_id', '=', $valor);
     	}
     }
 	public function scopeCmbSubequipos($query, $valor){

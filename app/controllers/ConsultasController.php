@@ -352,7 +352,7 @@ class ConsultasController extends BaseController {
 
 	public function getNoConformidad(){
 	$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
-	$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+	$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 	$tpo_detecciones_ls=['0' => 'Seleccionar'] + Cs_tpo_deteccion::lists('tpo_deteccion','id');
 	$tpo_bitacoras_ls=['0' => 'Seleccionar'] + DB::Table('ca_tpo_bitacoras')->lists('tpo_bitacora','id');
 	$tpo_inconformidades_ls=['0' => 'Seleccionar'] + DB::Table('ca_tpo_noconformidades')->lists('tpo_inconformidad','id');
@@ -456,7 +456,7 @@ class ConsultasController extends BaseController {
 	$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
 	$accidentes_ls=['0' => 'Seleccionar'] + Cs_accidente::lists('accidente','id');
 	$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
-	$areas_ls=['0' => 'Seleccionar'] +Area::lists('area','id');
+	$areas_ls=['0' => 'Seleccionar'] +Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 	$acciones_ls=['0' => 'Seleccionar'] + Cs_accione::lists('accion','id');
 	return View::make('consultas.accidentes', compact('cias_ls', 'accidentes_ls', 'responsables_ls', 'areas_ls', 'acciones_ls'));	
 	}
@@ -544,7 +544,7 @@ class ConsultasController extends BaseController {
 	$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
 	$enfermedades_ls=['0' => 'Seleccionar'] + Cs_enfermedade::lists('enfermedad','id');
 	$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
-	$areas_ls=['0' => 'Seleccionar'] +Area::lists('area','id');
+	$areas_ls=['0' => 'Seleccionar'] +Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 	$acciones_ls=['0' => 'Seleccionar'] + Cs_accione::lists('accion','id');
 	return View::make('consultas.enfermedades', compact('cias_ls', 'enfermedades_ls', 'responsables_ls', 'areas_ls', 'acciones_ls'));	
 	}
@@ -626,7 +626,7 @@ class ConsultasController extends BaseController {
 
 	public function getAspectosAmbientales(){
 		$procesos_ls=['0' => 'Seleccionar'] + Aa_proceso::lists('proceso','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$imp_reals_ls=['0' => 'Seleccionar'] + Imp_real::lists('imp_real','id');
 		$imp_potencials_ls=['0' => 'Seleccionar'] + Imp_potencial::lists('imp_potencial','id');
 		$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
@@ -714,10 +714,10 @@ class ConsultasController extends BaseController {
 	}
 
 	public function getManto(){
-		$objetivos_ls=['0' => 'Seleccionar'] + M_objetivo::lists('objetivo','id');
+		$objetivos_ls=['0' => 'Seleccionar'] + M_objetivo::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('objetivo','id');
 		$estatus_ls=['0' => 'Seleccionar'] + M_estatus::lists('estatus','id');
 		$tpo_mantos_ls=['0' => 'Seleccionar'] + M_tpo_manto::lists('tpo_manto','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$cias_ls=['0' => 'Seleccionar'] + Entidad::lists('abreviatura','id');
 		return View::make('consultas.manto', 
 				  compact('cias_ls', 'objetivos_ls', 'estatus_ls', 'tpo_mantos_ls',
@@ -760,7 +760,7 @@ class ConsultasController extends BaseController {
 			unlink($carpeta . '/manto.pdf');
 		}
 		$ms=$this->mantenimientos->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
-		->join('subequipos as s', 's.id', '=', 'm_mantenimientos.subequipo_id')
+									->join('subequipos as s', 's.id', '=', 'm_mantenimientos.subequipo_id')
 									->whereBetween('s.area_id', array($input['area_f'], $input['area_t']))
 									->whereBetween('objetivo_id', array($input['objetivo_f'], $input['objetivo_t']))
 									->whereBetween('estatus_id', array($input['estatus_f'], $input['estatus_t']))

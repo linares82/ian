@@ -22,7 +22,7 @@ class A_no_conformidadesController extends BaseController {
 	public function index()
 	{
 		$tpo_detecciones_ls=['0' => 'Seleccionar'] + Cs_tpo_deteccion::lists('tpo_deteccion','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + DB::Table('ca_tpo_bitacoras')->lists('tpo_bitacora','id');
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Ca_tpo_noconformidade::lists('tpo_inconformidad','id');
 		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
@@ -75,7 +75,7 @@ class A_no_conformidadesController extends BaseController {
 	public function create()
 	{
 		$tpo_detecciones_ls=['0' => 'Seleccionar'] + Cs_tpo_deteccion::lists('tpo_deteccion','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + DB::Table('ca_tpo_bitacoras')->lists('tpo_bitacora','id');
 		//dd($tpo_bitacoras_ls);
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Ca_tpo_noconformidade::lists('tpo_inconformidad','id');
@@ -141,7 +141,7 @@ class A_no_conformidadesController extends BaseController {
 		}
 
 		$tpo_detecciones_ls=['0' => 'Seleccionar'] + Cs_tpo_deteccion::lists('tpo_deteccion','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + DB::Table('ca_tpo_bitacoras')->lists('tpo_bitacora','id');
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Ca_tpo_noconformidade::lists('tpo_inconformidad','id');
 		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');

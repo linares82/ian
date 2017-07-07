@@ -22,7 +22,7 @@ class Aspectos_ambientalesController extends BaseController {
 	public function index()
 	{
 		$procesos_ls=['0' => 'Seleccionar'] + Aa_proceso::lists('proceso','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$aspectos_ls=['0' => 'Seleccionar'] + Aa_aspecto::lists('aspectos','id');
 		$emes_ls=['0' => 'Seleccionar'] + Aa_eme::lists('eme','id');
 		$condiciones_ls=['0' => 'Seleccionar'] + Aa_condicione::lists('condicion','id');
@@ -78,7 +78,7 @@ class Aspectos_ambientalesController extends BaseController {
 	public function create()
 	{
 		$procesos_ls=['0' => 'Seleccionar'] + Aa_proceso::lists('proceso','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$aspectos_ls=['0' => 'Seleccionar'] + Aa_aspecto::lists('aspectos','id');
 		$emes_ls=['0' => 'Seleccionar'] + Aa_eme::lists('eme','id');
 		$condiciones_ls=['0' => 'Seleccionar'] + Aa_condicione::lists('condicion','id');
@@ -160,7 +160,7 @@ class Aspectos_ambientalesController extends BaseController {
 		}
 
 		$procesos_ls=['0' => 'Seleccionar'] + Aa_proceso::lists('proceso','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$aspectos_ls=['0' => 'Seleccionar'] + Aa_aspecto::lists('aspectos','id');
 		$emes_ls=['0' => 'Seleccionar'] + Aa_eme::lists('eme','id');
 		$condiciones_ls=['0' => 'Seleccionar'] + Aa_condicione::lists('condicion','id');

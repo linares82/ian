@@ -22,7 +22,7 @@ class Bitacora_seguridadsController extends BaseController {
 	public function index()
 	{
 		$tpo_detecciones_ls=['0' => 'Seleccionar'] + Cs_tpo_deteccion::lists('tpo_deteccion','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + Cs_tpo_bitacora::lists('tpo_bitacora','id');
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Cs_tpo_inconformidade::lists('tpo_inconformidad','id');
 		$responsables_ls=['0' => 'Seleccionar'] + Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
@@ -77,7 +77,7 @@ class Bitacora_seguridadsController extends BaseController {
 	public function create()
 	{
 		$tpo_detecciones_ls=['0' => 'Seleccionar'] + Cs_tpo_deteccion::lists('tpo_deteccion','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + Cs_tpo_bitacora::lists('tpo_bitacora','id');
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Cs_tpo_inconformidade::lists('tpo_inconformidad','id');
 		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
@@ -144,7 +144,7 @@ class Bitacora_seguridadsController extends BaseController {
 		}
 
 		$tpo_detecciones_ls=['0' => 'Seleccionar'] + Cs_tpo_deteccion::lists('tpo_deteccion','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$tpo_bitacoras_ls=['0' => 'Seleccionar'] + Cs_tpo_bitacora::lists('tpo_bitacora','id');
 		$tpo_inconformidades_ls=['0' => 'Seleccionar'] + Cs_tpo_inconformidade::lists('tpo_inconformidad','id');
 		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');

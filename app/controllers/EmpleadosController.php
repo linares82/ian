@@ -22,7 +22,7 @@ class EmpleadosController extends BaseController {
 	public function index()
 	{
 		
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$puestos_ls=['0' => 'Seleccionar'] + Puesto::lists('puesto','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		$jefes_ls=['0' => 'Seleccionar'] + Empleado::wherein('bnd_subordinados', array('1'))
@@ -69,7 +69,7 @@ class EmpleadosController extends BaseController {
 	 */
 	public function create()
 	{
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$puestos_ls=['0' => 'Seleccionar'] + Puesto::lists('puesto','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		$jefes_ls=['0' => 'Seleccionar'] + Empleado::wherein('bnd_subordinados', array('1'))
@@ -132,7 +132,7 @@ class EmpleadosController extends BaseController {
 		{
 			return Redirect::route('empleados.index');
 		}
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$puestos_ls=['0' => 'Seleccionar'] + Puesto::lists('puesto','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		$jefes_ls=['0' => 'Seleccionar'] + Empleado::wherein('bnd_subordinados', array('1'))

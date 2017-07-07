@@ -91,7 +91,7 @@
                 {{ $m->cia->rzon_social }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $m->equipo->area_id }}
+                {{ $m->equipo->rArea->area }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $m->objetivo->objetivo }}
@@ -103,7 +103,7 @@
                 {{ $m->fec_inicio }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $m->id }}
+                {{ $m->no_orden }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $m->Tpp->bnd }}

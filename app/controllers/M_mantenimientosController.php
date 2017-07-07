@@ -23,11 +23,11 @@ class M_mantenimientosController extends BaseController {
 	 */
 	public function index()
 	{
-		$objetivos_ls=['0' => 'Seleccionar'] + M_objetivo::lists('objetivo','id');
+		$objetivos_ls=['0' => 'Seleccionar'] + M_objetivo::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('objetivo','id');
 		$estatus_ls=['0' => 'Seleccionar'] + M_estatus::lists('estatus','id');
 		$tpo_mantos_ls=['0' => 'Seleccionar'] + M_tpo_manto::lists('tpo_manto','id');
 		$clase_mantos_ls=['0' => 'Seleccionar'] + M_clase_manto::lists('clase_manto','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('m_mantenimientos.index', 
 				 compact(['objetivos_ls', 'estatus_ls', 'clase_mantos_ls', 'tpo_mantos_ls',
@@ -88,8 +88,8 @@ class M_mantenimientosController extends BaseController {
 	 */
 	public function create()
 	{
-		$objetivos_ls=['0' => 'Seleccionar'] + M_objetivo::lists('objetivo','id');
-		$subequipos_ls=['0' => 'Seleccionar'] + Subequipo::lists('subequipo','id');
+		$objetivos_ls=['0' => 'Seleccionar'] + M_objetivo::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('objetivo','id');
+		$subequipos_ls=['0' => 'Seleccionar'] + Subequipo::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('subequipo','id');
 		$estatus_ls=['0' => 'Seleccionar'] + M_estatus::lists('estatus','id');
 		$aviso_bnd_ls=['0' => 'Seleccionar'] + Bnd::lists('bnd','id');
 		$tpp_bnd_ls=['0' => 'Seleccionar'] + Bnd::lists('bnd','id');
@@ -103,7 +103,7 @@ class M_mantenimientosController extends BaseController {
 		
 		$tpo_mantos_ls=['0' => 'Seleccionar'] + M_tpo_manto::lists('tpo_manto','id');
 		$clase_mantos_ls=['0' => 'Seleccionar'] + M_clase_manto::lists('clase_manto','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$solicitantes_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$ejecutores_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
@@ -136,6 +136,8 @@ class M_mantenimientosController extends BaseController {
 			//dd($input['fec_inicio']);
 			
 			$r=$this->m_mantenimiento->create($input);
+			$r->no_orden=$r->id;
+			$r->save();
 			$input['codigo']=Hash::make($r->id); 
 			unset($input['_token']);
 			//dd($r->id);
@@ -186,8 +188,8 @@ class M_mantenimientosController extends BaseController {
 			return Redirect::route('m_mantenimiento.index');
 		}
 
-		$objetivos_ls=['0' => 'Seleccionar'] + M_objetivo::lists('objetivo','id');
-		$subequipos_ls=['0' => 'Seleccionar'] + Subequipo::lists('subequipo','id');
+		$objetivos_ls=['0' => 'Seleccionar'] + M_objetivo::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('objetivo','id');
+		$subequipos_ls=['0' => 'Seleccionar'] + Subequipo::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('subequipo','id');
 		$estatus_ls=['0' => 'Seleccionar'] + M_estatus::lists('estatus','id');
 		$aviso_bnd_ls=['0' => 'Seleccionar'] + Bnd::lists('bnd','id');
 		$tpp_bnd_ls=['0' => 'Seleccionar'] + Bnd::lists('bnd','id');
@@ -201,7 +203,7 @@ class M_mantenimientosController extends BaseController {
 		
 		$tpo_mantos_ls=['0' => 'Seleccionar'] + M_tpo_manto::lists('tpo_manto','id');
 		$clase_mantos_ls=['0' => 'Seleccionar'] + M_clase_manto::lists('clase_manto','id');
-		$areas_ls=['0' => 'Seleccionar'] + Area::lists('area','id');
+		$areas_ls=['0' => 'Seleccionar'] + Area::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('area','id');
 		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$solicitantes_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$ejecutores_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
@@ -315,9 +317,10 @@ class M_mantenimientosController extends BaseController {
 			unlink($carpeta . '/mantenimiento.pdf');
 		}
 
+
 		//dd($carpeta . '/mantenimiento');
 		
-		JasperPHP::process(
+		/*JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/mantenimiento.jasper', 
 	    $carpeta . '/mantenimiento',
 	    array("pdf"), 
@@ -336,6 +339,17 @@ class M_mantenimientosController extends BaseController {
 	    	}
 	    }
 	    return Response::download($carpeta.'/mantenimiento.pdf');	    
+		*/
+		//dd($m);
+		$img  =  User::find(Sentry::getUser()->id)->Entidad->logo;
+		$img=asset('uploads/cias/'.$img);
+		$fecha=date('d/m/Y');
+		//dd($img);
+		$pdf = PDF::loadView('m_mantenimientos.orden_mantor', array('m'=>$m, 'img'=>$img, 'fecha'=>$fecha))
+		->setPaper('letter')->setOrientation('portrait');
+		return $pdf->download('reporte.pdf');		
+		
+		//return View::make('m_mantenimientos.orden_mantor', array('m'=>$m, 'img'=>$img, 'fecha'=>$fecha));
 	}
 
 }

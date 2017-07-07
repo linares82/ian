@@ -89,7 +89,7 @@
                 {{ $r->residuos->unidad }}
             </td>
             <td style="border:1px solid #ccc;">
-                {{ $r->residuos->Bnd->bnd }}
+                {{ $r->peligrosidad }}
             </td>
             <td style="border:1px solid #ccc;">
                 {{ $r->lugar_generacion }}

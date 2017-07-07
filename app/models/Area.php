@@ -46,7 +46,7 @@ class Area extends Eloquent {
     	if ($valor==0){
     		return $query;
     	}else{
-    		return $query->where('areas.cia_id', 'like', '%'.$valor.'%');
+    		return $query->where('areas.cia_id', '=', $valor);
     	}
     }
 

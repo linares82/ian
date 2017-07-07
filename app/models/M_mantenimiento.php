@@ -73,6 +73,10 @@ class M_mantenimiento extends Eloquent {
     {
         return $this->belongsTo('Area', 'area_id');
     }
+    public function solicitante()
+    {
+        return $this->belongsTo('Empleado', 'solicitante_id');
+    }
     public function responsable()
     {
         return $this->belongsTo('Empleado', 'responsable_id');
@@ -85,6 +89,29 @@ class M_mantenimiento extends Eloquent {
     {
         return $this->belongsTo('Bnd', 'tpp_bnd');
     }
+    public function supervision(){
+        return $this->belongsTo('Bnd', 'supervision_bnd');
+    }
+    public function conoceProcedimiento(){
+        return $this->belongsTo('Bnd', 'conoce_procedimiento_bnd');
+    }
+    public function llevaEquipo(){
+        return $this->belongsTo('Bnd', 'lleva_equipo_bnd');
+    }
+    public function cumplePuntos(){
+        return $this->belongsTo('Bnd', 'cumple_puntos_bnd');
+    }
+    public function eventualidades(){
+        return $this->belongsTo('Bnd', 'eventualidades_bnd');
+    }
+    public function levantarFormato(){
+        return $this->belongsTo('Bnd', 'levantar_formato_bnd');
+    }
+    public function registroBitacora(){
+        return $this->belongsTo('Bnd', 'registro_bitacora_bnd');
+    }
+    
+    
 	
 	/* Scopes */
 	public function scopeIsObjetivo($query, $valor)
