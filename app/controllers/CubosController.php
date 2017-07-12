@@ -71,10 +71,10 @@ class CubosController extends BaseController {
 						'a_no_conformidades.mes as Mes', 'tb.tpo_bitacora as Tipo-Bitacora', 'e.nombre as Responsable',
 						'a_no_conformidades.costo', 'ti.tpo_inconformidad as Tipo-Inconformidad')
 					->join('entidades as c', 'c.id', '=', 'a_no_conformidades.cia_id')
-					->join('cs_tpo_inconformidades as ti', 'ti.id', '=', 'a_no_conformidades.tpo_inconformidad_id')
+					->join('ca_tpo_inconformidades as ti', 'ti.id', '=', 'a_no_conformidades.tpo_inconformidad_id')
 					->join('areas as a', 'a.id', '=', 'a_no_conformidades.area_id')
 					->join('cs_tpo_deteccions as td', 'td.id', '=', 'a_no_conformidades.tpo_deteccion_id')
-					->join('cs_tpo_bitacoras as tb', 'tb.id', '=', 'a_no_conformidades.tpo_bitacora_id')
+					->join('ca_tpo_bitacoras as tb', 'tb.id', '=', 'a_no_conformidades.tpo_bitacora_id')
 					->join('empleados as e', 'e.id', '=', 'a_no_conformidades.responsable_id')
 					->where('a_no_conformidades.cia_id', $cia)
 					->get()->toJson();																																																						;

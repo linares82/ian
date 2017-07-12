@@ -21,7 +21,7 @@
  * Loggued routes without permission
  */
 // Display all SQL executed in Eloquent
-Event::listen('illuminate.query', function($sql, $bindings)
+/*Event::listen('illuminate.query', function($sql, $bindings)
 {
     foreach ($bindings as $val) {
         $sql = preg_replace('/\?/', "'{$val}'", $sql, 1);
@@ -29,7 +29,7 @@ Event::listen('illuminate.query', function($sql, $bindings)
      
     Log::info($sql);
 });
-
+*/
 Route::group(array('before' => 'basicAuth2'), function()
 {
 Route::get('/', array(
