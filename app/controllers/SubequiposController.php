@@ -40,13 +40,12 @@ class SubequiposController extends BaseController {
 		$count_rows=0;
 		$model=array();
 		$cia=User::find(Sentry::getUser()->id)->getCia();
-
-		$count_rows=$this->subequipo->id($id,$objetivo,$subequipo)->cia($id)->count();
-
+		
+		$count_rows=$this->subequipo->id($id)->cia($cia)->count();
 		$model=$this->subequipo
 				->select('subequipos.id','e.objetivo', 'subequipo', 'clase', 'marca', 'modelo', 'no_serie', 'subequipos.created_at', 'subequipos.updated_at', 'subequipos.deleted_at')
 				->Join('m_objetivos as e', 'e.id', '=', 'subequipos.equipo_id')
-				->Id($id,$objetivo,$subequipo)->cia($id)   
+				->Id($id)->cia($cia)   
 				->skip($offset)->take($rows)->orderBy('subequipos.'.$sort, $order)->withTrashed()->get();	
 		
 		$result["total"] = $count_rows;

@@ -57,7 +57,7 @@ class Subequipo extends Eloquent {
     	if ($valor==0){
     		return $query;
     	}else{
-    		return $query->where('subequipos.id', 'like', '%'.$valor.'%');
+    		return $query->where('subequipos.id', '=', $valor);
     	}
     }
 	public function scopeCia($query, $valor)
