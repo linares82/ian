@@ -36,12 +36,13 @@ class M_objetivosController extends BaseController {
 
 		$count_rows=0;
 		$model=array();
+		$cia=User::find(Sentry::getUser()->id)->getCia();
 
-		$count_rows=$this->m_objetivo->id($id)->withTrashed()->count();
+		$count_rows=$this->m_objetivo->id($id)->cia($cia)->withTrashed()->count();
 
 		$model=$this->m_objetivo
 				->select('id', 'objetivo', 'created_at', 'updated_at', 'deleted_at')
-				->Id($id)
+				->Id($id)->cia($cia)     
 				->skip($offset)->take($rows)->orderBy($sort, $order)->withTrashed()->get();	
 		
 		$result["total"] = $count_rows;
