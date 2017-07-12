@@ -303,6 +303,28 @@
 		$("#resultado").hide();
 		$("#fec_final").hide();
 		*/
+		$("#objetivo_id").change(function(event) {
+			conEquipo();
+		});
+		function conEquipo(){
+			var id = $("#objetivo_id option:selected").val(); 
+            $.ajax({
+                url: "{{url('/m_mantenimiento/conEquipo')}}"+'/'+id,
+                type: 'POST',
+                data: 'id='+id, 
+                dataType: 'json',
+                beforeSend : function(){$("#loading1").show();},
+                complete : function(){$("#loading1").hide();},
+                success: function(ss){
+                    $('select#subequipo_id').html('');
+                    $('select#subequipo_id').append($('<option></option>').text('Seleccionar').val(''));
+                    $.each(ss, function(i) {
+                        $('select#subequipo_id').append("<option "+ss[i].selectec+" value=\""+ss[i].id+"\">"+ss[i].subequipo+"<\/option>");
+                    });
+                }
+            });
+		}
+
         $("#subequipo_id").change(function(event) {
             var id = $("#subequipo_id option:selected").val(); 
             $.ajax({

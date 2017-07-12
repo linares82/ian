@@ -759,7 +759,7 @@ class ConsultasController extends BaseController {
 		if(file_exists($carpeta . '/manto.pdf')){
 			unlink($carpeta . '/manto.pdf');
 		}
-		$ms=$this->mantenimientos->whereBetween('cia_id', array($input['cia_f'], $input['cia_t']))
+		$ms=$this->mantenimientos->whereBetween('m_mantenimientos.cia_id', array($input['cia_f'], $input['cia_t']))
 									->join('subequipos as s', 's.id', '=', 'm_mantenimientos.subequipo_id')
 									->whereBetween('s.area_id', array($input['area_f'], $input['area_t']))
 									->whereBetween('objetivo_id', array($input['objetivo_f'], $input['objetivo_t']))

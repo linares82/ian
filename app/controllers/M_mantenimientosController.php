@@ -301,6 +301,35 @@ class M_mantenimientosController extends BaseController {
 					->distinct()->get();
 		}
 	}
+	public function conEquipo(){
+		$final = array();
+		if(Request::ajax()){
+			$id = e(Input::get('objetivo_id'));
+			$subequipo = e(Input::get('subequipo_id'));
+			
+			$result = DB::table('subequipos as s')
+					->where('s.equipo_id', '=', $id)
+					->where('cia_id', '=', User::find(Sentry::getUser()->id)->getCia())
+					->get();
+			//dd($result);
+			if(isset($subequipo) and $subequipo<>0){
+				foreach($result as $r1){
+					if($r1->id==$subequipo){
+						array_push($final, array('id'=>$r1->id, 
+												 'norma'=>$r1->subequipo, 
+												 'selectec'=>'Selected'));
+					}else{
+						array_push($final, array('id'=>$r1->id, 
+												 'norma'=>$r1->subequipo, 
+												 'selectec'=>''));
+					}
+				}
+				return $final;
+			}else{
+				return $result;	
+			}
+		}
+	}
 	
 	public function rptFormato($id){
 		$usuario=User::find(Sentry::getUser()->id)->username;

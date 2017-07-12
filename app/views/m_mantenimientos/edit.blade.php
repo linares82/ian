@@ -2,7 +2,7 @@
 
 @section('contenido_tab')
 
-{{ Form::model($m_mantenimiento, array('class' => 'form', 'method' => 'PUT', 'url' => 'm_mantenimiento/update/'.$m_mantenimiento->id, 'files'=>true)) }}
+{{ Form::model($m_mantenimiento, array('class' => 'form', 'method' => 'PUT', 'url' => 'm_mantenimiento/update/'.$m_mantenimiento->id, 'files'=>true, 'id'=>'f_mantenimiento')) }}
      <div class="easyui-tabs" style="width:auto;height:auto;">
         <div title="Editar" style="padding:10px;"> 
 
@@ -360,6 +360,30 @@
 		$("#resultado").hide();
 		$("#fec_final").hide();
 		*/
+		//conEquipo();
+		function conEquipo(){
+			var a= $('#f_mantenimiento').serialize();
+            $.ajax({
+                url: "{{url('/m_mantenimiento/conEquipo')}}",
+                type: 'GET',
+                data: a, 
+                dataType: 'json',
+                beforeSend : function(){$("#loading1").show();},
+                complete : function(){$("#loading1").hide();},
+                success: function(ss){
+                    $('select#subequipo_id').html('');
+                    $('select#subequipo_id').append($('<option></option>').text('Seleccionar').val(''));
+                    $.each(ss, function(i) {
+                        $('select#subequipo_id').append("<option "+ss[i].selectec+" value=\""+ss[i].id+"\">"+ss[i].subequipo+"<\/option>");
+                    });
+                }
+            });
+			//conSubequipo();
+		}
+		$("#objetivo_id").change(function(event) {
+            conEquipo();
+        });
+		
 		conSubequipo();
 		
 		function conSubequipo(){

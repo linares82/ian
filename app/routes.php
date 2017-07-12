@@ -21,14 +21,14 @@
  * Loggued routes without permission
  */
 // Display all SQL executed in Eloquent
-/*Event::listen('illuminate.query', function($sql, $bindings)
+Event::listen('illuminate.query', function($sql, $bindings)
 {
     foreach ($bindings as $val) {
         $sql = preg_replace('/\?/', "'{$val}'", $sql, 1);
     }
      
     Log::info($sql);
-});*/
+});
 
 Route::group(array('before' => 'basicAuth2'), function()
 {
@@ -4521,6 +4521,11 @@ Route::post('/m_mantenimiento/conSubequipo/{id}', array(
         'as' => 'm_mantenimiento.conSubequipo',
         'before' => 'basicAuth2',
         'uses' => 'M_mantenimientosController@conSubequipo')
+    );
+Route::get('/m_mantenimiento/conEquipo', array(
+        'as' => 'm_mantenimiento.conEquipo',
+        'before' => 'basicAuth2',
+        'uses' => 'M_mantenimientosController@conEquipo')
     );
 Route::get('/m_mantenimiento/rptFormato/{id}', array(
         'as' => 'm_mantenimiento-formato.rptFormato',
