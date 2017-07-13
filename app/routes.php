@@ -4517,7 +4517,7 @@ Route::post('/m_mantenimiento/recover/{id}', array(
         'before' => 'basicAuth2|hasPermissions2:m_mantenimientos-recover',
         'uses' => 'M_mantenimientosController@recover')
     );
-Route::post('/m_mantenimiento/conSubequipo/{id}', array(
+Route::get('/m_mantenimiento/conSubequipo', array(
         'as' => 'm_mantenimiento.conSubequipo',
         'before' => 'basicAuth2',
         'uses' => 'M_mantenimientosController@conSubequipo')

@@ -2,7 +2,7 @@
 
 @section('contenido_tab')
 
-{{ Form::open(array('route' => 'm_mantenimiento.store', 'class' => 'form')) }}
+{{ Form::open(array('route' => 'm_mantenimiento.store', 'class' => 'form', 'id'=>'f_mantenimiento')) }}
     <div class="easyui-tabs" style="width:auto;height:auto;">
         <div title="Crear" style="padding:10px;">  
 
@@ -307,11 +307,11 @@
 			conEquipo();
 		});
 		function conEquipo(){
-			var id = $("#objetivo_id option:selected").val(); 
+			var a = $('#f_mantenimiento').serialize();
             $.ajax({
-                url: "{{url('/m_mantenimiento/conEquipo')}}"+'/'+id,
-                type: 'POST',
-                data: 'id='+id, 
+                url: "{{url('/m_mantenimiento/conEquipo')}}",
+                type: 'GET',
+                data: a, 
                 dataType: 'json',
                 beforeSend : function(){$("#loading1").show();},
                 complete : function(){$("#loading1").hide();},
