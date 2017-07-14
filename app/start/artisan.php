@@ -20,6 +20,7 @@ Artisan::add(new ProcedimientosProtocolos);
 Artisan::add(new RegistrosSeguridad);
 Artisan::add(new DocumentosSeguridad);
 Artisan::add(new NoConformidadesSeguridad);
+Artisan::add(new EnvioMantos);
 
 Artisan::add(new BFuentesFijas);
 Artisan::add(new BPlantas);

@@ -51,6 +51,7 @@ class EnvioCorreos extends Command {
 					Artisan::call('ian:registrosSeguridad');
 					Artisan::call('ian:documentosSeguridad');
 					Artisan::call('ian:noConformidadesSeguridad');
+					Artisan::call('ian:EnvioMantos');
 
 					Artisan::call('ian:bPendientes');
 					Artisan::call('ian:revRequisitosMail');

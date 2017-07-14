@@ -79,7 +79,7 @@ class RrAmbientales extends Command {
 						{
 						    $message->to($mail);
 						    if(!is_null($jefe_mail)){
-						    	$message->jefe_mail;
+						    	$message->cc(jefe_mail);
 						    }
 						    $message->subject('Siam:Reg. y Req. Ambientales');
 						});	
