@@ -51,7 +51,7 @@ class A_rr_ambientalesController extends BaseController {
 
 		$count_rows=0;
 		$model=array();
-
+		
 		$count_rows=$this->a_rr_ambientale
 					->id($id)->Cia($cia)->Material($material)->Categoria($categoria)
 					->Documento($documento)->Estatus($estatus)

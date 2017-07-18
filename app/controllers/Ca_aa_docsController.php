@@ -33,12 +33,13 @@ class Ca_aa_docsController extends BaseController {
 		$sort = isset($_POST['sort']) ? strval($_POST['sort']) : 'id';
 		$order = isset($_POST['order']) ? strval($_POST['order']) : 'asc';
 		$id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+		$cia=User::find(Sentry::getUser()->id)->Entidad->id;
 		$result = array();
 
 		$count_rows=0;
 		$model=array();
-
-		$count_rows=$this->ca_aa_doc->id($id)->withTrashed()->count();
+		
+		$count_rows=$this->ca_aa_doc->cia($cia)->id($id)->withTrashed()->count();
 
 		$model=$this->ca_aa_doc
 				->select('ca_aa_docs.id', 'm.material', 'c.categoria', 
@@ -46,7 +47,7 @@ class Ca_aa_docsController extends BaseController {
 						'ca_aa_docs.updated_at', 'ca_aa_docs.deleted_at')
 				->Join('ca_materiales as m', 'm.id', '=', 'ca_aa_docs.material_id')
 				->Join('ca_categoria as c', 'c.id', '=', 'ca_aa_docs.categoria_id')
-				->Id($id)
+				->Id($id)->cia($cia)
 				->skip($offset)->take($rows)->orderBy($sort, $order)->withTrashed()->get();	
 		
 		$result["total"] = $count_rows;

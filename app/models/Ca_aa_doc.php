@@ -71,4 +71,11 @@ class Ca_aa_doc extends Eloquent {
 		$query->get();
 		return $query->lists('documento', 'id');
 	}
+	public function scopeCia($query, $valor){
+		if ($valor==0){
+    		return $query;
+    	}else{
+    		return $query->where('ca_aa_docs.cia_id', '=', $valor);
+    	}
+	}
 }
