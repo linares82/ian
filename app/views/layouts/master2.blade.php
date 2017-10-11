@@ -24,7 +24,7 @@
 						{{ cargaMenu(3) }}
 					</ul> 
 				</div>
-				<div title="OPERACIÓN" style="overflow:auto;padding:10px;">
+				<div title="OPERACIÓN" style="overflow:auto;padding:10px;" data-options="selected:true,">
 					<ul class="easyui-tree">  
 						{{ cargaMenu(9) }}	
 					</ul> 
