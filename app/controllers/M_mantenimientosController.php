@@ -24,6 +24,7 @@ class M_mantenimientosController extends BaseController {
 	public function index()
 	{
 		$objetivos_ls=['0' => 'Seleccionar'] + M_objetivo::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('objetivo','id');
+                $subequipos_ls=['0' => 'Seleccionar'] + Subequipo::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('subequipo','id');
 		$estatus_ls=['0' => 'Seleccionar'] + M_estatus::lists('estatus','id');
 		$tpo_mantos_ls=['0' => 'Seleccionar'] + M_tpo_manto::lists('tpo_manto','id');
 		$clase_mantos_ls=['0' => 'Seleccionar'] + M_clase_manto::lists('clase_manto','id');
@@ -31,7 +32,7 @@ class M_mantenimientosController extends BaseController {
 		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('m_mantenimientos.index', 
 				 compact(['objetivos_ls', 'estatus_ls', 'clase_mantos_ls', 'tpo_mantos_ls',
-				 		  'areas_ls', 'responsables_ls']));
+                                          'subequipos_ls','areas_ls', 'responsables_ls']));
 	}
 	
 	public function contentListIndex(){

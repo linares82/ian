@@ -41,8 +41,8 @@
 		</div>
 		<div>
 			id: <input id="idbox" class="easyui-textbox" style="width:80px">
-			Equipo: <input id="equipobox" class="easyui-textbox" style="width:80px">
-			Subequipo: <input id="subequipobox" class="easyui-textbox" style="width:80px">
+			Equipo: {{ Form::select('equipobox', $objetivos_ls, null, array('id'=>'equipobox'))  }}
+			Subequipo: {{ Form::select('subequipobox', $subequipos_ls, null, array('id'=>'subequipobox'))  }}
 			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">Buscar</a>
 		</div>
 	</div>

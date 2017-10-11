@@ -43,7 +43,7 @@
 			</tr>
 			<tr>	
 				<td><b>Archivo</b></td>
-				<td>{{{ $a_procedimiento->archivo }}}</td>
+				<td> {{{ $a_procedimiento->archivo }}}</td>
 				<td><b>Aviso</b></td>
 				<td>{{{ $a_procedimiento->avisoBnd->bnd }}}</td>
 			</tr>

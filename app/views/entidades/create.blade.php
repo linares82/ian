@@ -49,7 +49,7 @@
         </div>
 		
         <div class="row_1 @if ($errors->has('logo')) has-error @endif">
-            {{ Form::label('logo', 'Logo:') }}
+            {{ Form::label('logo', 'Logo(Nombre sin espacios en blanco):') }}
               {{ Form::file('logo') }}
             @if ($errors->has('logo')) <div class="errorMessage">{{ $errors->first('logo') }}</div> @endif
         </div>

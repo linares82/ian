@@ -11,20 +11,20 @@ function cargaMenu($padre)
 		$state = has_child($opt->id) ? 'open' : 'close';
 		if ($state == 'open'){
                 $v="'".$opt->item."', '".route($opt->link)."'"; 				
-				$menu=$menu."<li> <span class='dir'> <a class='linktree' href='#' onclick=\"addTab($v)\" target=$opt->target > ".$opt->item."</a></span>";
-				$menu=$menu."<ul>";
-				$menu=$menu.cargaMenu($opt->id);
-				$menu=$menu."</ul>";
+                    $menu=$menu."<li data-options=\"state:'closed'\"> <span class='dir'> <a class='linktree' href='#' onclick=\"addTab($v)\" target=$opt->target > ".$opt->item."</a></span>";
+                    $menu=$menu."<ul>";
+                    $menu=$menu.cargaMenu($opt->id);
+                    $menu=$menu."</ul>";
 				
             }else{   
-				if($opt->permiso_id==""){
-					$v="'".$opt['item']."', '".route($opt->link)."'";
-					$menu=$menu."<li><a class='linktree' href='#' onclick=\"addTab($v)\" target=$opt->target>".$opt->item."</a>";
-				}elseif(Sentry::getUser()->hasAccess($opt->permiso_id)){
-					$v="'".$opt['item']."', '".route($opt->link)."'";
-					$menu=$menu."<li><a class='linktree' href='#' onclick=\"addTab($v)\" target=$opt->target>".$opt->item."</a>";
-				}
-                
+                    if($opt->permiso_id==""){
+                            $v="'".$opt['item']."', '".route($opt->link)."'";
+                            $menu=$menu."<li><a class='linktree' href='#' onclick=\"addTab($v)\" target=$opt->target>".$opt->item."</a>";
+                    }elseif(Sentry::getUser()->hasAccess($opt->permiso_id)){
+                            $v="'".$opt['item']."', '".route($opt->link)."'";
+                            $menu=$menu."<li><a class='linktree' href='#' onclick=\"addTab($v)\" target=$opt->target>".$opt->item."</a>";
+                    }
+
             }
                 $menu=$menu."</li>";
 	}
