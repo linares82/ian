@@ -208,7 +208,8 @@ class M_mantenimientosController extends BaseController {
 		$responsables_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$solicitantes_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		$ejecutores_ls=['0' => 'Seleccionar'] + Empleado::Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
-		return View::make('m_mantenimientos.edit', 
+		//dd($m_mantenimiento);
+                return View::make('m_mantenimientos.edit', 
 				 compact(['m_mantenimiento','objetivos_ls','subequipos_ls', 'estatus_ls', 'aviso_bnd_ls','tpp_bnd_ls',
 						'clase_mantos_ls', 'tpo_mantos_ls',
 				 		'areas_ls', 'responsables_ls', 'solicitantes_ls', 'ejecutores_ls', 'supervision_bnd_ls',

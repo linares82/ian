@@ -320,7 +320,7 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 .datagrid > table > tfoot > ul > a:hover {
 	text-decoration: none; 
 	border-color: #006699; 
-	color: #FFFFFF; 
+	color: #fff; 
 	background: none; 
 	background-color:#00557F;
 }

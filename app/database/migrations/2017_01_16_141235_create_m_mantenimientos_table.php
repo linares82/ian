@@ -24,6 +24,7 @@ class CreateMMantenimientosTable extends Migration {
 			$table->integer('aviso_bnd')->unsigned();
 			$table->integer('dias_aviso');
 			$table->datetime('fec_inicio');
+                        $table->time('hora_inicio');
 			$table->string('descripcion');
 			$table->string('lugar');
 			$table->integer('ejecutor_id')->unsigned();
@@ -45,6 +46,7 @@ class CreateMMantenimientosTable extends Migration {
 			$table->string('accion');
 			$table->string('resultado');
 			$table->datetime('fec_final');
+                        $table->time('hora_fin');
 			$table->string('observaciones');
 			$table->integer('cia_id')->unsigned();
 			$table->integer('usu_alta_id')->unsigned();
