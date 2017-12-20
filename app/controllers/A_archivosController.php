@@ -150,7 +150,7 @@ class A_archivosController extends BaseController {
 		}
 		$documentos_ls=['0' => 'Seleccionar'] + Ca_ca_doc::lists('doc','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
-		$responsables_ls=['0' => 'Seleccionar'] + Cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
+		$responsables_ls=['0' => 'Seleccionar'] + Empleado::cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
 		return View::make('a_archivos.edit', array('a_archivo'=>$a_archivo, 'documentos_ls'=>$documentos_ls, 'bnds_ls'=>$bnds_ls, 'responsables_ls'=>$responsables_ls));
 	}
 

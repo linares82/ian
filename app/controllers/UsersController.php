@@ -49,10 +49,10 @@ class UsersController extends BaseController {
 				->Leftjoin('bnds as b_banned', 'b_banned.id', '=', 'throttle.banned')
 				->Leftjoin('bnds as b_suspended', 'b_suspended.id', '=', 'throttle.suspended')
 				->select('users.id', 'users.username', 'users.email', 'b_activated.bnd as activated', 
-						 'b_banned.bnd as banned', 'throttle.attempts', 'b_suspended.bnd as suspended')
+                                         'b_banned.bnd as banned', 'throttle.attempts', 'b_suspended.bnd as suspended')
 				->Id($id)->username($username)->Email($email)
 				->skip($offset)->take($rows)->orderBy($sort, $order)->get();
-		
+		//dd($model);
 		$result["total"] = $count_rows;
 		$result["rows"] = $model;
 
