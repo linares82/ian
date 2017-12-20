@@ -8,10 +8,11 @@ class A_archivosController extends BaseController {
 	 * @var A_archivo
 	 */
 	protected $a_archivo;
-
-	public function __construct(A_archivo $a_archivo)
+        protected $a_archi_doc;
+	public function __construct(A_archivo $a_archivo, A_archi_doc $a_archi_doc)
 	{
 		$this->a_archivo = $a_archivo;
+                $this->a_archi_doc = $a_archi_doc;
 	}
 
 	/**
@@ -143,7 +144,12 @@ class A_archivosController extends BaseController {
 	public function edit($id)
 	{
 		$a_archivo = $this->a_archivo->find($id);
-
+                $documentos = DB::table('a_archi_docs')
+						->where('a_archivo_id', '=', $id)
+						->where('deleted_at', '=', null)
+						->get();    
+                $cia=User::find(Sentry::getUser()->id)->Entidad->rzon_social;
+		$usuario=Sentry::getUser()->id;
 		if (is_null($a_archivo))
 		{
 			return Redirect::route('a_archivos.index');
@@ -151,7 +157,10 @@ class A_archivosController extends BaseController {
 		$documentos_ls=['0' => 'Seleccionar'] + Ca_ca_doc::lists('doc','id');
 		$bnds_ls=['0' => 'Seleccionar'] + Bnd::wherein('id', array('1', '2'))->lists('bnd','id');
 		$responsables_ls=['0' => 'Seleccionar'] + Empleado::cia(User::find(Sentry::getUser()->id)->getCia())->lists('nombre','id');
-		return View::make('a_archivos.edit', array('a_archivo'=>$a_archivo, 'documentos_ls'=>$documentos_ls, 'bnds_ls'=>$bnds_ls, 'responsables_ls'=>$responsables_ls));
+		return View::make('a_archivos.edit', 
+                        array('a_archivo'=>$a_archivo, 'documentos_ls'=>$documentos_ls, 
+                            'bnds_ls'=>$bnds_ls, 'responsables_ls'=>$responsables_ls, 
+                            'documentos'=>$documentos, 'cia'=>$cia, 'usuario'=>$usuario));
 	}
 
 	/**
@@ -165,7 +174,28 @@ class A_archivosController extends BaseController {
 		$input = array_except(Input::all(), '_method');
 		unset($input['file']);
 		$input['usu_mod_id']=Sentry::getUser()->id;
-		$validation = Validator::make($input, A_archivo::$rules, A_archivo::$rulesMessages);
+		
+		$documento=array();
+		if(Input::hasFile('file1')){
+			$documento['archivo']=Input::file('file1')->getClientOriginalName();	
+			$cia=User::find(Sentry::getUser()->id)->Entidad->rzon_social;
+			$usuario=Sentry::getUser()->id;
+			Input::file('file1')->move(public_path().'/uploads/'.$cia.'/'.$usuario.'/a_archi_doc', Input::file('file1')->getClientOriginalName());
+			
+			$documento['usu_mod_id']=$usuario;
+			$documento['usu_alta_id']=$usuario;
+			$documento['a_archivo_id']=$id;
+			$documento['documento']=$input['documento'];
+			//dd($documento);
+			$this->a_archi_doc->create($documento);
+		}
+		
+		unset($input['file1']);
+		unset($input['documento']);
+		$cia=User::find(Sentry::getUser()->id)->Entidad->rzon_social;
+		$usuario=User::find(Sentry::getUser()->id)->username;
+                
+                $validation = Validator::make($input, A_archivo::$rules, A_archivo::$rulesMessages);
 
 		$cia=User::find(Sentry::getUser()->id)->Entidad->rzon_social;
 		$usuario=User::find(Sentry::getUser()->id)->username;

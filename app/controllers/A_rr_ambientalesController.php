@@ -214,7 +214,6 @@ class A_rr_ambientalesController extends BaseController {
 		$cia=User::find(Sentry::getUser()->id)->Entidad->rzon_social;
 		$usuario=User::find(Sentry::getUser()->id)->username;
 		
-
 		$validation = Validator::make($input, A_rr_ambientale::$rules, A_rr_ambientale::$rulesMessages);
 
 		if ($validation->passes())

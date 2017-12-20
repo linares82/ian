@@ -143,6 +143,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('Manto_docsTableSeeder');
 		$this->call('Bit_doc_accidentesTableSeeder');
 		$this->call('A_rr_amb_docsTableSeeder');
+		$this->call('A_archi_docsTableSeeder');
 	}
 
 }

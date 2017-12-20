@@ -82,7 +82,41 @@
       {{ Form::submit('Actualizar', array('class' => 'easyui-linkbutton', 'style'=>'height:30px;width:100px;')) }}
       {{ link_to_route('a_archivo.index', 'Cancelar', $a_archivo->id, array('class' => 'easyui-linkbutton', 'style'=>'height:30px;width:100px;')) }}
     </div>
-
+            
+        <div id="seccion">
+            <div class="row_1">
+                {{ Form::label('archivo', 'Archivo:') }}
+                  {{ Form::file('file1', array('id'=>'file1')) }}
+                *El nombre de archivo no debe contener espacios en blanco
+            </div>
+            <div class="row_1">
+                {{ Form::label('documento', 'Documento:') }}
+                  {{ Form::text('documento', null, array('placeholder'=>'Documento')) }}
+                {{ $errors->first('documento', '<div class="errorMessage">:message</div>') }}
+            </div>
+        
+        </div>
+        <br/>
+        <div class="datagrid row">
+            <table>
+                <thead>
+                    <th>Documento</th>
+                    <th>Ver</th>
+                    <th>Eliminar</th>
+                </thead>
+                    
+                <tbody>
+                    @foreach($documentos as $d)
+                    <tr>
+                        <td>{{ $d->documento }}</td>
+                        <td><a href="{{ asset('uploads/'.$cia.'/'.$usuario.'/a_rr_ambientales_doc/'.$d->archivo) }}" target='_blank'>{{ $d->archivo }}</a></td>
+                        <td>{{ link_to_route('a_archi_doc.destroy', 'Eliminar', $parameters = array('id'=>$d->id), $attributes = array()) }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table
+        </div>
+            
 	</div>
 </div>
 

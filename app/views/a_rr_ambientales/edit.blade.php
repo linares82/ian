@@ -111,7 +111,7 @@
                     <tr>
                         <td>{{ $d->documento }}</td>
                         <td><a href="{{ asset('uploads/'.$cia.'/'.$usuario.'/a_rr_ambientales_doc/'.$d->archivo) }}" target='_blank'>{{ $d->archivo }}</a></td>
-                        <td>{{ link_to_route('manto_doc.destroy', 'Eliminar', $parameters = array('id'=>$d->id), $attributes = array()) }}</td>
+                        <td>{{ link_to_route('a_rr_amb_doc.destroy', 'Eliminar', $parameters = array('id'=>$d->id), $attributes = array()) }}</td>
                     </tr>
                     @endforeach
                 </tbody>

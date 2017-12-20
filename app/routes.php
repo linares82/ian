@@ -4765,3 +4765,12 @@ Route::resource('manto_docs', 'Manto_docsController');
 Route::resource('bit_doc_accidentes', 'Bit_doc_accidentesController');
 
 Route::resource('a_rr_amb_docs', 'A_rr_amb_docsController');
+
+Route::resource('tweets', 'TweetsController');
+
+//Route::resource('a_archi_docs', 'A_archi_docsController');
+Route::get('/a_archi_doc/destroy/{id}', array(
+        'as' => 'a_archi_doc.destroy',
+        'before' => 'basicAuth2|hasPermissions2:a_archi_docs-destroy',
+        'uses' => 'A_archi_docsController@destroy')
+    );

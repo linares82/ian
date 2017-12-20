@@ -1,17 +1,17 @@
 <?php
 
-class A_rr_amb_docsController extends BaseController {
+class A_archi_docsController extends BaseController {
 
 	/**
-	 * A_rr_amb_doc Repository
+	 * A_archi_doc Repository
 	 *
-	 * @var A_rr_amb_doc
+	 * @var A_archi_doc
 	 */
-	protected $a_rr_amb_doc;
+	protected $a_archi_doc;
 
-	public function __construct(A_rr_amb_doc $a_rr_amb_doc)
+	public function __construct(A_archi_doc $a_archi_doc)
 	{
-		$this->a_rr_amb_doc = $a_rr_amb_doc;
+		$this->a_archi_doc = $a_archi_doc;
 	}
 
 	/**
@@ -22,7 +22,7 @@ class A_rr_amb_docsController extends BaseController {
 	public function index()
 	{
 
-		return View::make('a_rr_amb_docs.index');
+		return View::make('a_archi_docs.index');
 	}
 	
 	public function contentListIndex(){
@@ -37,9 +37,9 @@ class A_rr_amb_docsController extends BaseController {
 		$count_rows=0;
 		$model=array();
 
-		$count_rows=$this->a_rr_amb_doc->id($id)->count();
+		$count_rows=$this->a_archi_doc->id($id)->count();
 
-		$model=$this->a_rr_amb_doc
+		$model=$this->a_archi_doc
 				->select('', 'created_at', 'updated_at', 'deleted_at')
 				->Id($id)
 				->skip($offset)->take($rows)->orderBy($sort, $order)->withTrashed()->get();	
@@ -57,7 +57,7 @@ class A_rr_amb_docsController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('a_rr_amb_docs.create');
+		return View::make('a_archi_docs.create');
 	}
 
 	/**
@@ -70,16 +70,16 @@ class A_rr_amb_docsController extends BaseController {
 		$input = Input::all();
 		$input['usu_alta_id']=Sentry::getUser()->id;
 		$input['usu_mod_id']=Sentry::getUser()->id;
-		$validation = Validator::make($input, A_rr_amb_doc::$rules, A_rr_amb_doc::$rulesMessages);
+		$validation = Validator::make($input, A_archi_doc::$rules, A_archi_doc::$rulesMessages);
 
 		if ($validation->passes())
 		{
-			$this->a_rr_amb_doc->create($input);
+			$this->a_archi_doc->create($input);
 
-			return Redirect::route('a_rr_amb_doc.index');
+			return Redirect::route('a_archi_doc.index');
 		}
 
-		return Redirect::route('a_rr_amb_doc.create')
+		return Redirect::route('a_archi_doc.create')
 			->withInput()
 			->withErrors($validation)
 			->with('message', 'Existen errores de validación.');
@@ -93,9 +93,9 @@ class A_rr_amb_docsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$a_rr_amb_doc = $this->a_rr_amb_doc->findOrFail($id);
+		$a_archi_doc = $this->a_archi_doc->findOrFail($id);
 
-		return View::make('a_rr_amb_docs.show', compact('a_rr_amb_doc'));
+		return View::make('a_archi_docs.show', compact('a_archi_doc'));
 	}
 
 	/**
@@ -106,14 +106,14 @@ class A_rr_amb_docsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$a_rr_amb_doc = $this->a_rr_amb_doc->find($id);
+		$a_archi_doc = $this->a_archi_doc->find($id);
 
-		if (is_null($a_rr_amb_doc))
+		if (is_null($a_archi_doc))
 		{
-			return Redirect::route('a_rr_amb_docs.index');
+			return Redirect::route('a_archi_docs.index');
 		}
 
-		return View::make('a_rr_amb_docs.edit', compact('a_rr_amb_doc'));
+		return View::make('a_archi_docs.edit', compact('a_archi_doc'));
 	}
 
 	/**
@@ -126,17 +126,17 @@ class A_rr_amb_docsController extends BaseController {
 	{
 		$input = array_except(Input::all(), '_method');
 		$input['usu_mod_id']=Sentry::getUser()->id;
-		$validation = Validator::make($input, A_rr_amb_doc::$rules, A_rr_amb_doc::$rulesMessages);
+		$validation = Validator::make($input, A_archi_doc::$rules, A_archi_doc::$rulesMessages);
 
 		if ($validation->passes())
 		{
-			$a_rr_amb_doc = $this->a_rr_amb_doc->find($id);
-			$a_rr_amb_doc->update($input);
+			$a_archi_doc = $this->a_archi_doc->find($id);
+			$a_archi_doc->update($input);
 
-			return Redirect::route('a_rr_amb_doc.show', $id);
+			return Redirect::route('a_archi_doc.show', $id);
 		}
 
-		return Redirect::route('a_rr_amb_doc.edit', $id)
+		return Redirect::route('a_archi_doc.edit', $id)
 			->withInput()
 			->withErrors($validation)
 			->with('message', 'There were validation errors.');
@@ -150,19 +150,21 @@ class A_rr_amb_docsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		/*if ($this->a_rr_amb_doc->find($id)->delete()){
+		/*if ($this->a_archi_doc->find($id)->delete()){
 			echo json_encode(array('success'=>true));
 		}else{
 			echo json_encode(array('msg'=>'Errores en el proceso.'));
 		}*/
-                $r=$this->a_rr_amb_doc->find($id);
+                //dd($id);
+                $r=$this->a_archi_doc->find($id);
+                dd($r);
 		if ($r->delete()){
-			return Redirect::route('a_rr_ambientale.edit', $r->a_rr_ambiental_id)
+			return Redirect::route('a_archivos.edit', $r->a_archivo_id)
 			->withInput()
 			->with('message', 'There were validation errors.');
 			//echo json_encode(array('success'=>true));
 		}else{
-			return Redirect::route('a_rr_ambientale.edit', $r->a_rr_ambiental_id)
+			return Redirect::route('a_archivos.edit', $r->a_archivo_id)
 			->withInput()
 			->with('message', 'There were validation errors.');
 			//echo json_encode(array('msg'=>'Errores en el proceso.'));
@@ -171,7 +173,7 @@ class A_rr_amb_docsController extends BaseController {
 	
 	public function recover($id)
 	{
-		if ($this->a_rr_amb_doc->withTrashed()->find($id)->restore()){
+		if ($this->a_archi_doc->withTrashed()->find($id)->restore()){
 			echo json_encode(array('success'=>true));
 		}else{
 			echo json_encode(array('msg'=>'Errores en el proceso.'));
