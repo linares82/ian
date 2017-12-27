@@ -125,7 +125,7 @@
 					@foreach($documentos as $d)
 					<tr>
 						<td>{{ $d->documento }}</td>
-						<td><a href="{{ asset('uploads/'.$cia.'/'.$usuario.'/bit_doc_accidentes/'.$d->archivo) }}" target='_blank'>{{ $d->archivo }}</a></td>
+						<td><a href="{{ asset('uploads/'.$cia.'/'.$d->usu_mod_id.'/bit_doc_accidentes/'.$d->archivo) }}" target='_blank'>{{ $d->archivo }}</a></td>
 						<td>{{ link_to_route('bit_doc_accidente.destroy', 'Eliminar', $parameters = array('id'=>$d->id), $attributes = array()) }}</td>
 					</tr>
 					@endforeach
