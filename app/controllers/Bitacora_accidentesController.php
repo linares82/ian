@@ -130,7 +130,7 @@ class Bitacora_accidentesController extends BaseController {
 	public function edit($id)
 	{
 		$bitacora_accidente = $this->bitacora_accidente->find($id);
-		$documentos = DB::table('Bit_doc_accidentes')
+		$documentos = DB::table('bit_doc_accidentes')
 						->where('bitacora_accidente_id', '=', $id)
 						->where('deleted_at', '=', null)
 						->get();
