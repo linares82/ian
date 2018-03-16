@@ -643,7 +643,7 @@ class DOMPDF {
       // HTML-ENTITIES prior to import appears to resolve the issue.
       // http://devzone.zend.com/1538/php-dom-xml-extension-encoding-processing/ (see #4)
       // http://stackoverflow.com/a/11310258/264628
-      $doc = new \DOMDocument();
+      $doc = new DOMDocument();
       $doc->preserveWhiteSpace = true;
       $doc->loadHTML( mb_convert_encoding( $str , 'HTML-ENTITIES' , 'UTF-8' ) );
 
