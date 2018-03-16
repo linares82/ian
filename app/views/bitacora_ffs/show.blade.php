@@ -61,7 +61,7 @@
 			</tr>
 			<tr class="alt">
 				<td><b>Responsable</b></td>
-				<td>{{{ $bitacora_ff->responsable->nombre }}}</td>
+				<td>{{{ $bitacora_ff->responsableFf->nombre }}}</td>
 				<td><b></b></td>
 				<td></td>
 			</tr>
