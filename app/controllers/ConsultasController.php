@@ -80,13 +80,13 @@ class ConsultasController extends BaseController {
 			unlink($carpeta . '/fuentesFijas.pdf');
 		}
 
-		$fs=$this->plantas->select('bitacora_ffs.*', 'e.nombre')
-									->whereBetween('bitacora_ffs.cia_id', array($input['cia_f'], $input['cia_t']))
-									->join('empleados as e', 'e.id', '=', 'bitacora_ffs.responsable_id')
-									->whereBetween('bitacora_ffs.ca_fuente_fija_id', array($input['fuente_f'], $input['fuente_t']))
-									->whereBetween('bitacora_ffs.responsable_id', array($input['responsable_f'], $input['responsable_t']))
-									->whereBetween('bitacora_ffs.fecha', array($input['fecha_f'], $input['fecha_t']))
-									->get();
+		$fs=$this->fuentesFijas->select('bitacora_ffs.*', 'e.nombre')
+						->join('empleados as e', 'e.id', '=', 'bitacora_ffs.responsable_id')
+						->whereBetween('bitacora_ffs.cia_id', array($input['cia_f'], $input['cia_t']))
+						->whereBetween('bitacora_ffs.ca_fuente_fija_id', array($input['fuente_f'], $input['fuente_t']))
+						->whereBetween('bitacora_ffs.responsable_id', array($input['responsable_f'], $input['responsable_t']))
+						->whereBetween('bitacora_ffs.fecha', array($input['fecha_f'], $input['fecha_t']))
+						->get();
 		
 		/*JasperPHP::process(
 	    base_path() . '/public/reportes/reportes/fuentesFijas.jasper', 
