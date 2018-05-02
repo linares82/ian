@@ -22,9 +22,9 @@ class Aspectos_ambientale extends Eloquent {
 		'obj_corporativo_bnd' => 'not_in:0',
 		'quejas_bnd' => 'not_in:0',
 		'severidad_id' => 'not_in:0',
-        'bnd_potencial' => 'not_in:0',
+                'bnd_potencial' => 'not_in:0',
 		'frecuencia_id' => 'not_in:0',
-        'bnd_real' => 'not_in:0',
+                'bnd_real' => 'not_in:0',
 		'probabilidad_id' => 'not_in:0',
 	);
 	
@@ -74,6 +74,10 @@ class Aspectos_ambientale extends Eloquent {
     public function impacto()
     {
         return $this->belongsTo('Aa_impacto', 'impacto_id');
+    }
+    public function puesto()
+    {
+        return $this->belongsTo('Puesto', 'puesto_id');
     }
     public function alFederalBnd()
     {

@@ -45,6 +45,12 @@
               {{ Form::text('descripcion', Input::old('descripcion'), array('placeholder'=>'Descripcion')) }}
             {{ $errors->first('descripcion', '<div class="errorMessage">:message</div>') }}
         </div>
+            
+        <div class="row @if ( $errors->has('efecto')) has-error @endif">
+            {{ Form::label('efecto', 'Efecto:') }}
+              {{ Form::text('efecto', Input::old('efecto'), array('placeholder'=>'Efecto')) }}
+            {{ $errors->first('efecto', '<div class="errorMessage">:message</div>') }}
+        </div>    
 
         <div class="row_1 @if ( $errors->has('aspecto_id')) has-error @endif">
             {{ Form::label('aspecto_id', 'Aspecto:') }}
@@ -70,6 +76,12 @@
             {{ $errors->first('impacto_id', '<div class="errorMessage">:message</div>') }}
         </div>
 
+        <div class="row_1 @if ( $errors->has('puesto_id')) has-error @endif">
+            {{ Form::label('puesto_id', 'Puesto:') }}
+              {{ Form::select('puesto_id', $puestos_ls, Input::old('puesto_id'))  }}
+            {{ $errors->first('puesto_id', '<div class="errorMessage">:message</div>') }}
+        </div> 
+            
         <div id="p" class="easyui-panel" title="CONSIDERACIONES" style="width:96%;margin-top:10px;margin-bottom:15px;">
         </div>
 

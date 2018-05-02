@@ -286,6 +286,7 @@ class ComposerStaticInita483464ca35e157b8c010a39cccdd54f
     public static $classMap = array (
         'A_archi_doc' => __DIR__ . '/../..' . '/app/models/A_archi_doc.php',
         'A_archi_docsController' => __DIR__ . '/../..' . '/app/controllers/A_archi_docsController.php',
+        'A_archi_docsTableSeeder' => __DIR__ . '/../..' . '/app/database/seeds/A_archi_docsTableSeeder.php',
         'A_archivo' => __DIR__ . '/../..' . '/app/models/A_archivo.php',
         'A_archivosController' => __DIR__ . '/../..' . '/app/controllers/A_archivosController.php',
         'A_archivosTableSeeder' => __DIR__ . '/../..' . '/app/database/seeds/A_archivosTableSeeder.php',
@@ -343,6 +344,7 @@ class ComposerStaticInita483464ca35e157b8c010a39cccdd54f
         'Acheck' => __DIR__ . '/../..' . '/app/models/Acheck.php',
         'AchecksController' => __DIR__ . '/../..' . '/app/controllers/AchecksController.php',
         'AchecksTableSeeder' => __DIR__ . '/../..' . '/app/database/seeds/AchecksTableSeeder.php',
+        'AddEfectoPuestoAspectosAmbientalesTable' => __DIR__ . '/../..' . '/app/database/migrations/2018_05_02_173111_add_efecto_puesto_aspectos_ambientales_table.php',
         'AddFecSalidaBitacoraResiduosTable' => __DIR__ . '/../..' . '/app/database/migrations/2017_06_19_221908_AddFecSalida_bitacora_residuos_table.php',
         'AddTextInvestigacionBitacoraAccidentesTable' => __DIR__ . '/../..' . '/app/database/migrations/2017_06_19_190817_AddTextInvestigacion_bitacora_accidentes_table.php',
         'Adobe_Font_Metrics' => __DIR__ . '/..' . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
@@ -489,6 +491,7 @@ class ComposerStaticInita483464ca35e157b8c010a39cccdd54f
         'Canvas_Factory' => __DIR__ . '/..' . '/dompdf/dompdf/include/canvas_factory.cls.php',
         'Caracteristica' => __DIR__ . '/../..' . '/app/models/Caracteristica.php',
         'Caracteristica_matriz' => __DIR__ . '/../..' . '/app/models/Caracteristica_matriz.php',
+        'CaracteristicasController' => __DIR__ . '/../..' . '/app/controllers/CaracteristicasController.php',
         'CaracteristicasTableSeeder' => __DIR__ . '/../..' . '/app/database/seeds/CaracteristicasTableSeeder.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',

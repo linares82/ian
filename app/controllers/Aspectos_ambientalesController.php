@@ -50,7 +50,7 @@ class Aspectos_ambientalesController extends BaseController {
 		$count_rows=0;
 		$model=array();
 
-		$count_rows=$this->aspectos_ambientale()->id($id)->Cia($cia)->withTrashed()->count();
+		$count_rows=$this->aspectos_ambientale->id($id)->Cia($cia)->withTrashed()->count();
 
 		$model=$this->aspectos_ambientale
 				->select('aspectos_ambientales.id', 'p.proceso', 'a.area', 'aspectos_ambientales.actividad', 
@@ -87,8 +87,9 @@ class Aspectos_ambientalesController extends BaseController {
 		$severidades_ls=['0' => 'Seleccionar'] + Efecto::lists('descripcion','id');
 		$frecuencias_ls=['0' => 'Seleccionar'] + Duracion_accion::lists('duracion_accion','id');
 		$probabilidades_ls=['0' => 'Seleccionar'] + Probabilidad::lists('probabilidad','id');
+                $puestos_ls=['0' => 'Seleccionar'] + Puesto::lists('puesto','id');
 		return View::make('aspectos_ambientales.create', compact(['procesos_ls', 'areas_ls', 'aspectos_ls', 'emes_ls', 'condiciones_ls',
-							'impactos_ls', 'bnds_ls', 'severidades_ls', 'frecuencias_ls', 'probabilidades_ls']));
+							'impactos_ls', 'bnds_ls', 'severidades_ls', 'frecuencias_ls', 'probabilidades_ls', 'puestos_ls']));
 	}
 
 	/**
@@ -169,8 +170,9 @@ class Aspectos_ambientalesController extends BaseController {
 		$severidades_ls=['0' => 'Seleccionar'] + Efecto::lists('descripcion','id');
 		$frecuencias_ls=['0' => 'Seleccionar'] + Duracion_accion::lists('duracion_accion','id');
 		$probabilidades_ls=['0' => 'Seleccionar'] + Probabilidad::lists('probabilidad','id');
-
-		return View::make('aspectos_ambientales.edit',compact(['procesos_ls', 'areas_ls', 'aspectos_ls', 'emes_ls', 'condiciones_ls',
+                $puestos_ls=['0' => 'Seleccionar'] + Puesto::lists('puesto','id');
+                
+		return View::make('aspectos_ambientales.edit',compact(['procesos_ls', 'areas_ls', 'aspectos_ls', 'emes_ls', 'condiciones_ls','puestos_ls',
 							'impactos_ls', 'bnds_ls', 'severidades_ls', 'frecuencias_ls', 'probabilidades_ls', 'aspectos_ambientale']));
 	}
 

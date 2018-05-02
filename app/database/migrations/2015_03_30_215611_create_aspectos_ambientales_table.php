@@ -18,10 +18,12 @@ class CreateAspectosAmbientalesTable extends Migration {
 			$table->integer('area_id')->unsigned();
 			$table->string('actividad');
 			$table->string('descripcion');
+                        $table->string('efecto');
 			$table->integer('aspecto_id')->unsigned();
 			$table->integer('eme_id')->unsigned();
 			$table->integer('condicion_id')->unsigned();
 			$table->integer('impacto_id')->unsigned();
+                        $table->integer('puesto_id')->unsigned();
 			$table->integer('al_federal_bnd')->unsigned();
 			$table->integer('al_estatal_bnd')->unsigned();
 			$table->integer('obj_corporativo_bnd')->unsigned();
@@ -60,6 +62,7 @@ class CreateAspectosAmbientalesTable extends Migration {
 			$table->foreign('aspecto_id')->references('id')->on('aa_aspectos');
 			$table->foreign('area_id')->references('id')->on('areas');
 			$table->foreign('proceso_id')->references('id')->on('aa_procesos');
+                        $table->foreign('puesto_id')->references('id')->on('puestos');
 
 		});
 	}

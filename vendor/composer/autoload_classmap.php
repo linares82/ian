@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'A_archi_doc' => $baseDir . '/app/models/A_archi_doc.php',
     'A_archi_docsController' => $baseDir . '/app/controllers/A_archi_docsController.php',
+    'A_archi_docsTableSeeder' => $baseDir . '/app/database/seeds/A_archi_docsTableSeeder.php',
     'A_archivo' => $baseDir . '/app/models/A_archivo.php',
     'A_archivosController' => $baseDir . '/app/controllers/A_archivosController.php',
     'A_archivosTableSeeder' => $baseDir . '/app/database/seeds/A_archivosTableSeeder.php',
@@ -65,6 +66,7 @@ return array(
     'Acheck' => $baseDir . '/app/models/Acheck.php',
     'AchecksController' => $baseDir . '/app/controllers/AchecksController.php',
     'AchecksTableSeeder' => $baseDir . '/app/database/seeds/AchecksTableSeeder.php',
+    'AddEfectoPuestoAspectosAmbientalesTable' => $baseDir . '/app/database/migrations/2018_05_02_173111_add_efecto_puesto_aspectos_ambientales_table.php',
     'AddFecSalidaBitacoraResiduosTable' => $baseDir . '/app/database/migrations/2017_06_19_221908_AddFecSalida_bitacora_residuos_table.php',
     'AddTextInvestigacionBitacoraAccidentesTable' => $baseDir . '/app/database/migrations/2017_06_19_190817_AddTextInvestigacion_bitacora_accidentes_table.php',
     'Adobe_Font_Metrics' => $vendorDir . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
@@ -211,6 +213,7 @@ return array(
     'Canvas_Factory' => $vendorDir . '/dompdf/dompdf/include/canvas_factory.cls.php',
     'Caracteristica' => $baseDir . '/app/models/Caracteristica.php',
     'Caracteristica_matriz' => $baseDir . '/app/models/Caracteristica_matriz.php',
+    'CaracteristicasController' => $baseDir . '/app/controllers/CaracteristicasController.php',
     'CaracteristicasTableSeeder' => $baseDir . '/app/database/seeds/CaracteristicasTableSeeder.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
